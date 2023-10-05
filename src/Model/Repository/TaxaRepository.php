@@ -24,7 +24,7 @@
                 $taxaArray['phylumName'],
                 $taxaArray['kingdomName'],
                 $taxaArray['taxrefVersion'],
-                $taxaArray['links']
+                $taxaArray['_links']
             );
         }
 
@@ -33,7 +33,7 @@
             $errorCode = $e->getCode();
             return ExceptionHandler::getErrorMessage($errorCode);
         }
-        public static function obtenirTaxaParID(int $id) : array|string
+        public static function obtenirTaxaParID(int $id) : TaxaObject|string
         {
             try {
                 // Requête envers l'API
@@ -45,8 +45,7 @@
                 $data = json_decode($reponse, true);
                 ExceptionHandler::checkTrueValue([!isset($data['_embedded']), !is_null($data)], 102);
                 // Retourner le taxon si tout est bon
-                return $data;
-                // return self::Construire($data);
+                return self::Construire($data);
             } catch (Exception $e) {
                 return static::error($e);
             }

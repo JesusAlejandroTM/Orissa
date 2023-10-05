@@ -25,10 +25,10 @@
              int $parentId,
              string $scientificName,
              string $authority,
+             string $rankId,
              string $rankName,
              string $habitat,
              string $genusName,
-             string $rankId,
              string $familyName,
              string $orderName,
              string $className,
@@ -206,22 +206,12 @@
         public function __toString(): string
         {
             return sprintf(
-                "ID: %d\nParent ID: %d\nScientific Name: %s\nAuthority: %s\nRank ID: %s\nRank Name: %s\nHabitat: %s\nGenus Name: %s\nFamily Name: %s\nOrder Name: %s\nClass Name: %s\nPhylum Name: %s\nKingdom Name: %s\nTaxref Version: %s\nLinks: %s",
+                "ID: %d\n; Scientific Name: %s\n; Authority: %s\n; Habitat: %s\n; Kingdom Name: %s",
                 $this->id,
-                $this->parentId,
                 $this->scientificName,
                 $this->authority,
-                $this->rankId,
-                $this->rankName,
                 $this->habitat,
-                $this->genusName,
-                $this->familyName,
-                $this->orderName,
-                $this->className,
-                $this->phylumName,
                 $this->kingdomName,
-                $this->taxrefVersion,
-                json_encode($this->links) // Convert the links array to JSON
             );
         }
     }
