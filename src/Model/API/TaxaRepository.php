@@ -1,6 +1,6 @@
 <?php
 
-    namespace App\Web\Model\Repository;
+    namespace App\Web\Model\API;
     use App\Web\Config\ExceptionHandler;
     use App\Web\Model\DataObject\TaxaObject;
     use Exception;

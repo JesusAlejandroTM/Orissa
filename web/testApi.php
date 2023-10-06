@@ -1,7 +1,7 @@
 <?php
     require_once(__DIR__ . '/../src/lib/Psr4AutoloaderClass.php');
 
-    use App\Web\Model\Repository\TaxaRepository;
+    use App\Web\Model\API\TaxaRepository;
 
     /*
      * L'autoloader nous permettra d'utiliser nos différentes classe
