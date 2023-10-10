@@ -3,7 +3,7 @@
     namespace App\Web\Config;
 
     // Class configuration pour se connecter à la BDD
-        // Test
+    // Test
     class Conf
     {
         // Attribut array $databases contenant les informations login à la BDD

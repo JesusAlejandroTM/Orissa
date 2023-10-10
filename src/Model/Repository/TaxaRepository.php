@@ -1,15 +1,17 @@
 <?php
 
-    namespace App\Web\Model\API;
+    namespace App\Web\Model\Repository;
+
+    use App\Web\Model\API\APIConnection;
     use App\Web\Config\ExceptionHandler;
-    use App\Web\Model\DataObject\TaxaObject;
+    use App\Web\Model\DataObject\Taxa;
     use Exception;
 
     class TaxaRepository
     {
-        public static function Construire(array $taxaArray) : TaxaObject
+        public static function Construire(array $taxaArray): Taxa
         {
-            return new TaxaObject(
+            return new Taxa(
                 $taxaArray['id'],
                 $taxaArray['parentId'],
                 $taxaArray['scientificName'],
@@ -28,12 +30,13 @@
             );
         }
 
-        public static function error(Exception $e) : string
+        public static function error(Exception $e): string
         {
             $errorCode = $e->getCode();
             return ExceptionHandler::getErrorMessage($errorCode);
         }
-        public static function obtenirTaxaParID(int $id) : TaxaObject|string
+
+        public static function obtenirTaxaParID(int $id): Taxa|string
         {
             try {
                 // Requête envers l'API

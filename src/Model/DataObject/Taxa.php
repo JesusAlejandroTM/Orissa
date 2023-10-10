@@ -2,56 +2,26 @@
 
     namespace App\Web\Model\DataObject;
 
-    class TaxaObject
+    class Taxa
     {
-        private int $id;
-        private int $parentId;
-        private string $scientificName;
-        private string $authority;
-        private string $rankId;
-        private string $rankName;
-        private string  $habitat;
-        private string $genusName;
-        private string $familyName;
-        private string $orderName;
-        private string $className;
-        private string $phylumName;
-        private string $kingdomName;
-        private string $taxrefVersion;
-        private array $links;
-
         public function __construct(
-             int $id,
-             int $parentId,
-             string $scientificName,
-             string $authority,
-             string $rankId,
-             string $rankName,
-             string $habitat,
-             string $genusName,
-             string $familyName,
-             string $orderName,
-             string $className,
-             string $phylumName,
-             string $kingdomName,
-             string $taxrefVersion,
-             array $links
-        ){
-            $this->id = $id;
-            $this->parentId = $parentId;
-            $this->scientificName = $scientificName;
-            $this->authority = $authority;
-            $this->rankId = $rankId;
-            $this->rankName = $rankName;
-            $this->habitat = $habitat;
-            $this->genusName = $genusName;
-            $this->familyName = $familyName;
-            $this->orderName = $orderName;
-            $this->className = $className;
-            $this->phylumName = $phylumName;
-            $this->kingdomName = $kingdomName;
-            $this->taxrefVersion = $taxrefVersion;
-            $this->links = $links;
+            private int     $id,
+            private ?int    $parentId = null,
+            private ?string $scientificName = null,
+            private ?string $authority = null,
+            private ?string $rankId = null,
+            private ?string $rankName = null,
+            private ?string $habitat = null,
+            private ?string $genusName = null,
+            private ?string $familyName = null,
+            private ?string $orderName = null,
+            private ?string $className = null,
+            private ?string $phylumName = null,
+            private ?string $kingdomName = null,
+            private ?string $taxrefVersion = null,
+            private ?array  $links = null
+        )
+        {
         }
 
         public function getId(): int
@@ -193,6 +163,7 @@
         {
             $this->taxrefVersion = $taxrefVersion;
         }
+
         public function getRankId(): string
         {
             return $this->rankId;

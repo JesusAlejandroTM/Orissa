@@ -1,6 +1,7 @@
 <?php
 
     namespace App\Web\Config;
+
     use Exception;
 
     class ExceptionHandler
@@ -38,7 +39,8 @@
                 self::throwException($errorCode);
         }
 
-        public static function checkInstanceClass(mixed $instance, string $instanceClassName, int $errorCode) : void {
+        public static function checkInstanceClass(mixed $instance, string $instanceClassName, int $errorCode): void
+        {
             if (!$instance instanceof $instanceClassName) {
                 self::throwException($errorCode);
             }
@@ -51,7 +53,7 @@
                 if (!$value) {
                     self::throwException($errorCode);
                 }
-            if (is_array($value)){
+            if (is_array($value)) {
                 foreach ($value as $bool) {
                     if (!$bool) {
                         self::throwException($errorCode);
