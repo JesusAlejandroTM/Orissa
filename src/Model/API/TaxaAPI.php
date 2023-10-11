@@ -1,13 +1,12 @@
 <?php
 
-    namespace App\Web\Model\Repository;
+    namespace App\Web\Model\API;
 
-    use App\Web\Model\API\APIConnection;
     use App\Web\Config\ExceptionHandler;
     use App\Web\Model\DataObject\Taxa;
     use Exception;
 
-    class TaxaRepository
+    class TaxaAPI
     {
         public static function Construire(array $taxaArray): Taxa
         {

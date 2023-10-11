@@ -9,7 +9,7 @@
         // Attribut array $databases contenant les informations login à la BDD
         static private array $databases = array(
             'hostname' => 'localhost',
-            'database' => 'lionscale',
+            'database' => 'starfish',
             'login' => 'root',
             'password' => ''
         );

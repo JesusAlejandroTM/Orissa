@@ -1,8 +1,11 @@
 <?php
-    require_once(__DIR__ . '/../src/lib/Psr4AutoloaderClass.php');
+    require_once(__DIR__ . '/../src/Lib/Psr4AutoloaderClass.php');
 
-    use App\Web\Model\Repository\TaxaRepository;
-
+    use App\Web\Model\API\TaxaAPI;
+    use App\Web\Model\Repository\UserRepository;
+    use App\Web\Model\DataObject\Taxa;
+    use App\Web\Model\DataObject\User;
+    use App\Web\Lib\PasswordManager;
     /*
      * L'autoloader nous permettra d'utiliser nos différentes classe
      * de manière plus optimisée (pas besoin de require_once
@@ -16,5 +19,10 @@
     $loader->addNamespace('App\Web', __DIR__ . '/../src');
     $loader->register();
 
-    $taxa = TaxaRepository::obtenirTaxaParID(952799);
-    echo $taxa;
+    $user = UserRepository::selectWithId(1);
+
+    $mdp = 'JesusATM12';
+    echo PasswordManager::verifyPassword($mdp, $user->getUsername());
+
+    $user = new User('1', 'mail', 'username', 'password', 'role');
+    echo $user;
