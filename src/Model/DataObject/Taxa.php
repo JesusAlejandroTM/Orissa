@@ -1,6 +1,6 @@
 <?php
 
-    namespace App\Web\Model\DataObject;
+    namespace App\Code\Model\DataObject;
 
     class Taxa
     {

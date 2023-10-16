@@ -1,8 +1,8 @@
 <?php
 
-    namespace App\Web\Model\Repository;
+    namespace App\Code\Model\Repository;
 
-    use App\Web\Config\Conf;
+    use App\Code\Config\Conf;
     use PDO;
 
 // Class Model gérant les récupérations et traitement d'information

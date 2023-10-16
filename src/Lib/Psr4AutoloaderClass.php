@@ -5,7 +5,7 @@
     https://www.php-fig.org/psr/psr-4/
     */
 
-    namespace App\Web\Lib;
+    namespace App\Code\Lib;
 
     /**
      * An example of a general-purpose implementation that includes the optional

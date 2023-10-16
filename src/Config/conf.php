@@ -1,6 +1,6 @@
 <?php
 
-    namespace App\Web\Config;
+    namespace App\Code\Config;
 
     // Class configuration pour se connecter à la BDD
     // Test
@@ -18,6 +18,8 @@
             'apiHost' => 'https://taxref.mnhn.fr',
             'apiBasePath' => '/api'
         );
+
+        static private string $baseUrl = 'http://localhost/Orissa';
 
         static public function getApiBasePath(): string
         {
@@ -43,5 +45,10 @@
         static public function getPassword(): string
         {
             return static::$databases['password'];
+        }
+
+        public static function getBaseUrl(): string
+        {
+            return self::$baseUrl;
         }
     }

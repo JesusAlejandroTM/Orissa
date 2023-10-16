@@ -1,6 +1,6 @@
 <?php
 
-    namespace App\Web\Config;
+    namespace App\Code\Config;
 
     use Exception;
 

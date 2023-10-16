@@ -1,8 +1,6 @@
 <?php
 
-    namespace App\Web\Model\DataObject;
-
-    use DateTime;
+    namespace App\Code\Model\DataObject;
 
     class User
     {
@@ -11,25 +9,13 @@
         private string $username;
         private string $password;
         private ?string $role;
-        private ?DateTime $created_at;
-        private ?string $surname;
-        private ?string $name;
-        private ?string $domain;
-        private ?bool $verify;
-        private ?bool $accepted_tos;
 
         public function __construct(
-            string    $mail,
-            string    $username,
-            string    $password,
-            ?int      $id = null,
-            ?string   $role = null,
-            ?DateTime $created_at = null,
-            ?string   $surname = null,
-            ?string   $name = null,
-            ?string   $domain = null,
-            ?bool     $verify = null,
-            ?bool     $accepted_tos = null,
+            string  $mail,
+            string  $username,
+            string  $password,
+            ?int    $id = null,
+            ?string $role = null,
         )
         {
             $this->mail = $mail;
@@ -37,28 +23,22 @@
             $this->password = $password;
             $this->id = $id;
             $this->role = $role;
-            $this->created_at = $created_at;
-            $this->surname = $surname;
-            $this->name = $name;
-            $this->domain = $domain;
-            $this->verify = $verify;
-            $this->accepted_tos = $accepted_tos;
         }
 
         public function __toString(): string
         {
-            return "
-        ID: $this->id ;
-        Mail: $this->mail ; 
-        Username: $this->username ;
-        Password: $this->password ;
-        Accepted TOS: " . ($this->accepted_tos ? 'Yes' : 'No') . " ; 
-        Role: $this->role ; 
-        Created At: " . ($this->created_at ? $this->created_at->format('Y-m-d H:i:s') : 'N/A') . " ;
-        Surname: $this->surname ; 
-        Name: $this->name ; 
-        Domain: $this->domain ; 
-        Verify: " . ($this->verify ? 'Yes' : 'No');
+            if (is_null($this->id)) {
+                return "
+                Mail: $this->mail ; 
+                Username: $this->username ;
+                Role: $this->role ; ";
+            } else {
+                return "
+                ID: $this->id ;
+                Mail: $this->mail ; 
+                Username: $this->username ;
+                Role: $this->role ; ";
+            }
         }
 
 
@@ -110,65 +90,5 @@
         public function setRole(string $role): void
         {
             $this->role = $role;
-        }
-
-        public function getSurname(): string
-        {
-            return $this->surname;
-        }
-
-        public function setSurname(string $surname): void
-        {
-            $this->surname = $surname;
-        }
-
-        public function getName(): string
-        {
-            return $this->name;
-        }
-
-        public function setName(string $name): void
-        {
-            $this->name = $name;
-        }
-
-        public function getAcceptedTos(): ?bool
-        {
-            return $this->accepted_tos;
-        }
-
-        public function setAcceptedTos(?bool $accepted_tos): void
-        {
-            $this->accepted_tos = $accepted_tos;
-        }
-
-        public function getCreatedAt(): ?DateTime
-        {
-            return $this->created_at;
-        }
-
-        public function setCreatedAt(?DateTime $created_at): void
-        {
-            $this->created_at = $created_at;
-        }
-
-        public function getDomain(): ?string
-        {
-            return $this->domain;
-        }
-
-        public function setDomain(?string $domain): void
-        {
-            $this->domain = $domain;
-        }
-
-        public function getVerify(): ?bool
-        {
-            return $this->verify;
-        }
-
-        public function setVerify(?bool $verify): void
-        {
-            $this->verify = $verify;
         }
     }

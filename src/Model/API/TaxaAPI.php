@@ -2,8 +2,8 @@
 
     namespace App\Web\Model\API;
 
-    use App\Web\Config\ExceptionHandler;
-    use App\Web\Model\DataObject\Taxa;
+    use App\Code\Config\ExceptionHandler;
+    use App\Code\Model\DataObject\Taxa;
     use Exception;
 
     class TaxaAPI

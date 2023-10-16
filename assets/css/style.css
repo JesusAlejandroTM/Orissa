@@ -1,0 +1,49 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+section{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    position: relative;
+    
+}
+
+section .imgBox{
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(medusa.jpeg);
+ 
+}
+/*
+section .imgBox:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #000, transparent);
+    transition: 0.5s;
+}
+*/
+section .contentBox{
+    position: relative;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    overflow: hidden;
+}
+
+section .contentBox .ZQ

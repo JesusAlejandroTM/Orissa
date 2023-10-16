@@ -1,8 +1,8 @@
 <?php
 
-    namespace App\Web\Model\Repository;
+    namespace App\Code\Model\Repository;
 
-    use App\Web\Model\DataObject\User;
+    use App\Code\Model\DataObject\User;
     use PDO;
 
     class UserRepository
@@ -10,7 +10,7 @@
 
         public static function selectWithId(int $id) : User
         {
-            $sql = "SELECT * FROM user WHERE id_user = :id_userTag";
+            $sql = "SELECT mail, username, id_user, role FROM user WHERE id_user = :id_userTag";
             $values = array("id_userTag" => $id);
             $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
             $pdoStatement->execute($values);

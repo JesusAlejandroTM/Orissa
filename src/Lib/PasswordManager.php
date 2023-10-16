@@ -2,7 +2,7 @@
 
     namespace App\Web\Lib;
 
-    use App\Web\Model\Repository\DatabaseConnection;
+    use App\Code\Model\Repository\DatabaseConnection;
     use PDO;
 
     class PasswordManager

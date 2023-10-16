@@ -2,7 +2,7 @@
 
     namespace App\Web\Model\API;
 
-    use App\Web\Config\Conf;
+    use App\Code\Config\Conf;
     use InvalidArgumentException;
     use Exception;
 
