@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Login</title>
-    <base href="http://localhost/Orissa/assets/">
-    <link rel="stylesheet" type="text/css" href="CSS/style.css">
-    <meta charset="utf-8">
-</head>
-<body>
 <section>
     <div class="imgBox">
-        <img src="img/medusa.jpeg" alt="image">
+        <img src="Assets/img/medusa.jpeg" alt="image">
+        <?php
+            echo $data . $username . $password;
+        ?>
         <div class="contentBox">
             <div class="formBox">
-                <form action="./../web/testApi.php" method="GET">
+                <form action="Login" method="GET">
                     <input type="hidden" name="controller" value="login"/>
                     <input type="hidden" name="action" value="logging"/>
                     <h2>Login</h2>
@@ -38,7 +32,3 @@
         </div>
     </div>
 </section>
-</body>
-
-
-</html>

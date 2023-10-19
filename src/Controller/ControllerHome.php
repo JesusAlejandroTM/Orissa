@@ -2,11 +2,11 @@
 
     namespace App\Code\Controller;
 
-    class ControllerLogin extends ControllerGeneric
+    class ControllerHome extends ControllerGeneric
     {
         protected function getBodyFolder(): string
         {
-            return '/Login';
+            return '/Home';
         }
 
         public function GetURLIdentifier(): string

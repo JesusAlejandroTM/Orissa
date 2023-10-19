@@ -19,11 +19,12 @@
             return "id";
         }
 
-        protected function afficheVue(string $pagetitle, string $cheminVueBody, array $parametres = []): void
+        public function afficheVue(string $pagetitle, string $cheminVueBody, array $parametres = []): void
         {
+
             $parametres += ['pagetitle' => $pagetitle, 'cheminVueBody' => $this->getBodyFolder() . $cheminVueBody];
             extract($parametres); // Crée des variables à partir du tableau $parametres
-            require(__DIR__ . '/../View/home.php'); // Charge la vue
+            require(__DIR__ . '/../View/view.php'); // Charge la vue
         }
 
         public function error(Exception $e): void
