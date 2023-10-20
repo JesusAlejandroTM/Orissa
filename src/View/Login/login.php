@@ -2,7 +2,7 @@
     <div class="imgBox">
         <img src="Assets/img/medusa.jpeg" alt="image">
     </div>
-    <div class="main-container">
+    <div class="contentBox">
         <div class="formBox">
             <form action="Login" method="GET">
                 <input type="hidden" name="controller" value="login"/>
