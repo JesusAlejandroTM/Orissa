@@ -1,14 +1,9 @@
 <section>
     <div class="imgBox">
         <img src="Assets/img/medusa.jpeg" alt="image">
-        <?php
-            echo $data . $username . $password;
-        ?>
         <div class="contentBox">
             <div class="formBox">
-                <form action="Login" method="GET">
-                    <input type="hidden" name="controller" value="login"/>
-                    <input type="hidden" name="action" value="logging"/>
+                <form action="Login/logging" method="GET">
                     <h2>Login</h2>
                     <fieldset>
                         <p>
