@@ -4,33 +4,24 @@
 
     class ControllerLogin extends ControllerGeneric
     {
+        /**Login Controller's definition of routes Map
+         * @var array|string[]
+         */
+        protected static array $routesMap = [
+            'Login' => 'view',
+            'logging' => 'logging',
+        ];
+
+        /**Login Controller's definition of Login body's folder directory
+         * @return string
+         */
         protected function getBodyFolder(): string
         {
             return '/Login';
         }
 
-        protected function getControllerRoutes(): array {
-            return [
-                'Login' => 'view',
-                'logging' => 'logging',
-            ];
-        }
-
-        public function executeAction(string $route): void
+        protected function logging() : void
         {
-            $action = $this->getRequestedAction($route);
-            switch ($action){
-                case 'logging':
-                    $this->logging();
-                    break;
-                default:
-                    $this->view();
-                    break;
-            }
-        }
-
-        private function logging() : void
-        {
-            (new ControllerLogin())->afficheVue("Login", "/login.php");
+            (new ControllerLogin())->displayView("Login", "/login.php");
         }
     }
