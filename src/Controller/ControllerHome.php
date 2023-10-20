@@ -9,34 +9,19 @@
             return '/Home';
         }
 
-        public function GetURLIdentifier(): string
-        {
-            return "username";
-        }
-
-        public function getRequestedAction(string $route) :string {
-            $routes = [
+        protected function getControllerRoutes(): array {
+            return [
                 'Home' => 'view',
             ];
-
-            return $routes[$route];
         }
 
         public function executeAction(string $route): void
         {
             $action = $this->getRequestedAction($route);
             switch ($action){
-                case 'view':
-                    $this->view();
-                    break;
                 default:
                     $this->view();
                     break;
             }
-        }
-
-        public static function view() : void
-        {
-            (new ControllerHome())->afficheVue("Home", "/home.php");
         }
     }
