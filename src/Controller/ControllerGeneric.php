@@ -21,10 +21,17 @@
 
         public function afficheVue(string $pagetitle, string $cheminVueBody, array $parametres = []): void
         {
-
             $parametres += ['pagetitle' => $pagetitle, 'cheminVueBody' => $this->getBodyFolder() . $cheminVueBody];
             extract($parametres); // Crée des variables à partir du tableau $parametres
             require(__DIR__ . '/../View/view.php'); // Charge la vue
+        }
+
+        public function getRequestedAction(string $route) : string {
+            $routes = [
+                '/Home' => 'view',
+            ];
+
+            return $routes[$route];
         }
 
         public function error(Exception $e): void

@@ -1,5 +1,5 @@
 <?php
-    use App\Code\Controller\ControllerGeneric;
+    use App\Code\Controller\ControllerHome;
 
     require_once(__DIR__ . '/src/Lib/Psr4AutoloaderClass.php');
 
@@ -7,41 +7,26 @@
     $loader->addNamespace('App\Code', __DIR__ . '/src');
     $loader->register();
 
-    $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-    $uri = str_replace('/Orissa', '', $uri);
+    controllerActionExecution();
 
-    $controllerGeneric = new ControllerGeneric();
-
-    $routes = [
-        '/Home' => '/../Home/home.php',
-        '/Login' => '/../Login/login.php',
-    ];
-
-    if (array_key_exists($uri, $routes)){
-        $controllerGeneric->afficheVue("Page title", $routes[$uri]);
-    } else {
-        $controllerGeneric->afficheVue("Default", '/../Home/home.php');
-    }
-    controllerActionHandling();
-
-    function afficheIndex(){
-        require(__DIR__ . '/src/View/view.php');
-    }
-
-    function controllerActionHandling() : void {
-        if (isset($_GET['controller'])) {
-            $controller = $_GET['controller'];
-            $controllerClassName = 'App\Code\Controller\Controller' . ucwords($controller);
+    function controllerActionExecution() : void {
+        if (isset($_SERVER['REQUEST_URI'])) {
+            $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+            $uri = str_replace('/Orissa/', '', $uri);
+            $uriParts = explode('/', $uri);
+            $controllerClassName = $uriParts[0];
+            $route = $uriParts[1] ?? 'default';
+            $controllerClassName = 'App\Code\Controller\Controller' . ucwords($controllerClassName);
             if (class_exists($controllerClassName)) {
-                if (isset($_GET['action'])) {
-                    $action = $_GET['action'];
-                    $URLidentifier = (new $controllerClassName())->GetURLIdentifier();
-                    $identifier = $_GET[$URLidentifier] ?? null;
-
-                    if (method_exists($controllerClassName, $action)) {
-                        (new $controllerClassName())->$action($identifier);
-                    }
-                }
+                $controller =  new $controllerClassName();
+                $controller->executeAction($route);
             }
+            else {
+                var_dump("Class doesn't exist");
+                (new ControllerHome())->executeAction('Home');
+            }
+        }
+        else {
+            (new ControllerHome())->executeAction('Home');
         }
     }
