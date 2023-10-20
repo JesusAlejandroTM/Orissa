@@ -83,7 +83,7 @@
 
         /**Displays error page based on Exception's error code with specific message.
          * Use error() to handle exceptions along with the
-         * ExceptionHandler class methods to efficiently catch exceptions
+         * ExceptionHandler class checking methods to efficiently catch exceptions
          * @param Exception $e
          * @return void
          */
