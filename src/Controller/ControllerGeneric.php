@@ -5,13 +5,34 @@
     use App\Code\Config\ExceptionHandler;
     use Exception;
 
+    /**ControllerGeneric is the parent controller which allows to create child controllers with dynamic
+     * and flexible methods. Every child controller must redefine $routesMap and $bodyFolder to function
+     * properly. A controller is associated with a folder under the View directory, for example a controller
+     * who manages the login system should be called ControllerLogin and have a Login folder under the View
+     * directory so classes, actions and files can be found.
+     */
     class ControllerGeneric
     {
-        /**Routes map for associated controller, every controller should have
-         * this variable redefined accordingly.
+        /**The routes map allows to control actions that are defined in the array
+         * and execute methods accordingly. They are associated with a corresponding
+         * controller, every controller should have this variable redefined accordingly.
          * @var array|string[]
          */
-        protected static array $routesMap = ['/Home' => 'view'];
+        protected static array $routesMap = ['Generic' => 'view'];
+
+
+        /**The body folder allows to find the directory given to a controller to
+         * display the correct HTMLs during the execution of a controller's actions.
+         * @var string
+         */
+        protected static string $bodyFolder = '/Generic';
+
+        /**Returns routes map associated with the corresponding Controller.
+         * @return array|string[]
+         */
+        protected function getRoutesMap(): array {
+            return static::$routesMap;
+        }
 
         /**Returns the folder directory with mostly HTML body files
          * associated with the corresponding Controller.
@@ -19,14 +40,7 @@
          */
         protected function getBodyFolder(): string
         {
-            return '/generic';
-        }
-
-        /**Returns routes map associated with the corresponding Controller.
-         * @return array|string[]
-         */
-        protected function getRoutesMap(): array {
-            return static::$routesMap;
+            return static::$bodyFolder;
         }
 
         /**Get action based on $route if it's found on the routes map.

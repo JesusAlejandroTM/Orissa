@@ -9,14 +9,10 @@
          */
         protected static array $routesMap = [
             'Home' => 'view',
-            'test' => 'test',
         ];
 
         /**Home Controller's definition of Home body's folder directory
          * @return string
          */
-        protected function getBodyFolder(): string
-        {
-            return '/Home';
-        }
+        protected static string $bodyFolder = '/Home';
     }

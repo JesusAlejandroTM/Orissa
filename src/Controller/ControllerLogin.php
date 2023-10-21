@@ -9,19 +9,16 @@
          */
         protected static array $routesMap = [
             'Login' => 'view',
-            'logging' => 'logging',
+            'Logging' => 'logging',
         ];
 
         /**Login Controller's definition of Login body's folder directory
          * @return string
          */
-        protected function getBodyFolder(): string
-        {
-            return '/Login';
-        }
+        protected static string $bodyFolder = '/Login';
 
         protected function logging() : void
         {
-            (new ControllerLogin())->displayView("Login", "/login.php");
+            (new ControllerLogin())->displayView("Logging", "/login.php");
         }
     }
