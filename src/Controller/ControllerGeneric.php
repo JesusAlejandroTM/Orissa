@@ -10,6 +10,33 @@
      * properly. A controller is associated with a folder under the View directory, for example a controller
      * who manages the login system should be called ControllerLogin and have a Login folder under the View
      * directory so classes, actions and files can be found.
+     * To extend ControllerGeneric into child controllers, you can redefine $routesMap and $bodyFolder and
+     * create the actions like this :
+     *
+     *      // Extending ControllerGeneric :
+     *
+     *      class ControllerLogin extends ControllerGeneric {
+     *
+     *      // Definition of $bodyFolder :
+     *
+     *          protected static string $bodyFolder = '/Login';
+     *
+     *      // Definition of $routesMap :
+     *
+     *          protected static array $routesMap = [
+     *          'Login' => 'view',      -> Default action for view
+     *          'Logging' => 'logging', -> Reading Logging in the URI will trigger the action logging
+     *          ];
+     *
+     *      // Creation of an action logging :
+     *
+     *          protected function logging() : void
+     *          {
+     *          (new ControllerLogin())->displayView("Logging", "/login.php");
+     *          }
+     *      }
+     *
+     *      
      */
     class ControllerGeneric
     {
@@ -82,9 +109,9 @@
         }
 
 
-        /**Main view method for each controller using displayView,
-         * every controller can use it as long as they have a getBodyFolder method.
-         * Which is used to obtain the pageTitle and pathViewBody
+        /**Main view action method for each controller using displayView.
+         * Every controller can use it as long as they have $bodyFolder redefined properly,
+         * which is used to obtain the pageTitle and pathViewBody
          * @return void
          */
         public function view() : void
