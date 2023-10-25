@@ -9,7 +9,7 @@
          */
         protected static array $routesMap = [
             'Login' => 'view',
-            'Logging' => 'logging',
+            'Login/logging' => 'logging',
         ];
 
         /**Login Controller's definition of Login body's folder directory

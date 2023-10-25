@@ -5,7 +5,7 @@
     use App\Code\Config\ExceptionHandler;
     use Exception;
 
-    /**ControllerGeneric is the parent controller which allows to create child controllers with dynamic
+     /**ControllerGeneric is the parent controller which allows to create child controllers with dynamic
      * and flexible methods. Every child controller must redefine $routesMap and $bodyFolder to function
      * properly. A controller is associated with a folder under the View directory, for example a controller
      * who manages the login system should be called ControllerLogin and have a Login folder under the View
@@ -28,7 +28,7 @@
      *          'Logging' => 'logging', -> Reading Logging in the URI will trigger the action logging
      *          ];
      *
-     *      // Creation of an action logging :
+     *      // Creation of a logging action :
      *
      *          protected function logging() : void
      *          {
@@ -76,10 +76,10 @@
          * @param string $route
          * @return string
          */
-        public function getRequestedAction(string $route) : string {
-            $routesMap = $this->getRoutesMap();
-
-            return $routesMap[$route] ?? 'view';
+        public function getRequestedAction(string $route) : ?string {
+                $routesMap = $this->getRoutesMap();
+                $action = $routesMap[$route] ?? null;
+                return $action;
         }
 
         /**Execute controller action found with getRequestedAction with route
@@ -89,8 +89,13 @@
          */
         public function executeAction(string $route): void
         {
-            $action = $this->getRequestedAction($route);
-            $this->$action();
+            try {
+                $action = $this->getRequestedAction($route);
+                ExceptionHandler::checkTrueValue(!is_null($action), 404);
+                $this->$action();
+            } catch (Exception $e) {
+                (new ControllerGeneric())->error($e);
+            }
         }
 
         /**Display specific page passed in $pathViewBody into the
@@ -132,7 +137,7 @@
         {
             $errorCode = $e->getCode();
             $errorMessage = ExceptionHandler::getErrorMessage($errorCode);
-            $this->displayView("Erreur", "/../error.php",
+            $this->displayView("Erreur", "/../error404.php",
                 ["errorMessage" => $errorMessage]);
         }
     }

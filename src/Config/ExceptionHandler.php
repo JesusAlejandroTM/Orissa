@@ -8,7 +8,8 @@
     {
         protected static array $errorMessages = [
             101 => "Taxon n'existe pas",
-            102 => "Erreur avec le décodage de votre requête"
+            102 => "Erreur avec le décodage de votre requête",
+            404 => "Page non trouvée",
         ];
 
         private static function throwException($errorCode): void
