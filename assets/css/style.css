@@ -1,25 +1,269 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-section {
-    display: flex;
-    height: 100vh;
-}
-
-section .imgBox {
-    width: 50%;
-    background-image:url("medusa.jpeg");
-    background-position: center ;
-    background-size: cover;
-}
-
-section .contentBox {
-    width: 50%;
-    background: #fff;
+/* Styles for the body element */
+body {
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Styles for the diagonal image */
+.diagonal-image {
+    position: relative;
+    width: 100%;
+    height: 210%;
+    left: -18%;
+    background: url('../img/medusa.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 20px 0px 4px 1px rgba(0, 0, 0, 0.15);
+    transform: rotate(9.25deg);
+}
+
+/* Styles for the form container */
+.form-container {
+    padding: 7%;
+    border-radius: 8px;
+    width: 35%;
+    height: 25%;
+    position: relative;
+    right: 10%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 0px solid;
+    border-bottom: 2px solid #0061D3;
+}
+
+.form-group input:focus {
+    outline: none;
+}
+
+.submit-btn {
+    width: 90%;
+    padding: 10px;
+    background-color: #0061D3;
+    color: #FFF;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.create-title {
+    font-size: 24px;
+    font-weight: bold;
+    display: inline-block;
+    border-bottom: 1px solid purple;
+    border-width: 100%;
+    padding-bottom: 5px;
+}
+
+.super-user-group {
+    display: flex;
+    align-items: center;
+}
+
+.super-user-text {
+    margin-right: 5px;
+    font-style: italic;
+    color: #0000FF;
+    font-size: 14px;
+}
+
+.super-user-icon {
+    background-color: #ccc;
+    padding: 5px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 8px;
+}
+
+.form-login .login {
+    font-size: 14px;
+    color: #0000FF;
+    font-style: italic;
+    text-decoration: none;
+}
+
+.form-login .login:visited,
+.form-login .login:active {
+    color: #0000FF;
+}
+
+/* Styles for the body element */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Styles for the diagonal image */
+.diagonal-image {
+    position: relative;
+    width: 100%;
+    height: 210%;
+    left: -18%;
+    background: url('../img/medusa.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 20px 0px 4px 1px rgba(0, 0, 0, 0.15);
+    transform: rotate(9.25deg);
+}
+
+/* Styles for the form container */
+.form-container {
+    padding: 7%;
+    border-radius: 8px;
+    width: 35%;
+    height: 55%;
+    position: relative;
+    right: 10%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 0px solid;
+    border-bottom: 2px solid #0061D3;
+}
+
+.form-group input:focus {
+    outline: none;
+}
+
+.submit-btn {
+    width: 90%;
+    padding: 10px;
+    background-color: #0061D3;
+    color: #FFF;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.create-title {
+    font-size: 24px;
+    font-weight: bold;
+    display: inline-block;
+    border-bottom: 1px solid purple;
+    border-width: 100%;
+    padding-bottom: 5px;
+}
+
+.super-user-group {
+    display: flex;
+    align-items: center;
+}
+
+.super-user-text {
+    margin-right: 5px;
+    font-style: italic;
+    color: #0000FF;
+    font-size: 14px;
+}
+
+.super-user-icon {
+    background-color: #ccc;
+    padding: 5px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 8px;
+}
+
+.form-login .login {
+    font-size: 14px;
+    color: #0000FF;
+    font-style: italic;
+    text-decoration: none;
+}
+
+.form-login .login:visited,
+.form-login .login:active {
+    color: #0000FF;
+}
+
+
+
+
+
+@media screen and (max-width: 600px) {
+
+    .diagonal-image {
+        display: none;
+    }
+    body {
+        background: url('../img/medusa.png') no-repeat  center fixed;
+        background-size: cover;
+    }
+    .form-container {
+        width: 80%;
+        height: 70%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        padding-right: 10%;
+    }
+    .create-title {
+        font-size: 20px;
+        text-align: center; /* Added this line to center the title */
+        display: block;     /* Change display property to block for full width and alignment */
+        margin-bottom: 10%;
+    }
+    
+    .submit-btn {
+        width: 90%;
+        padding: 5%;
+        background-color: #0061D3;
+        color: #FFF;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        display: block;     /* Change display property to block */
+        margin: 0 auto;     /* Center the button within its container */
+    }
+    .form-group input {
+        width: 80%;
+        padding-left: 0%;
+        padding-bottom: 5%;
+        border: 0px solid;
+        background: none;
+        border-bottom: 1px solid #0061D3;
+        display: block;
+        margin: auto;
+    }
 }

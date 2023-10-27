@@ -45,7 +45,7 @@
          * controller, every controller should have this variable redefined accordingly.
          * @var array|string[]
          */
-        protected static array $routesMap = ['Generic' => 'view'];
+        protected static array $routesMap = ['' => 'view'];
 
 
         /**The body folder allows to find the directory given to a controller to
@@ -71,15 +71,14 @@
         }
 
         /**Get action based on $route if it's found on the routes map.
-         * If $route isn't found in routes map, the default action
-         * 'view' will be returned instead
+         * If $route isn't found in routes map, the action returned is
+         * null and will most likely trigger a 404 error.
          * @param string $route
-         * @return string
+         * @return ?string
          */
         public function getRequestedAction(string $route) : ?string {
                 $routesMap = $this->getRoutesMap();
-                $action = $routesMap[$route] ?? null;
-                return $action;
+                return $routesMap[$route] ?? null;
         }
 
         /**Execute controller action found with getRequestedAction with route
@@ -100,15 +99,23 @@
 
         /**Display specific page passed in $pathViewBody into the
          * web interface, this method uses main file view.php to structurize HTMLs
+         * CSS file names must be passed as arrays to properly iterate over them and
+         * link them into the corresponding HTML, dynamically linking CSS files by
+         * just calling their file name.
          * @param string $pageTitle
          * @param string $pathViewBody
+         * @param array $cssArray
          * @param array $parameters Optional
          * @return void
          */
-        public function displayView(string $pageTitle, string $pathViewBody, array $parameters = []): void
+        public function displayView(string $pageTitle, string $pathViewBody, array $cssArray, array $parameters = []): void
         {
             // On ajoute $pagetitle et $cheminVueBody dans le tableau paramètres
-            $parameters += ['pageTitle' => $pageTitle, 'pathViewBody' => $this->getBodyFolder() . $pathViewBody];
+            $parameters += ['pageTitle' => $pageTitle,
+                'pathViewBody' => $this->getBodyFolder() . $pathViewBody,
+                'cssArray' => $cssArray,
+            ];
+
             extract($parameters); // Crée des variables à partir du tableau $parametres
             require(__DIR__ . '/../View/view.php'); // Charge la vue
         }
@@ -124,7 +131,8 @@
             $string = $this->getBodyFolder();
             $title = explode('/', $string)[1];
             $phpfile = '/' . strtolower($title) . '.php';
-            $this->displayView($title, $phpfile);
+            //FIXME MAKE A CSS FILE BY DEFAULT FOR VIEWS?
+            $this->displayView($title, $phpfile,  ['NaN.css']);
         }
 
         /**Displays error page based on Exception's error code with specific message.
@@ -137,7 +145,8 @@
         {
             $errorCode = $e->getCode();
             $errorMessage = ExceptionHandler::getErrorMessage($errorCode);
-            $this->displayView("Erreur", "/../error404.php",
+            //FIXME Default CSS missing
+            $this->displayView("Erreur", "/../error404.php", ["NaN.css"],
                 ["errorMessage" => $errorMessage]);
         }
     }
