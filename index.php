@@ -1,5 +1,4 @@
 <?php
-    use App\Code\Controller\ControllerHome;
     use App\Code\Lib\Router;
 
     require_once(__DIR__ . '/src/Lib/Psr4AutoloaderClass.php');

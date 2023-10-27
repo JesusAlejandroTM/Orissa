@@ -111,7 +111,8 @@
         public function displayView(string $pageTitle, string $pathViewBody, array $cssArray, array $parameters = []): void
         {
             // On ajoute $pagetitle et $cheminVueBody dans le tableau paramètres
-            $parameters += ['pageTitle' => $pageTitle,
+            $parameters += [
+                'pageTitle' => $pageTitle,
                 'pathViewBody' => $this->getBodyFolder() . $pathViewBody,
                 'cssArray' => $cssArray,
             ];

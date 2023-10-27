@@ -1,6 +1,6 @@
-<body>
-    <div class="diagonal-image"></div>  
-    <div class="form-container">
+<div class="diagonal-image"></div>
+<div class="form-container">
+    <form method="GET" action="Login/logging">
         <h2 class="create-title">LOGIN</h2>
         <div class="form-group">
             <input type="text" id="username" name="username" placeholder="Username">
@@ -13,7 +13,7 @@
         </div>
         <br>
         <div class="form-group">
-            <button class="submit-btn">Create Account</button>
+            <input class="submit-btn" type="submit" value="Login"/>
         </div>
-    </div>
-</body>
+    </form>
+</div>

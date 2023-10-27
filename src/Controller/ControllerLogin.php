@@ -2,6 +2,9 @@
 
     namespace App\Code\Controller;
 
+    use Cassandra\Date;
+    use DateTime;
+
     class ControllerLogin extends ControllerGeneric
     {
         /**Login Controller's definition of routes Map
@@ -11,7 +14,7 @@
             'Login' => 'view',
             'Login/logging' => 'logging',
             'Login/CreateAccount' => 'displayCreateAccount',
-            'Login/Create' => 'creatingAccont',
+            'Login/create' => 'creatingAccount',
         ];
 
         /**Login Controller's definition of Login body's folder directory
@@ -31,7 +34,7 @@
         protected function logging() : void
         {
 
-            (new ControllerLogin())->displayView("Logging", "/login.php", ['style.css']);
+            (new ControllerLogin())->displayView("Logging", "/Login.php", ['style.css']);
         }
 
         protected function displayCreateAccount() : void
@@ -41,6 +44,10 @@
 
         protected function creatingAccount() : void
         {
-            (new ControllerLogin())->displayView("Account created", "/CreateAcount.php", ['style.css']);
+            $birthdateString = $_GET['birthdate'];
+            var_dump($birthdateString);
+            $birthdate = new Date($birthdateString);
+            var_dump($birthdate);
+            (new ControllerLogin())->displayView("Account created", "/CreateAccount.php", ['style.css']);
         }
     }
