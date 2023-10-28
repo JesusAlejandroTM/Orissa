@@ -147,7 +147,7 @@
             $errorCode = $e->getCode();
             $errorMessage = ExceptionHandler::getErrorMessage($errorCode);
             //FIXME Default CSS missing
-            $this->displayView("Erreur", "/../error404.php", ["NaN.css"],
+            $this->displayView("Erreur", "/../error.php", ["NaN.css"],
                 ["errorMessage" => $errorMessage]);
         }
     }
