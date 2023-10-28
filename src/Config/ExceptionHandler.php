@@ -9,6 +9,7 @@
         protected static array $errorMessages = [
             101 => "Taxon n'existe pas",
             102 => "Erreur avec le décodage de votre requête",
+            103 => "Vérifiez votre nom d'utilisateur ou votre mot de passe",
             404 => "Page non trouvée",
         ];
 

@@ -7,6 +7,7 @@
     class Conf
     {
         // Attribut array $databases contenant les informations login à la BDD
+        public static $dureeSession = 360;
         static private array $databases = array(
             'hostname' => 'localhost',
             'database' => 'starfish',
