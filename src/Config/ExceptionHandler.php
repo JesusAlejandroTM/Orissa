@@ -10,6 +10,7 @@
             101 => "Taxon n'existe pas",
             102 => "Erreur avec le décodage de votre requête",
             103 => "Vérifiez votre nom d'utilisateur ou votre mot de passe",
+            104 => "Cet utilisateur existe déjà",
             404 => "Page non trouvée",
         ];
 

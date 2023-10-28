@@ -39,7 +39,6 @@
 
         protected function logging() : void
         {
-            //TODO TRY LOGGING INTO EXISTING ACCOUNT, REMINDER PASSWORD IS lol
             try {
                 $user = (new UserRepository())->selectWithUsername($_GET['username']);
                 $inputPassword = $_GET['password'];
@@ -50,36 +49,13 @@
 
                 FlashMessages::add("success", "Bonjour " . $user->getUsername() . "!");
                 UserSession::connect($user->getUsername());
-                (new ControllerLogin())->view();
+                header("Location: /Orissa/Home");
+                exit();
             } catch (Exception $e) {
                 FlashMessages::add("danger", "Vérifiez que vos informations sont corrects!");
-                (new ControllerLogin())->error($e);
+                (new ControllerLogin())->view();
             }
         }
-
-//        public static function logging(): void
-//        {
-////            try {
-////                $user = (new UtilisateurRepository())->select($_GET['login']);
-////                $mdpClair = $_GET['mdpClair'];
-////                ExceptionHandling::checkTrueValue($user instanceof Utilisateur, 113);
-////                ExceptionHandling::checkTrueValue(MotDePasse::verifier($mdpClair, $user->getMdpHache()), 114);
-////                ConnexionUtilisateur::connecter($user->getPrimaryKeyValue());
-////                MessageFlash::ajouter("success", "Bienvenue, " . $user->getPrimaryKeyValue() . '!');
-////                self::readAll();
-////            } catch (Exception $e) {
-////                if ($e->getCode() === 113) {
-////                    MessageFlash::ajouter("warning", "Cet utilisateur n'existe pas");
-////                    self::connexion();
-////                } else if ($e->getCode() === 114) {
-////                    MessageFlash::ajouter("warning", "Vérifiez votre mot de passe");
-////                    self::connexion();
-////                } else {
-////                    MessageFlash::ajouter("danger", "Erreur durant la connexion, veuillez réessayer");
-////                    (new ControllerUtilisateur())->error($e);
-////                }
-////            }
-//        }
 
         protected function displayCreateAccount() : void
         {
@@ -88,10 +64,22 @@
 
         protected function creatingAccount() : void
         {
-            $birthDate = new DateTime($_GET['birthdate']);
-            $_GET['birthdate'] = date_format($birthDate, 'Y-m-d');
-            $createdUser = UserRepository::construireAvecFormulaire($_GET);
-            UserRepository::sauvegarder($createdUser);
-            (new ControllerLogin())->displayView("Account created", "/CreateAccount.php", ['style.css']);
+            try {
+                $birthDate = new DateTime($_GET['birthdate']);
+                $_GET['birthdate'] = date_format($birthDate, 'Y-m-d');
+                $createdUser = UserRepository::construireAvecFormulaire($_GET);
+                $result = UserRepository::sauvegarder($createdUser);
+                ExceptionHandler::checkTrueValue($result, 104);
+
+                FlashMessages::add("success", "Bienvue à Orissa, " . $createdUser->getUsername() . "!");
+                UserSession::connect($createdUser->getUsername());
+                header("Location: /Orissa/Home");
+                exit();
+            } catch (Exception $e){
+                if ($e->getCode() == 104){
+                    FlashMessages::add("danger", "Cet utilisateur existe déjà");
+                    (new ControllerLogin())->error($e);
+                }
+            }
         }
     }

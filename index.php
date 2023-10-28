@@ -1,4 +1,6 @@
 <?php
+
+    use App\Code\Controller\ControllerLogin;
     use App\Code\Lib\Router;
     use App\Code\Model\Repository\UserRepository;
 

@@ -80,7 +80,6 @@
                     throw new LogicException("Erreur durant l'enregistrement");
                 }
             } catch (LogicException|PDOException $e) {
-               echo $e->getMessage();
                return false;
             }
             return true;

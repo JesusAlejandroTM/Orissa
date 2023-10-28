@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-<?php use App\Code\Lib\FlashMessages;
-
+<?php
     // Require the head of HTML
     require_once(__DIR__ . '/../../assets/html/head.php');?>
 
@@ -11,10 +10,8 @@
     require_once(__DIR__ . '/../../assets/html/header.php');
     echo "<p> ----------HEAD ---------</p>";
 
-    // If there is, require flash message
-    if (FlashMessages::containsMessage()) {
-            echo FlashMessages::readMessage();
-        }
+    // Check message if there's one
+    App\Code\Lib\FlashMessages::executeMessage();
 
     // Require the view from path
     if (isset($pathViewBody)) require __DIR__ . $pathViewBody;

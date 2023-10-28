@@ -37,6 +37,13 @@
             return false;
         }
 
+        public static function executeMessage(): void
+        {
+            if (FlashMessages::containsMessage()) {
+                echo FlashMessages::readMessage();
+            }
+        }
+
         private static function convertMessageToHTML(array $messageArray) : string
         {
             return '<div class="alert alert-'. $messageArray[0] . '" role="alert">' .
