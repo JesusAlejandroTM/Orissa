@@ -21,42 +21,40 @@
             return "Modèle API utilise l'URL de TaxRef : " . $this->apiURL;
         }
 
-        // Obtenir l'URL de l'API pour les requêtes à venir sur l'API
+        // Get the URL of the API
         public static function getApiURL(): string
         {
             return static::getInstance()->apiURL;
         }
 
-        // S'assurer qu'il n'y qu'une session de
+        // Singleton instance
         private static function getInstance(): APIConnection
         {
-            // Vérifie que instance est nul
+            //Check that instance is null
             if (is_null(static::$instance))
                 // Création d'une connexion
                 static::$instance = new APIConnection();
             return static::$instance;
         }
 
-        // Méthodes faisant appel à l'API pour obtenir des données
-
-
+        // Methods to call data from the API
         public static function obtenirGroupeOperationnelId(int $id)
         {
             try {
-                // Requête envers l'API
+                // Request to the API
                 $apiUrl = static::getApiURL() . "/operationalGroups/$id";
-                $reponse = file_get_contents($apiUrl);
+                $response = file_get_contents($apiUrl);
 
-                // Vérifier si l'on reçoit une réponse
-                if (!$reponse) {
+                // Check that we got a response
+                if (!$response) {
                     throw new InvalidArgumentException("Le taxon avec id : $id n'existe pas.");
-                } // Décoder le JSON réçu par l'API
+                } // Decode the JSON string from the API response
                 else {
-                    $data = json_decode($reponse, true);
+                    $data = json_decode($response, true);
 
                     if ($data == null || isset($data['_embedded'])) throw new Exception("Erreur avec le décodage de votre requête");
                 }
-                // Retourner le taxon si tout est bon
+                // Return the taxa object
                 return $data;
             } catch (InvalidArgumentException|Exception $e) {
                 return $e->getMessage();

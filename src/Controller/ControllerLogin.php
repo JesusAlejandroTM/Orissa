@@ -32,9 +32,9 @@
         {
             $string = $this->getBodyFolder();
             $title = explode('/', $string)[1];
-            $phpfile = '/' . strtolower($title) . '.php';
+            $phpFile = '/' . strtolower($title) . '.php';
             //FIXME MAKE A CSS FILE BY DEFAULT FOR VIEWS?
-            $this->displayView($title, $phpfile,  ['style.css']);
+            $this->displayView($title, $phpFile,  ['style.css']);
         }
 
         protected function logging() : void
@@ -52,7 +52,7 @@
                 header("Location: /Orissa/Home");
                 exit();
             } catch (Exception $e) {
-                FlashMessages::add("danger", "Vérifiez que vos informations sont corrects!");
+                FlashMessages::add("danger", "Verifier que vos informations sont corrects!");
                 (new ControllerLogin())->view();
             }
         }
@@ -67,11 +67,11 @@
             try {
                 $birthDate = new DateTime($_GET['birthdate']);
                 $_GET['birthdate'] = date_format($birthDate, 'Y-m-d');
-                $createdUser = UserRepository::construireAvecFormulaire($_GET);
-                $result = UserRepository::sauvegarder($createdUser);
+                $createdUser = UserRepository::constructWithForm($_GET);
+                $result = UserRepository::save($createdUser);
                 ExceptionHandler::checkTrueValue($result, 104);
 
-                FlashMessages::add("success", "Bienvue à Orissa, " . $createdUser->getUsername() . "!");
+                FlashMessages::add("success", "Bienvenu à Orissa, " . $createdUser->getUsername() . "!");
                 UserSession::connect($createdUser->getUsername());
                 header("Location: /Orissa/Home");
                 exit();

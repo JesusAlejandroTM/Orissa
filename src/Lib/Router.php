@@ -10,7 +10,7 @@
      *  through the URI. The router reads the URI and checks
      *  whether the route read from the URI exists or not.
      *  The first path will always be Orissa as it is the website
-     *  iself. The second path will always be a controller which
+     *  itself. The second path will always be a controller which
      *  will take in charge the actions of said route.
      *  The rest of the paths will be defined in the routesMap
      *  of the associated Controller.
