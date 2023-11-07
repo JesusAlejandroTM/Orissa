@@ -1,6 +1,6 @@
 <?php
 
-    namespace App\Web\Model\API;
+    namespace App\Code\Model\API;
 
     use App\Code\Config\Conf;
     use InvalidArgumentException;
@@ -39,24 +39,24 @@
 
         // Méthodes faisant appel à l'API pour obtenir des données
 
-
+        // Non utilisé
         public static function obtenirGroupeOperationnelId(int $id)
         {
             try {
-                // Requête envers l'API
+                // Send request to API
                 $apiUrl = static::getApiURL() . "/operationalGroups/$id";
                 $reponse = file_get_contents($apiUrl);
 
-                // Vérifier si l'on reçoit une réponse
+                // Check for a response
                 if (!$reponse) {
                     throw new InvalidArgumentException("Le taxon avec id : $id n'existe pas.");
-                } // Décoder le JSON réçu par l'API
+                } // Decode the API response
                 else {
                     $data = json_decode($reponse, true);
 
                     if ($data == null || isset($data['_embedded'])) throw new Exception("Erreur avec le décodage de votre requête");
                 }
-                // Retourner le taxon si tout est bon
+                // Retourner the
                 return $data;
             } catch (InvalidArgumentException|Exception $e) {
                 return $e->getMessage();
