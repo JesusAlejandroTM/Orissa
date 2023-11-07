@@ -17,3 +17,5 @@
 
     $taxa = TaxaAPI::selectFirstAutocomplete("rouge");
     var_dump($taxa);
+
+    var_dump("lol");
