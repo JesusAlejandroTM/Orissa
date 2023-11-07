@@ -23,7 +23,7 @@
                     throw new LogicException("Erreur durant l'enregistrement");
                 }
                 $userData = $pdoStatement->fetch(PDO::FETCH_ASSOC);
-                return self::Construire($userData);
+                return self::construct($userData);
             } catch (LogicException|PDOException $e) {
                 echo $e->getMessage();
                 return null;
@@ -41,20 +41,20 @@
                     throw new LogicException("Erreur durant l'enregistrement");
                 }
                 $userData = $pdoStatement->fetch(PDO::FETCH_ASSOC);
-                return self::Construire($userData);
+                return self::construct($userData);
             } catch (LogicException|PDOException $e) {
                 echo $e->getMessage();
                 return null;
             }
         }
 
-        public static function Construire(?array $userArray) : ?User
+        public static function construct(?array $userArray) : ?User
         {
             if (is_null($userArray)) return null;
             else return new User(...array_values($userArray));
         }
 
-        public static function construireAvecFormulaire(array $userArray) : User
+        public static function constructWithForm(array $userArray) : User
         {
             $email = $userArray['email'];
             $username = $userArray['username'];
@@ -63,7 +63,7 @@
             return new User(null, $email, $username, $password, $birthdate);
         }
 
-        public static function sauvegarder(User $user) : bool {
+        public static function save(User $user) : bool {
             try{
                 $sql = "INSERT INTO user (id_user, mail, username, password, birthDate)
                     VALUES (:idTag, :mailTag, :usernameTag, :passwordTag, :birthDateTag)";
@@ -77,7 +77,7 @@
                 $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
                 $pdoStatement->execute($values);
                 if ($pdoStatement->rowCount() < 1){
-                    throw new LogicException("Erreur durant l'enregistrement");
+                    throw new LogicException("Error while saving");
                 }
             } catch (LogicException|PDOException $e) {
                return false;

@@ -8,34 +8,41 @@
 // Class Model gérant les récupérations et traitement d'information
     class DatabaseConnection
     {
-        // Attribut statique permettant une seule connexion à la BDD
+        /**Instance attribut allowing for singleton pattern
+         * @var DatabaseConnection|null
+         */
         private static DatabaseConnection|null $instance = null;
 
-
-        // Attribut PDO afin d'accéder à la BDD à partir de celle-ci
+        /**PDO attribute to access the database
+         * @var PDO
+         */
         private PDO $pdo;
 
-        // Getter PDO en utilisant getInstance()
+        /**Get the PDO of our database using getInstance
+         * @return PDO
+         */
         public static function getPdo(): PDO
         {
             return static::getInstance()->pdo;
         }
 
-        // Méthode créant une connexion à la BDD et assurant une seule instance de connexion
+        /**Creates a connexion to the database in a singleton pattern
+         * @return DatabaseConnection
+         */
         private static function getInstance(): DatabaseConnection
         {
-            // Vérifie que instance est nul
+            // Check that instance is null
             if (is_null(static::$instance))
-                // Création d'une connexion
+                // Create a connexion
                 static::$instance = new DatabaseConnection();
             return static::$instance;
         }
 
-        /*
-        Constructeur utilisant les méthodes statiques de Conf.php
-        Ses méthodes accèdent aux informations nécessaire pour créer une connexion à la BDD
-        Enfin, notre attribut PDO contiendra notre connexion et assure la bonne configuration
-        */
+
+        /**Constructor using static methods from Conf.php
+         * These methods access to the necessary information to create a connexion to the
+         * database. This method also configures our PDO attributes.
+         */
         public function __construct()
         {
             // Accès aux informations

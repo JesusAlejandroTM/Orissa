@@ -18,7 +18,7 @@
             private ?string $className = null,
             private ?string $phylumName = null,
             private ?string $kingdomName = null,
-            private ?string $taxrefVersion = null,
+            private ?string $taxRefVersion = null,
             private ?array  $links = null
         )
         {
@@ -154,14 +154,14 @@
             $this->links = $links;
         }
 
-        public function getTaxrefVersion(): string
+        public function getTaxRefVersion(): string
         {
-            return $this->taxrefVersion;
+            return $this->taxRefVersion;
         }
 
-        public function setTaxrefVersion(string $taxrefVersion): void
+        public function setTaxRefVersion(string $taxRefVersion): void
         {
-            $this->taxrefVersion = $taxrefVersion;
+            $this->taxRefVersion = $taxRefVersion;
         }
 
         public function getRankId(): string

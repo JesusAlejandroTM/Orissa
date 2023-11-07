@@ -98,7 +98,7 @@
         }
 
         /**Display specific page passed in $pathViewBody into the
-         * web interface, this method uses main file view.php to structurize HTMLs
+         * web interface, this method uses main file view.php to structure HTMLs
          * CSS file names must be passed as arrays to properly iterate over them and
          * link them into the corresponding HTML, dynamically linking CSS files by
          * just calling their file name.
@@ -110,15 +110,15 @@
          */
         public function displayView(string $pageTitle, string $pathViewBody, array $cssArray, array $parameters = []): void
         {
-            // On ajoute $pagetitle et $cheminVueBody dans le tableau paramètres
+            // We add $pageTitle and $pathViewBody in our parameters array
             $parameters += [
                 'pageTitle' => $pageTitle,
                 'pathViewBody' => $this->getBodyFolder() . $pathViewBody,
                 'cssArray' => $cssArray,
             ];
 
-            extract($parameters); // Crée des variables à partir du tableau $parametres
-            require(__DIR__ . '/../View/view.php'); // Charge la vue
+            extract($parameters); // We extract the variables from our parameters array
+            require(__DIR__ . '/../View/view.php'); // Load the view
         }
 
 
@@ -131,9 +131,9 @@
         {
             $string = $this->getBodyFolder();
             $title = explode('/', $string)[1];
-            $phpfile = '/' . strtolower($title) . '.php';
+            $phpFile = '/' . strtolower($title) . '.php';
             //FIXME MAKE A CSS FILE BY DEFAULT FOR VIEWS?
-            $this->displayView($title, $phpfile,  ['NaN.css']);
+            $this->displayView($title, $phpFile,  ['NaN.css']);
         }
 
         /**Displays error page based on Exception's error code with specific message.

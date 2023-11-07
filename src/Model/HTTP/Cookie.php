@@ -4,31 +4,31 @@
 
     class Cookie
     {
-        public static function enregistrer(string $cle, mixed $valeur, ?int $dureeExpiration = null): void
+        public static function save(string $key, mixed $value, ?int $expireTime = null): void
         {
-            $valeur = serialize($valeur);
-            if (is_null($dureeExpiration)){
-                setcookie($cle, $valeur, null);
+            $value = serialize($value);
+            if (is_null($expireTime)){
+                setcookie($key, $value, null);
             }
             else {
-                setcookie($cle, $valeur, time() + $dureeExpiration);
+                setcookie($key, $value, time() + $expireTime);
             }
         }
-        public static function read(string $cle) : mixed
+        public static function read(string $key) : mixed
         {
-            return unserialize($_COOKIE[$cle]) ?? null;
+            return unserialize($_COOKIE[$key]) ?? null;
         }
-        public static function contains(string $cle) : bool
+        public static function contains(string $key) : bool
         {
-            if (isset($_COOKIE[$cle])){
+            if (isset($_COOKIE[$key])){
                 return true;
             }
             else return false;
         }
-        public static function delete($cle) : void
+        public static function delete($key) : void
         {
-            if (isset($_COOKIE[$cle])){
-                unset($_COOKIE[$cle]);
+            if (isset($_COOKIE[$key])){
+                unset($_COOKIE[$key]);
             }
         }
     }

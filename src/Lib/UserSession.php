@@ -2,7 +2,6 @@
 
     namespace App\Code\Lib;
     use App\Code\Model\HTTP\Session;
-    use App\Code\Model\Repository\UserRepository;
 
     class UserSession
     {

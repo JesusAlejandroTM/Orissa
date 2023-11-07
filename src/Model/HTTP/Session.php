@@ -11,21 +11,21 @@
 
         private function __construct()
         {
-            session_set_cookie_params(Conf::$dureeSession);
+            session_set_cookie_params(Conf::$sessionDuration);
             if (session_start() === false)
             {
-                throw new Exception("La session n'a pas réussi à démarer");
+                throw new Exception("La session n'a pas réussi à démarrer");
             }
             $this->checkLastActivity();
         }
 
         public function checkLastActivity(): void
         {
-            if (isset($_SESSION['derniereActivite']) && (time() - $_SESSION['derniereActivite'] > Conf::$dureeSession))
+            if (isset($_SESSION['lastActivity']) && (time() - $_SESSION['lastActivity'] > Conf::$sessionDuration))
             {
                 session_unset();
             }
-            $_SESSION['derniereActivite'] = time();
+            $_SESSION['lastActivity'] = time();
         }
 
         public function contains(string $name): bool
