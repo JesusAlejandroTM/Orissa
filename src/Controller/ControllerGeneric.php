@@ -81,8 +81,9 @@
                 return $routesMap[$route] ?? null;
         }
 
-        /**Execute controller action found with getRequestedAction with route
-         * (which returns default action 'view' if route is not found).
+        /**
+         * Execute controller action found with getRequestedAction with route,
+         * if the route is not found redirect the user into a 404 error page instead.
          * @param string $route
          * @return void
          */

@@ -53,13 +53,13 @@
                 exit();
             } catch (Exception $e) {
                 FlashMessages::add("danger", "Verifier que vos informations sont corrects!");
-                (new ControllerLogin())->view();
+                $this->view();
             }
         }
 
         protected function displayCreateAccount() : void
         {
-            (new ControllerLogin())->displayView("Create an account", "/CreateAccount.php", ['style.css']);
+            $this->displayView("Create an account", "/CreateAccount.php", ['style.css']);
         }
 
         protected function creatingAccount() : void
@@ -78,7 +78,7 @@
             } catch (Exception $e){
                 if ($e->getCode() == 104){
                     FlashMessages::add("danger", "Cet utilisateur existe déjà");
-                    (new ControllerLogin())->error($e);
+                    $this->error($e);
                 }
             }
         }

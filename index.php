@@ -12,10 +12,3 @@
     $loader->register();
 
     Router::controllerActionExecution();
-    $select = TaxaAPI::selectWithID(1);
-    var_dump($select);
-
-    $taxa = TaxaAPI::selectFirstAutocomplete("rouge");
-    var_dump($taxa);
-
-    var_dump("lol");

@@ -4,6 +4,11 @@
 
     class Taxa
     {
+        public static array $dataFilterArray = ["id", "parentId", "scientificName",
+            "authority", "rankId", "rankName", "habitat", "genusName", "familyName",
+            "orderName", "className", "phylumName", "kingdomName", "taxrefVersion", "_links",
+            ];
+
         public function __construct(
             private int     $id,
             private ?int    $parentId = null,

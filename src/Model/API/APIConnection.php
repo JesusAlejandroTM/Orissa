@@ -6,29 +6,53 @@
     use InvalidArgumentException;
     use Exception;
 
+    /**
+     * APIConnection's task is to assure a singleton pattern, allowing
+     * for only one connection to the TaxRef API per user to avoid potential conflicts
+     * between different connections on a single user.
+     * Use the method GetApiURL to send requests to the API using this pattern.
+     */
     class APIConnection
     {
+        /**
+         * Static instance of APIConnection to avoid duplicates
+         * @var APIConnection|null
+         */
+
         private static APIConnection|null $instance = null;
+        /**
+         * URL of TaxRef API, used for sending requests
+         * @var string
+         */
         private string $apiURL;
 
+        /**
+         * Constructor for creating an APIConnection instance.
+         */
         public function __construct()
         {
             $this->apiURL = Conf::getApiBasePath();
         }
 
-        public function __toString(): string
+
+        /**
+         * APIConnection URL's getter, which allows to get a single instance
+         * of the class using the GetInstance method.
+         * @return string
+         */
+        public static function GetApiURL(): string
         {
-            return "Modèle API utilise l'URL de TaxRef : " . $this->apiURL;
+            return static::GetInstance()->apiURL;
         }
 
-        // Obtenir l'URL de l'API pour les requêtes à venir sur l'API
-        public static function getApiURL(): string
-        {
-            return static::getInstance()->apiURL;
-        }
 
-        // S'assurer qu'il n'y qu'une session de
-        private static function getInstance(): APIConnection
+        /**
+         * GetInstance checks if there is an already existing instance of the API
+         * in the $instance attribute. If it doesn't exist, it's created, else it will
+         * be returned, preventing duplicate instances.
+         * @return APIConnection
+         */
+        private static function GetInstance(): APIConnection
         {
             // Vérifie que instance est nul
             if (is_null(static::$instance))
@@ -37,29 +61,12 @@
             return static::$instance;
         }
 
-        // Méthodes faisant appel à l'API pour obtenir des données
-
-        // Non utilisé
-        public static function obtenirGroupeOperationnelId(int $id)
+        /**
+         * Show current API model version used from TaxRef
+         * @return string
+         */
+        public function __toString(): string
         {
-            try {
-                // Send request to API
-                $apiUrl = static::getApiURL() . "/operationalGroups/$id";
-                $reponse = file_get_contents($apiUrl);
-
-                // Check for a response
-                if (!$reponse) {
-                    throw new InvalidArgumentException("Le taxon avec id : $id n'existe pas.");
-                } // Decode the API response
-                else {
-                    $data = json_decode($reponse, true);
-
-                    if ($data == null || isset($data['_embedded'])) throw new Exception("Erreur avec le décodage de votre requête");
-                }
-                // Retourner the
-                return $data;
-            } catch (InvalidArgumentException|Exception $e) {
-                return $e->getMessage();
-            }
+            return "Modèle API utilise l'URL de TaxRef : " . $this->apiURL;
         }
     }
