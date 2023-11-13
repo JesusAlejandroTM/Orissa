@@ -14,7 +14,7 @@
             echo '<br><h1>Taxas found :</h1><ul>';
             foreach($taxaArrays as $taxa){
                 //TODO Link Taxa HREF to a web page
-                echo '<li>' . $taxa->get() . '<a href=""></a></li>';
+                echo '<li>' . $taxa->getVernacularName() . '<a href=""></a></li>';
             }
             echo '</ul>';
         }

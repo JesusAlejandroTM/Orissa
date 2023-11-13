@@ -1,6 +1,6 @@
 <header>
 
-    <a href="nav.html" class="logo"><img src="orissa.png" alt="logo" /></a>
+    <a href="/Orissa" class="logo"><img src="orissa.png" alt="logo" /></a>
 
 
     <ul>
@@ -52,4 +52,3 @@
     <p>
     </p>
 </div>
-</header>
