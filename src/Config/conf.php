@@ -7,6 +7,7 @@
     class Conf
     {
         // Attribut array $databases contenant les informations login à la BDD
+        public static int $sessionDuration = 360;
         static private array $databases = array(
             'hostname' => 'localhost',
             'database' => 'starfish',
@@ -21,12 +22,17 @@
 
         static private string $baseUrl = 'http://localhost/Orissa';
 
+        public static function getBaseUrl(): string
+        {
+            return self::$baseUrl;
+        }
+
         static public function getApiBasePath(): string
         {
             return static::$apiUrls['apiHost'] . static::$apiUrls['apiBasePath'];
         }
 
-        // Fonctions getters statiques pour obtenirs les informations
+        // Static getters to obtain the connection information
         static public function getHostname(): string
         {
             return static::$databases['hostname'];
@@ -45,10 +51,5 @@
         static public function getPassword(): string
         {
             return static::$databases['password'];
-        }
-
-        public static function getBaseUrl(): string
-        {
-            return self::$baseUrl;
         }
     }

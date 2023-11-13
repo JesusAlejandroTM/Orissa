@@ -4,6 +4,11 @@
 
     class Taxa
     {
+        public static array $dataFilterArray = ["id", "parentId", "scientificName",
+            "authority", "rankId", "rankName", "habitat", "genusName", "familyName",
+            "orderName", "className", "phylumName", "kingdomName", "taxrefVersion", "_links",
+            ];
+
         public function __construct(
             private int     $id,
             private ?int    $parentId = null,
@@ -18,7 +23,7 @@
             private ?string $className = null,
             private ?string $phylumName = null,
             private ?string $kingdomName = null,
-            private ?string $taxrefVersion = null,
+            private ?string $taxRefVersion = null,
             private ?array  $links = null
         )
         {
@@ -154,14 +159,14 @@
             $this->links = $links;
         }
 
-        public function getTaxrefVersion(): string
+        public function getTaxRefVersion(): string
         {
-            return $this->taxrefVersion;
+            return $this->taxRefVersion;
         }
 
-        public function setTaxrefVersion(string $taxrefVersion): void
+        public function setTaxRefVersion(string $taxRefVersion): void
         {
-            $this->taxrefVersion = $taxrefVersion;
+            $this->taxRefVersion = $taxRefVersion;
         }
 
         public function getRankId(): string

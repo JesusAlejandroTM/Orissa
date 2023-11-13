@@ -2,17 +2,17 @@
 
     namespace App\Code\Controller;
 
-    class ControllerHome extends ControllerGeneric
+    class ControllerTaxa extends ControllerGeneric
     {
         /**Home Controller's definition of routes Map
          * @var array|string[]
          */
         protected static array $routesMap = [
-            'Home' => 'view',
+            'Taxa' => 'view',
         ];
 
         /**Home Controller's definition of Home body's folder directory
          * @return string
          */
-        protected static string $bodyFolder = '/Home';
+        protected static string $bodyFolder = '/Taxa';
     }
