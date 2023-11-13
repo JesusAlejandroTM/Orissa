@@ -27,7 +27,7 @@
         {
             try {
                 $searchInput = $_GET["taxaName"];
-                $result = TaxaAPI::SelectAutocomplete($searchInput, 10);
+                $result = TaxaAPI::SearchVernacular($searchInput, 10);
                 ExceptionHandler::checkTrueValue(is_array($result), 303);
                 $this->displayView("Taxas found", "/search.php",
                     ["nan.css"], ['taxaArrays' => $result]);

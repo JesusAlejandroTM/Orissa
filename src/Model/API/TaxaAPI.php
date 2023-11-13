@@ -118,6 +118,28 @@
             }
         }
 
+        public static function SearchVernacular(string $name, int $size) : array|false
+        {
+            try {
+                $apiUrl = APIConnection::GetApiURL() . "/taxa/search?frenchVernacularNames=$name&page=1&size=$size";
+                $response = self::GetAPIResponse($apiUrl);
+                ExceptionHandler::checkTrueValue($response, 303);
+
+                $data = self::DecodeJSONFile($response);
+                ExceptionHandler::checkTrueValue(isset($data["_embedded"]), 303);
+                $dataArray = $data["_embedded"]["taxa"];
+
+                $taxaResults = [];
+                foreach ($dataArray as $taxaArray) {
+                    $taxaResults[] = self::Build($taxaArray);
+                }
+
+                return $taxaResults;
+            } catch (Exception) {
+                return false;
+            }
+        }
+
         public static function GetTaxaFactsheet(int|Taxa $taxa) : array|false
         {
             try {
