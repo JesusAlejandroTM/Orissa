@@ -7,7 +7,7 @@
 <body>
 <?php
     // Require the header of HTML
-    require_once(__DIR__ . '/../../assets/html/header.php');
+    require_once(__DIR__ . '/../../assets/html/nav.php');
     echo "<p> ----------HEAD ---------</p>";
 
     // Check message if there's one

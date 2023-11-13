@@ -5,7 +5,7 @@
     class Taxa
     {
         public static array $dataFilterArray = ["id", "parentId", "scientificName",
-            "authority", "rankId", "rankName", "habitat", "genusName", "familyName",
+            "authority", "rankId", "rankName", "frenchVernacularName", "habitat", "genusName", "familyName",
             "orderName", "className", "phylumName", "kingdomName", "taxrefVersion", "_links",
             ];
 
@@ -16,13 +16,14 @@
             private ?string $authority = null,
             private ?string $rankId = null,
             private ?string $rankName = null,
-            private ?string $habitat = null,
+            private ?string $vernacularName = null,
             private ?string $genusName = null,
             private ?string $familyName = null,
             private ?string $orderName = null,
             private ?string $className = null,
             private ?string $phylumName = null,
             private ?string $kingdomName = null,
+            private ?string $habitat = null,
             private ?string $taxRefVersion = null,
             private ?array  $links = null
         )
@@ -57,6 +58,16 @@
         public function setScientificName(string $scientificName): void
         {
             $this->scientificName = $scientificName;
+        }
+
+        public function getVernacularName(): ?string
+        {
+            return $this->vernacularName;
+        }
+
+        public function setVernacularName(?string $vernacularName): void
+        {
+            $this->vernacularName = $vernacularName;
         }
 
         public function getAuthority(): string

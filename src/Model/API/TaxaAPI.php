@@ -113,7 +113,7 @@
                 }
 
                 return $taxaResults;
-            } catch (Exception $e) {
+            } catch (Exception) {
                 return false;
             }
         }
@@ -131,9 +131,10 @@
 
                 $taxaResults = [];
                 foreach ($dataArray as $taxaArray) {
+                    if ($taxaArray['parentId'] == null)
+                        continue;
                     $taxaResults[] = self::Build($taxaArray);
                 }
-
                 return $taxaResults;
             } catch (Exception) {
                 return false;
