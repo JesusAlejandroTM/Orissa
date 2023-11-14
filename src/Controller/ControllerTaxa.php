@@ -2,7 +2,7 @@
 
     namespace App\Code\Controller;
 
-    class ControllerTaxa extends ControllerGeneric
+    class ControllerTaxa extends AbstractController
     {
         /**Home Controller's definition of routes Map
          * @var array|string[]

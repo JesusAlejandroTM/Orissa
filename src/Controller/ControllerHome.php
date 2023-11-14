@@ -2,7 +2,7 @@
 
     namespace App\Code\Controller;
 
-    class ControllerHome extends ControllerGeneric
+    class ControllerHome extends AbstractController
     {
         /**Home Controller's definition of routes Map
          * @var array|string[]

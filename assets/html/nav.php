@@ -1,6 +1,6 @@
 <header>
 
-    <a href="/Orissa" class="logo"><img src="orissa.png" alt="logo" /></a>
+    <a href="/Orissa" class="logo"><img src="orissa-logo.png" alt="logo" /></a>
 
 
     <ul>

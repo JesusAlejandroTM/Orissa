@@ -32,27 +32,27 @@
      *
      *          protected function logging() : void
      *          {
-     *          (new ControllerLogin())->displayView("Logging", "/login.php");
+     *          $this->displayView("Logging", "/login.php");
      *          }
      *      }
      *
      *      
      */
-    class ControllerGeneric
+    abstract class AbstractController
     {
         /**The routes map allows to control actions that are defined in the array
          * and execute methods accordingly. They are associated with a corresponding
          * controller, every controller should have this variable redefined accordingly.
          * @var array|string[]
          */
-        protected static array $routesMap = ['' => 'view'];
+        protected static array $routesMap;
 
 
         /**The body folder allows to find the directory given to a controller to
          * display the correct HTMLs during the execution of a controller's actions.
          * @var string
          */
-        protected static string $bodyFolder = '/Generic';
+        protected static string $bodyFolder;
 
         /**Returns routes map associated with the corresponding Controller.
          * @return array|string[]
@@ -94,7 +94,7 @@
                 ExceptionHandler::checkTrueValue(!is_null($action), 404);
                 $this->$action();
             } catch (Exception $e) {
-                (new ControllerGeneric())->error($e);
+                $this->error($e);
             }
         }
 

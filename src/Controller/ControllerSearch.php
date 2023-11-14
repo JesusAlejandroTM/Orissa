@@ -8,7 +8,7 @@
     use App\Code\Model\DataObject\Taxa;
     use Exception;
 
-    class ControllerSearch extends ControllerGeneric
+    class ControllerSearch extends AbstractController
     {
         /**Home Controller's definition of routes Map
          * @var array|string[]

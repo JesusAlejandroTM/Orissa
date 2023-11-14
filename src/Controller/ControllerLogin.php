@@ -11,7 +11,7 @@
     use DateTime;
     use Exception;
 
-    class ControllerLogin extends ControllerGeneric
+    class ControllerLogin extends AbstractController
     {
         /**Login Controller's definition of routes Map
          * @var array|string[]
