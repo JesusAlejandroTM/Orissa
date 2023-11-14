@@ -5,7 +5,6 @@
     use App\Code\Config\ExceptionHandler;
     use App\Code\Lib\FlashMessages;
     use App\Code\Model\API\TaxaAPI;
-    use App\Code\Model\DataObject\Taxa;
     use Exception;
 
     class ControllerSearch extends AbstractController

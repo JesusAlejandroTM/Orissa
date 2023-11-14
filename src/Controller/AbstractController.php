@@ -5,17 +5,17 @@
     use App\Code\Config\ExceptionHandler;
     use Exception;
 
-     /**ControllerGeneric is the parent controller which allows to create child controllers with dynamic
+     /**AbstractController is the parent controller which allows to create child controllers with dynamic
      * and flexible methods. Every child controller must redefine $routesMap and $bodyFolder to function
      * properly. A controller is associated with a folder under the View directory, for example a controller
      * who manages the login system should be called ControllerLogin and have a Login folder under the View
      * directory so classes, actions and files can be found.
-     * To extend ControllerGeneric into child controllers, you can redefine $routesMap and $bodyFolder and
+     * To extend AbstractController into child controllers, you can redefine $routesMap and $bodyFolder and
      * create the actions like this :
      *
-     *      // Extending ControllerGeneric :
+     *      // Extending AbstractController :
      *
-     *      class ControllerLogin extends ControllerGeneric {
+     *      class ControllerLogin extends AbstractController {
      *
      *      // Definition of $bodyFolder :
      *

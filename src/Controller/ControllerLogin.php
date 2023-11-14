@@ -40,7 +40,7 @@
         protected function logging() : void
         {
             try {
-                $user = (new UserRepository())->selectWithUsername($_GET['username']);
+                $user = (new UserRepository())->SelectWithLogin($_GET['username'], true);
                 $inputPassword = $_GET['password'];
 
                 ExceptionHandler::checkTrueValue($user instanceof User, 103);
@@ -67,8 +67,8 @@
             try {
                 $birthDate = new DateTime($_GET['birthdate']);
                 $_GET['birthdate'] = date_format($birthDate, 'Y-m-d');
-                $createdUser = UserRepository::constructWithForm($_GET);
-                $result = UserRepository::save($createdUser);
+                $createdUser = UserRepository::BuildWithForm($_GET);
+                $result = (new UserRepository())->Insert($createdUser);
                 ExceptionHandler::checkTrueValue($result, 104);
 
                 FlashMessages::add("success", "Bienvenu à Orissa, " . $createdUser->getUsername() . "!");

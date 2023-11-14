@@ -3,58 +3,36 @@
     namespace App\Code\Model\Repository;
 
     use App\Code\Lib\PasswordManager;
+    use App\Code\Model\DataObject\AbstractDataObject;
     use App\Code\Model\DataObject\User;
-    use LogicException;
+    use InvalidArgumentException;
     use PDO;
-    use PDOException;
 
-    class UserRepository
+    class UserRepository extends AbstractRepository
     {
-
-        public static function selectWithId(int $id) : ?User
+        protected function GetPrimaryKeyColumn(): string
         {
-            try {
-
-                $sql = "SELECT id_user, mail, username, password, birthDate, role FROM user WHERE id_user = :id_userTag";
-                $values = array("id_userTag" => $id);
-                $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
-                $pdoStatement->execute($values);
-                if ($pdoStatement->rowCount() < 1) {
-                    throw new LogicException("Erreur durant l'enregistrement");
-                }
-                $userData = $pdoStatement->fetch(PDO::FETCH_ASSOC);
-                return self::construct($userData);
-            } catch (LogicException|PDOException $e) {
-                echo $e->getMessage();
-                return null;
-            }
+            return "id_user";
         }
 
-        public static function selectWithUsername(string $username) : ?User
+        protected function GetTableName(): string
         {
-            try {
-                $sql = "SELECT id_user, mail, username, password, birthDate, role FROM user WHERE username = :usernameTag";
-                $values = array("usernameTag" => $username);
-                $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
-                $pdoStatement->execute($values);
-                if ($pdoStatement->rowCount() < 1) {
-                    throw new LogicException("Erreur durant l'enregistrement");
-                }
-                $userData = $pdoStatement->fetch(PDO::FETCH_ASSOC);
-                return self::construct($userData);
-            } catch (LogicException|PDOException $e) {
-                echo $e->getMessage();
-                return null;
-            }
+            return "user";
         }
 
-        public static function construct(?array $userArray) : ?User
+
+        protected function Build(array $arrayData): AbstractDataObject|bool
         {
-            if (is_null($userArray)) return null;
-            else return new User(...array_values($userArray));
+            if (empty($arrayData)) return false;
+            else return new User(...array_values($arrayData));
         }
 
-        public static function constructWithForm(array $userArray) : User
+        protected function GetColumnsNames(): array
+        {
+            return ["id_user", "mail", "username", "hashedPassword", "birthDate", "role"];
+        }
+
+        public static function BuildWithForm(array $userArray) : User
         {
             $email = $userArray['email'];
             $username = $userArray['username'];
@@ -63,25 +41,29 @@
             return new User(null, $email, $username, $password, $birthdate);
         }
 
-        public static function save(User $user) : bool {
-            try{
-                $sql = "INSERT INTO user (id_user, mail, username, password, birthDate)
-                    VALUES (:idTag, :mailTag, :usernameTag, :passwordTag, :birthDateTag)";
-                $values = array(
-                    "idTag" => $user->getId(),
-                    "mailTag" => $user->getMail(),
-                    "usernameTag" => $user->getUsername(),
-                    "passwordTag" => $user->getHashedPassword(),
-                    "birthDateTag" => $user->getBirthDateString(),
-                );
+        public function SelectWithLogin(string $login, $withID = false): User|string
+        {
+            try {
+                if ($withID) {
+                    $sql = 'SELECT ' . $this->GetSQLColumns() . ' FROM ' . $this->GetTableName() .
+                        ' WHERE username = :usernameTag;';
+                } else {
+                    $sql = 'SELECT ' . $this->GetSQLColumnsWithoutPrimary() . ' FROM ' . $this->GetTableName() .
+                        ' WHERE username = :usernameTag;';
+                }
+
+                $values = array(':usernameTag' => $login);
                 $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
                 $pdoStatement->execute($values);
-                if ($pdoStatement->rowCount() < 1){
-                    throw new LogicException("Error while saving");
+
+                if ($pdoStatement->rowCount() < 1) {
+                    throw new InvalidArgumentException("$login inexistant");
                 }
-            } catch (LogicException|PDOException $e) {
-               return false;
+                $data = $pdoStatement->fetch(PDO::FETCH_ASSOC);
+                var_dump($data);
+                return $this->Build($data);
+            } catch (InvalidArgumentException $e) {
+                return $e->getMessage();
             }
-            return true;
         }
     }

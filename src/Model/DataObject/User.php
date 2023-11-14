@@ -5,7 +5,7 @@
     use App\Code\Lib\PasswordManager;
     use DateTime;
 
-    class User
+    class User extends AbstractDataObject
     {
         private ?int $id;
         private string $mail;
@@ -30,6 +30,22 @@
             $this->birthDate = new DateTime($birthDate);
             $this->hashedPassword = $password;
             $this->role = $role;
+        }
+
+        public function formatTableau(): array
+        {
+            return [
+                'mailTag' => $this->getMail(),
+                'usernameTag' => $this->getUsername(),
+                'birthDateTag' => $this->getBirthDateString(),
+                'hashedPasswordTag' => $this->getHashedPassword(),
+                'roleTag' => $this->getRole()
+            ];
+        }
+
+        public function getPrimaryKeyValue(): int
+        {
+            return $this->getId();
         }
 
         public function __toString(): string
