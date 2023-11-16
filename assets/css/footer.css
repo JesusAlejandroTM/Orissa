@@ -1,0 +1,107 @@
+.footer{
+    background-color: #24262b ;
+    padding: 70px 0; 
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.containerfooter{
+    max-width: 1170px;
+    margin: auto; 
+
+
+}
+
+ul{
+    list-style: none;
+    left: 0;
+
+}
+
+.row{
+    display: flex ;
+    flex-wrap: wrap; 
+}
+
+.footer-col{
+    width: 25%;
+    padding: 0 15px;
+
+}
+
+.footer-col h4{
+    font-size: 18px;
+    color: #ffffff;
+    text-transform: capitalize;
+    margin-bottom: 30px;
+    font-weight: 500;
+    position: relative; 
+  
+}
+
+.footer-col h4::before{
+    content:'';
+    position: absolute;
+    left:0;
+    bottom: -10px;
+    background-color: #81AE64;
+    height: 2px;
+    box-sizing: border-box;
+    width: 50px;
+    
+}
+
+.footer-col ul li:not(:last-child){
+    margin-bottom: 10px;
+
+}
+
+.footer-col ul li a{
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 300;
+    display: block;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.footer-col ul li a:hover{
+    color: #ffffff;
+    padding-left: 10px;
+
+
+}
+
+
+
+.footer-col ul li p{
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 300;
+    display: block;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.footer-col ul li p:hover{
+    color: #ffffff;
+    padding-left: 10px;
+    
+
+}
+
+/* responsive */
+
+@media (max-width: 767px){
+    .footer-col{
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    
+}

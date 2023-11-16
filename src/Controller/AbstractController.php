@@ -91,8 +91,7 @@
         {
             try {
                 $action = $this->getRequestedAction($route);
-                ExceptionHandler::checkTrueValue(!is_null($action), 404);
-                $this->$action();
+                ExceptionHandler::checkTrueValue(!is_null($action), 404);$this->$action();
             } catch (Exception $e) {
                 $this->error($e);
             }
@@ -111,6 +110,10 @@
          */
         public function displayView(string $pageTitle, string $pathViewBody, array $cssArray, array $parameters = []): void
         {
+            $defaultCSSArray = ['footer.css'];
+            foreach ($defaultCSSArray as $css) {
+                $cssArray[] = $css;
+            }
             // We add $pageTitle and $pathViewBody in our parameters array
             $parameters += [
                 'pageTitle' => $pageTitle,
@@ -134,7 +137,7 @@
             $title = explode('/', $string)[1];
             $phpFile = '/' . strtolower($title) . '.php';
             //FIXME MAKE A CSS FILE BY DEFAULT FOR VIEWS?
-            $this->displayView($title, $phpFile,  ['NaN.css']);
+            $this->displayView($title, $phpFile,  ['NaN']);
         }
 
         /**Displays error page based on Exception's error code with specific message.

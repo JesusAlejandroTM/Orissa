@@ -1,10 +1,8 @@
 <?php
 
-    namespace App\Code\Lib;
+    namespace App\Code\Controller;
 
     use App\Code\Config\ExceptionHandler;
-    use App\Code\Controller\AbstractController;
-    use App\Code\Controller\ControllerHome;
     use Exception;
 
     /** Router takes in charge handling requests by the User

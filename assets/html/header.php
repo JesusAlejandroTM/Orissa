@@ -1,8 +1,5 @@
 <header>
-
     <a href="/Orissa" class="logo"><img src="orissa-logo.png" alt="logo" /></a>
-
-
     <ul>
         <li><a href="">MAIN</a></li>
         <li><a href="">LIBRARY</a></li>
@@ -26,7 +23,6 @@
     <div class="searchBox">
         <input type="text" name="text" class="search" placeholder="Search">
     </div>
-</header>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script>
@@ -49,6 +45,5 @@
 <div class="container">
 </div>
 <div class="container2">
-    <p>
-    </p>
 </div>
+</header>

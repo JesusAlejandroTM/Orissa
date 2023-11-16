@@ -1,7 +1,7 @@
 <?php
 
     use App\Code\Controller\ControllerLogin;
-    use App\Code\Lib\Router;
+    use App\Code\Controller\Router;
     use App\Code\Model\Repository\UserRepository;
     use App\Code\Model\API\TaxaAPI;
 
