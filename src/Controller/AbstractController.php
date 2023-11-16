@@ -77,21 +77,31 @@
          * @return ?string
          */
         public function getRequestedAction(string $route) : ?string {
-                $routesMap = $this->getRoutesMap();
-                return $routesMap[$route] ?? null;
+            $routesMap = $this->getRoutesMap();
+            return $routesMap[$route] ?? null;
         }
 
         /**
          * Execute controller action found with getRequestedAction with route,
          * if the route is not found redirect the user into a 404 error page instead.
          * @param string $route
+         * @param array|null $parameters
          * @return void
          */
-        public function executeAction(string $route): void
+        public function executeAction(string $route, ?array $parameters = null): void
         {
             try {
-                $action = $this->getRequestedAction($route);
-                ExceptionHandler::checkTrueValue(!is_null($action), 404);$this->$action();
+                //FIXME The If Else is probably not necessary
+                if (Router::isRouteParameterized($route)) {
+                    $action = $this->getRequestedAction($route);
+                    ExceptionHandler::checkTrueValue(!is_null($action), 404);
+                    $this->$action(...$parameters);
+                }
+                else {
+                    $action = $this->getRequestedAction($route);
+                    ExceptionHandler::checkTrueValue(!is_null($action), 404);
+                    $this->$action();
+                }
             } catch (Exception $e) {
                 $this->error($e);
             }

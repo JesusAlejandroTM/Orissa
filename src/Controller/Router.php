@@ -23,16 +23,17 @@
      */
     class Router
     {
-        /**Main method which executes an action based on the
+        /**Main method which executes an action based on the URI using the multiple methods
          * @return void
          */
         public static function controllerActionExecution() : void {
             try {
-                $uriParts = self::getUriParts();
-                $controller = self::getController($uriParts);
+                $parameterizedUri = self::transformNumericParams();
+                $parameters = self::getUriNumericParameters();
+                $controller = self::getController($parameterizedUri);
                 ExceptionHandler::checkTrueValue($controller instanceof AbstractController, 404);
-                $route = self::getRoute($uriParts);
-                $controller->executeAction($route);
+                $route = self::getRoute($parameterizedUri);
+                $controller->executeAction($route, $parameters);
             } catch (Exception $e) {
                 (new ControllerHome())->error($e);
             }
@@ -47,7 +48,7 @@
          * For example, this URL : "/Orissa/Login/Create" returns the array :
          * [0 => 'Orissa', 1 => 'Login', 2 => 'Create']
          */
-        private static function getUriParts() : ?array
+        public static function getUriParts() : ?array
         {
             // Check for the URL, should always be true
             if (isset($_SERVER['REQUEST_URI'])) {
@@ -59,6 +60,54 @@
                 return explode('/', $uri);
             }
             else return null;
+        }
+
+        /**
+         * Transform the URI parts considered as parameters into default
+         * parameter name ":param:", allowing for parameterizing dynamic
+         * URL requests.
+         * @return array Returns the transformed array with the new
+         * parameter names, for example : ["Orissa", "Login", ":param:"]
+         */
+        public static function transformNumericParams() : array
+        {
+            $uriParts = Router::getUriParts();
+            for ($i = 0; $i < sizeof($uriParts); $i++)
+            {
+                $part = $uriParts[$i];
+                if (is_numeric($part)) {
+                    $uriParts[$i] = ":param:";
+                }
+            }
+            return $uriParts;
+        }
+
+        /**
+         * Get all the numeric values found in the URI which should only be
+         * used for dynamic URL redirecting. Any numeric value found in the
+         * URI will be considered as an error and surely causing an error.
+         * @return array|null An array of numeric parameters found in the URL
+         * For example : in 'Orissa/Taxa/545/Factsheet/153', we get : [545, 153]
+         */
+        public static function getUriNumericParameters(): ?array
+        {
+            $uriParts = Router::getUriParts();
+            $uriParameters = [];
+            foreach ($uriParts as $item) {
+                if (is_numeric($item)) {
+                    $uriParameters[] = $item;
+                }
+            }
+            if (empty($uriParameters)) return null;
+            return $uriParameters;
+        }
+
+        public static function isRouteParameterized($url) : bool
+        {
+            $parameterName = "/:param:/";
+            $result = preg_match($parameterName, $url);
+            if ($result == 1) return true;
+            else return false;
         }
 
         /**
@@ -89,7 +138,10 @@
         }
 
         /**
-         * Make a string of the route based on the URI Path array
+         * Make a string of the route based on the URI Path array.
+         * Esentially removes the "Orissa" from the Uri and converts it
+         * into a string, also checks if the URI is null to return default
+         * route Home
          * @param array $uriPath
          * @return string|null
          */

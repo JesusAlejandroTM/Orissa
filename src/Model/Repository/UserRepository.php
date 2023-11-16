@@ -60,7 +60,6 @@
                     throw new InvalidArgumentException("$login inexistant");
                 }
                 $data = $pdoStatement->fetch(PDO::FETCH_ASSOC);
-                var_dump($data);
                 return $this->Build($data);
             } catch (InvalidArgumentException $e) {
                 return $e->getMessage();

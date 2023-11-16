@@ -4,7 +4,7 @@
         <li><a href="">MAIN</a></li>
         <li><a href="">LIBRARY</a></li>
         <li><a href="">ARTICLE</a></li>
-        <li><a href="">TAXON</a></li>
+        <li><a href="Search">TAXON</a></li>
         <li><a href="">ROLE</a></li>
         <li><a href="">DISCOVER</a></li>
         <li><a href="">ABOUT</a></li>
@@ -12,7 +12,7 @@
         <input type="text" name="text" class="search" placeholder="Search">
         <input type="submit" name="submit" class="submit" value="Search">
       </form></li>  -->
-        <li><a href="">Login</a></li>
+        <li><a href="Login">Login</a></li>
     </ul>
     <div class="search">
             <span class="icon">

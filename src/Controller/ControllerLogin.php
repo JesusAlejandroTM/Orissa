@@ -53,7 +53,9 @@
                 exit();
             } catch (Exception $e) {
                 FlashMessages::add("danger", "Verifier que vos informations sont corrects!");
-                $this->view();
+                // Redirect user if login failed
+                header("Location: /Orissa/Login");
+                exit();
             }
         }
 
