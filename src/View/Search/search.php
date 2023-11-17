@@ -13,8 +13,8 @@
         if (isset($taxaArrays)) {
             echo '<br><h1>Taxas found :</h1><ul>';
             foreach($taxaArrays as $taxa){
-                //TODO Link Taxa HREF to a web page
-                echo '<li>' . $taxa->getVernacularName() . '<a href=""></a></li>';
+                $taxaId = $taxa->getId();
+                echo '<li>' . $taxa->getVernacularName() . ' <a href="Taxa/' . $taxaId . '">Profile</a></li>';
             }
             echo '</ul>';
         }

@@ -1,10 +1,10 @@
 <header>
     <a href="/Orissa" class="logo"><img src="orissa-logo.png" alt="logo" /></a>
     <ul>
-        <li><a href="">MAIN</a></li>
         <li><a href="">LIBRARY</a></li>
         <li><a href="">ARTICLE</a></li>
-        <li><a href="Search">TAXON</a></li>
+        <li><a href="Search">SEARCH</a></li>
+        <li><a href="Taxa">TAXON</a></li>
         <li><a href="">ROLE</a></li>
         <li><a href="">DISCOVER</a></li>
         <li><a href="">ABOUT</a></li>

@@ -24,13 +24,13 @@
 
         protected function viewTaxa(int $taxaIdParameter): void
         {
-            //TODO Parameterized URIs are done, implement Taxa search
             try {
-                $this->displayView("Taxas found", "/taxa.php",
-                    ["nan.css"], ["taxaId" => $taxaIdParameter]);
+                $taxa = TaxaAPI::SelectWithID($taxaIdParameter);
+                $this->displayView("Taxas found", "/selectTaxa.php",
+                    ["nan.css"], ["taxa" => $taxa]);
             } catch (Exception $e) {
                 FlashMessages::add("warning", "Ce taxon n'existe pas");
-                header("Location: /Orissa/Search");
+                header("Location: /Orissa/Taxa");
                 exit();
             }
         }

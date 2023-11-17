@@ -54,10 +54,17 @@
             if (isset($_SERVER['REQUEST_URI'])) {
                 // Get the URL from our request URI
                 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-                // Remove the first slash in the array
+                // Remove the first slash in the URI
                 $uri = substr($uri, 1, strlen($uri) - 1);
                 // Return an array of the different paths
-                return explode('/', $uri);
+                $arrayPaths = explode('/', $uri);
+                // Get last path and check if it's empty -> unset it
+                $lastPath = count($arrayPaths) - 1;
+                if ($lastPath > 1) {
+                    if ($arrayPaths[$lastPath] == "")
+                        unset($arrayPaths[$lastPath]);
+                }
+                return $arrayPaths;
             }
             else return null;
         }
