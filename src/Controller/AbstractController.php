@@ -88,20 +88,13 @@
          * @param array|null $parameters
          * @return void
          */
-        public function executeAction(string $route, ?array $parameters = null): void
+        public function executeAction(string $route, array $parameters = []): void
         {
             try {
-                //FIXME The If Else is probably not necessary
-                if (Router::isRouteParameterized($route)) {
-                    $action = $this->getRequestedAction($route);
-                    ExceptionHandler::checkTrueValue(!is_null($action), 404);
-                    $this->$action(...$parameters);
-                }
-                else {
-                    $action = $this->getRequestedAction($route);
-                    ExceptionHandler::checkTrueValue(!is_null($action), 404);
-                    $this->$action();
-                }
+                Router::isRouteParameterized($route);
+                $action = $this->getRequestedAction($route);
+                ExceptionHandler::checkTrueValue(!is_null($action), 404);
+                $this->$action(...$parameters);
             } catch (Exception $e) {
                 $this->error($e);
             }

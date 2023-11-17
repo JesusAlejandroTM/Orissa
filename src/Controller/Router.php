@@ -89,7 +89,7 @@
          * @return array|null An array of numeric parameters found in the URL
          * For example : in 'Orissa/Taxa/545/Factsheet/153', we get : [545, 153]
          */
-        public static function getUriNumericParameters(): ?array
+        public static function getUriNumericParameters(): array
         {
             $uriParts = Router::getUriParts();
             $uriParameters = [];
@@ -98,7 +98,6 @@
                     $uriParameters[] = $item;
                 }
             }
-            if (empty($uriParameters)) return null;
             return $uriParameters;
         }
 
