@@ -15,6 +15,7 @@
         protected static array $routesMap = [
             'Taxa' => 'view',
             'Taxa/:param:' => 'viewTaxa',
+            'Taxa/:param:/factsheet' => 'viewTaxaFactsheet'
         ];
 
         /**Home Controller's definition of Home body's folder directory
@@ -28,6 +29,19 @@
                 $taxa = TaxaAPI::SelectWithID($taxaIdParameter);
                 $this->displayView("Taxas found", "/selectTaxa.php",
                     ["nan.css"], ["taxa" => $taxa]);
+            } catch (Exception $e) {
+                FlashMessages::add("warning", "Ce taxon n'existe pas");
+                header("Location: /Orissa/Taxa");
+                exit();
+            }
+        }
+
+        protected function viewTaxaFactsheet(int $taxaIdParameter) : void
+        {
+            try {
+                $factsheet = TaxaAPI::GetTaxaFactsheet($taxaIdParameter);
+                $this->displayView("Taxa factsheet", "/factsheet.php",
+                    ["nan.css"], ["factsheet" => $factsheet]);
             } catch (Exception $e) {
                 FlashMessages::add("warning", "Ce taxon n'existe pas");
                 header("Location: /Orissa/Taxa");

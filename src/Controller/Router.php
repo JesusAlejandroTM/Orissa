@@ -58,7 +58,7 @@
                 $uri = substr($uri, 1, strlen($uri) - 1);
                 // Return an array of the different paths
                 $arrayPaths = explode('/', $uri);
-                // Get last path and check if it's empty -> unset it
+                // Get last path and check, if it's empty -> unset it
                 $lastPath = count($arrayPaths) - 1;
                 if ($lastPath > 1) {
                     if ($arrayPaths[$lastPath] == "")
