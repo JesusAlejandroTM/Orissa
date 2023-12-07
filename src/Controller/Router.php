@@ -31,7 +31,7 @@
                 $parameterizedUri = self::transformNumericParams();
                 $parameters = self::getUriNumericParameters();
                 $controller = self::getController($parameterizedUri);
-                ExceptionHandler::checkTrueValue($controller instanceof AbstractController, 404);
+                ExceptionHandler::checkIsTrue($controller instanceof AbstractController, 404);
                 $route = self::getRoute($parameterizedUri);
                 $controller->executeAction($route, $parameters);
             } catch (Exception $e) {

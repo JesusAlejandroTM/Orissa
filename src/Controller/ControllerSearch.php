@@ -26,8 +26,8 @@
         {
             try {
                 $searchInput = $_GET["taxaName"];
-                $result = TaxaAPI::SearchVernacular($searchInput, 10);
-                ExceptionHandler::checkTrueValue(is_array($result), 303);
+                $result = TaxaAPI::SearchVernacularList($searchInput, 10);
+                ExceptionHandler::checkIsTrue(is_array($result), 303);
                 $this->displayView("Taxas found", "/search.php",
                     ["nan.css"], ['taxaArrays' => $result]);
             } catch (Exception $e) {

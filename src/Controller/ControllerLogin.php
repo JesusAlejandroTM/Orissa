@@ -43,9 +43,9 @@
                 $user = (new UserRepository())->SelectWithLogin($_GET['username'], true);
                 $inputPassword = $_GET['password'];
 
-                ExceptionHandler::checkTrueValue($user instanceof User, 103);
+                ExceptionHandler::checkIsTrue($user instanceof User, 103);
                 $checkPassword = PasswordManager::verify($inputPassword, $user->getHashedPassword());
-                ExceptionHandler::checkTrueValue($checkPassword, 103);
+                ExceptionHandler::checkIsTrue($checkPassword, 103);
 
                 FlashMessages::add("success", "Bonjour " . $user->getUsername() . "!");
                 UserSession::connect($user->getUsername());
@@ -71,7 +71,7 @@
                 $_GET['birthdate'] = date_format($birthDate, 'Y-m-d');
                 $createdUser = UserRepository::BuildWithForm($_GET);
                 $result = (new UserRepository())->Insert($createdUser);
-                ExceptionHandler::checkTrueValue($result, 104);
+                ExceptionHandler::checkIsTrue($result, 104);
 
                 FlashMessages::add("success", "Bienvenu à Orissa, " . $createdUser->getUsername() . "!");
                 UserSession::connect($createdUser->getUsername());

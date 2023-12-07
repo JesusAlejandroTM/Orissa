@@ -40,7 +40,7 @@
             $this->id = $id;
         }
 
-        public function getParentId(): int
+        public function getParentId(): ?int
         {
             return $this->parentId;
         }
@@ -50,7 +50,7 @@
             $this->parentId = $parentId;
         }
 
-        public function getScientificName(): string
+        public function getScientificName(): ?string
         {
             return $this->scientificName;
         }
@@ -70,7 +70,7 @@
             $this->vernacularName = $vernacularName;
         }
 
-        public function getAuthority(): string
+        public function getAuthority(): ?string
         {
             return $this->authority;
         }
@@ -80,7 +80,7 @@
             $this->authority = $authority;
         }
 
-        public function getRankName(): string
+        public function getRankName(): ?string
         {
             return $this->rankName;
         }
@@ -90,7 +90,7 @@
             $this->rankName = $rankName;
         }
 
-        public function getHabitat(): string
+        public function getHabitat(): ?string
         {
             return $this->habitat;
         }
@@ -100,7 +100,7 @@
             $this->habitat = $habitat;
         }
 
-        public function getGenusName(): string
+        public function getGenusName(): ?string
         {
             return $this->genusName;
         }
@@ -110,7 +110,7 @@
             $this->genusName = $genusName;
         }
 
-        public function getFamilyName(): string
+        public function getFamilyName(): ?string
         {
             return $this->familyName;
         }
@@ -120,7 +120,7 @@
             $this->familyName = $familyName;
         }
 
-        public function getOrderName(): string
+        public function getOrderName(): ?string
         {
             return $this->orderName;
         }
@@ -130,7 +130,7 @@
             $this->orderName = $orderName;
         }
 
-        public function getClassName(): string
+        public function getClassName(): ?string
         {
             return $this->className;
         }
@@ -140,7 +140,7 @@
             $this->className = $className;
         }
 
-        public function getPhylumName(): string
+        public function getPhylumName(): ?string
         {
             return $this->phylumName;
         }
@@ -150,7 +150,7 @@
             $this->phylumName = $phylumName;
         }
 
-        public function getKingdomName(): string
+        public function getKingdomName(): ?string
         {
             return $this->kingdomName;
         }
@@ -160,7 +160,7 @@
             $this->kingdomName = $kingdomName;
         }
 
-        public function getLinks(): array
+        public function getLinks(): ?array
         {
             return $this->links;
         }
@@ -170,7 +170,7 @@
             $this->links = $links;
         }
 
-        public function getTaxRefVersion(): string
+        public function getTaxRefVersion(): ?string
         {
             return $this->taxRefVersion;
         }
@@ -180,7 +180,7 @@
             $this->taxRefVersion = $taxRefVersion;
         }
 
-        public function getRankId(): string
+        public function getRankId(): ?string
         {
             return $this->rankId;
         }

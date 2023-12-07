@@ -65,15 +65,37 @@
             return $data;
         }
 
+        private static function CheckTaxaInput(int|Taxa $taxa) : int
+        {
+            if ($taxa instanceof Taxa) {
+                $taxa = $taxa->getId();
+            }
+            return $taxa;
+        }
+
+        private static function ExecuteAPIRequest($apiUrl) : array|false
+        {
+            try {
+                $response = self::GetAPIResponse($apiUrl);
+                ExceptionHandler::checkIsTrue(is_string($response), 303);
+
+                $data = self::DecodeJSONFile($response);
+                ExceptionHandler::checkIsTrue(is_array($data), 303);
+                return $data;
+            } catch (Exception) {
+                return false;
+            }
+        }
+
         public static function SelectWithID(int $id): Taxa|false
         {
             try {
                 // Requête envers l'API
                 $apiUrl = APIConnection::GetApiURL() . "/taxa/$id";
                 // Get date from API request
-                $response = self::GetAPIResponse($apiUrl);
-                $data = self::DecodeJSONFile($response);
-                ExceptionHandler::checkTrueValue(is_array($data),303);
+
+                $data = self::ExecuteAPIRequest($apiUrl);
+
                 return self::Build($data);
             } catch (Exception $e) {
                 return false;
@@ -83,11 +105,8 @@
         {
             try {
                 $apiUrl = APIConnection::GetApiURL() . "/taxa/autocomplete?term=$name&page=1&size=1";
-                $response = self::GetAPIResponse($apiUrl);
-                ExceptionHandler::checkTrueValue($response, 303);
 
-                $data = self::DecodeJSONFile($response);
-                ExceptionHandler::checkTrueValue(isset($data["_embedded"]), 303);
+                $data = self::ExecuteAPIRequest($apiUrl);
 
                 $taxaData = $data["_embedded"]["taxa"][0];
                 return self::SelectWithID($taxaData["id"]);
@@ -96,15 +115,13 @@
             }
         }
 
-        public static function SelectAutocomplete(string $name, int $size) : array|false
+        public static function SearchAutocompleteList(string $name, int $size) : array|false
         {
             try {
                 $apiUrl = APIConnection::GetApiURL() . "/taxa/autocomplete?term=$name&page=1&size=$size";
-                $response = self::GetAPIResponse($apiUrl);
-                ExceptionHandler::checkTrueValue($response, 303);
 
-                $data = self::DecodeJSONFile($response);
-                ExceptionHandler::checkTrueValue(isset($data["_embedded"]), 303);
+                $data = self::ExecuteAPIRequest($apiUrl);
+
                 $dataArray = $data["_embedded"]["taxa"];
 
                 $taxaResults = [];
@@ -118,24 +135,21 @@
             }
         }
 
-        public static function SearchVernacular(string $name, int $size) : array|false
+        public static function SearchVernacularList(string $name, int $size) : array|false
         {
             try {
                 $apiUrl = APIConnection::GetApiURL() . "/taxa/search?frenchVernacularNames=$name&page=1&size=$size";
-                $response = self::GetAPIResponse($apiUrl);
-                ExceptionHandler::checkTrueValue($response, 303);
 
-                $data = self::DecodeJSONFile($response);
-                ExceptionHandler::checkTrueValue(isset($data["_embedded"]), 303);
+                $data = self::ExecuteAPIRequest($apiUrl);
+
                 $dataArray = $data["_embedded"]["taxa"];
-
-                $taxaResults = [];
+                $returnResult = [];
                 foreach ($dataArray as $taxaArray) {
                     if ($taxaArray['parentId'] == null)
                         continue;
-                    $taxaResults[] = self::Build($taxaArray);
+                    $returnResult[] = self::Build($taxaArray);
                 }
-                return $taxaResults;
+                return $returnResult;
             } catch (Exception) {
                 return false;
             }
@@ -144,19 +158,21 @@
         public static function GetTaxaFactsheet(int|Taxa $taxa) : array|false
         {
             try {
-                if ($taxa instanceof Taxa){
-                    $taxa = $taxa->getId();
-                }
+                $taxa = self::CheckTaxaInput($taxa);
                 $apiUrl = APIConnection::GetApiURL() . "/taxa/$taxa/factsheet";
+                return self::ExecuteAPIRequest($apiUrl);
+            } catch (Exception) {
+                return false;
+            }
+        }
 
-                $response = self::GetAPIResponse($apiUrl);
-                ExceptionHandler::checkTrueValue(is_string($response), 303);
-
-                $data = self::DecodeJSONFile($response);
-                ExceptionHandler::checkTrueValue(is_array($data), 303);
-
-                return $data;
-            } catch (Exception $e) {
+        public static function GetTaxaInteractions(int|Taxa $taxa) : array|false
+        {
+            try {
+                $taxa = self::CheckTaxaInput($taxa);
+                $apiUrl = APIConnection::GetApiURL() . "/taxa/$taxa/interactions";
+                return self::ExecuteAPIRequest($apiUrl);
+            } catch (Exception) {
                 return false;
             }
         }

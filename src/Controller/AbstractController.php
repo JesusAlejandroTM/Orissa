@@ -93,7 +93,7 @@
             try {
                 Router::isRouteParameterized($route);
                 $action = $this->getRequestedAction($route);
-                ExceptionHandler::checkTrueValue(!is_null($action), 404);
+                ExceptionHandler::checkIsTrue(!is_null($action), 404);
                 $this->$action(...$parameters);
             } catch (Exception $e) {
                 $this->error($e);

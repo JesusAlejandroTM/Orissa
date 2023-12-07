@@ -40,12 +40,22 @@
         {
             try {
                 $factsheet = TaxaAPI::GetTaxaFactsheet($taxaIdParameter);
+                if (!$factsheet) {
+                    throw new Exception("Ce taxon n'a pas de fiche d'informations disponible", 204);
+                }
                 $this->displayView("Taxa factsheet", "/factsheet.php",
-                    ["nan.css"], ["factsheet" => $factsheet]);
+                    ["nan.css"], ["factsheet" => $factsheet, "taxaId" => $taxaIdParameter]);
             } catch (Exception $e) {
-                FlashMessages::add("warning", "Ce taxon n'existe pas");
-                header("Location: /Orissa/Taxa");
-                exit();
+                if ($e->getCode() == 204) {
+                    $exceptionMessage = $e->getMessage();
+                    $this->displayView("Taxa factsheet", "/factsheet.php",
+                        ["nan.css"], ["exceptionMessage" => $exceptionMessage, "taxaId" => $taxaIdParameter]);
+                }
+                else {
+                    FlashMessages::add("warning", "Ce taxon n'existe pas");
+                    header("Location: /Orissa/Taxa");
+                    exit();
+                }
             }
         }
     }
