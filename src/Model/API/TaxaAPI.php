@@ -97,7 +97,7 @@
                 $data = self::ExecuteAPIRequest($apiUrl);
 
                 return self::Build($data);
-            } catch (Exception $e) {
+            } catch (Exception) {
                 return false;
             }
         }
@@ -110,7 +110,7 @@
 
                 $taxaData = $data["_embedded"]["taxa"][0];
                 return self::SelectWithID($taxaData["id"]);
-            } catch (Exception $e){
+            } catch (Exception){
                 return false;
             }
         }
@@ -138,9 +138,10 @@
         public static function SearchVernacularList(string $name, int $size) : array|false
         {
             try {
+                $name = str_replace(" ","%20", $name);
                 $apiUrl = APIConnection::GetApiURL() . "/taxa/search?frenchVernacularNames=$name&page=1&size=$size";
-
                 $data = self::ExecuteAPIRequest($apiUrl);
+                if ($data['page']['totalElements'] == 0) return false;
 
                 $dataArray = $data["_embedded"]["taxa"];
                 $returnResult = [];
@@ -149,6 +150,7 @@
                         continue;
                     $returnResult[] = self::Build($taxaArray);
                 }
+                if (!$returnResult) return false;
                 return $returnResult;
             } catch (Exception) {
                 return false;

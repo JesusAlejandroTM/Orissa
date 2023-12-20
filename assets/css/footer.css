@@ -20,7 +20,7 @@ ul{
 
 .row{
     display: flex ;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
 }
 
 .footer-col{

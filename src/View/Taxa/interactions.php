@@ -1,9 +1,9 @@
 <?php
     if (isset($taxaId)) {
-        if (isset($factsheet)) {
-            $taxaTitle = $factsheet["taxon"]["scientificName"];
+        if (isset($interactions)) {
+            $taxaTitle = $interactions["taxon"]["scientificName"];
             echo "<h1>" . $taxaTitle . "</h1><br>";
-            echo $factsheet['text'];
+            echo $interactions['text'];
             echo "<br>";
             echo '<a href="Taxa/' . $taxaId . '">Retour</a>';
         }

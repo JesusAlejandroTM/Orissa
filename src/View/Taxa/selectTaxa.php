@@ -7,16 +7,12 @@
         echo "<p>Taxa here look : </p>";
         echo "<p>$taxa</p>";
         $taxaId = $taxa->getId();
-        echo '<a href="Taxa/' . $taxaId . '/factsheet">Factsheet</a>';
+        echo '<p><a href="Taxa/' . $taxaId . '/factsheet">Factsheet</a></p>';
+        echo '<p><a href="Taxa/' . $taxaId . '/interactions">Interactions</a></p>';
 
         $parentTaxaId = $taxa->getParentId();
         if (!is_null($parentTaxaId)) {
-            echo "<br>";
-            echo '<a href="Taxa/' . $parentTaxaId . '">Parent</a>';
+            echo '<p><a href="Taxa/' . $parentTaxaId . '">Parent</a></p>';
         }
-
-        $links = $taxa->getLinks();
-        var_dump($links);
-
     }
     else echo "<p>Taxa not found bro</p>";

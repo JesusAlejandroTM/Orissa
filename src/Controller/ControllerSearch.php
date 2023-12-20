@@ -27,10 +27,10 @@
             try {
                 $searchInput = $_GET["taxaName"];
                 $result = TaxaAPI::SearchVernacularList($searchInput, 10);
-                ExceptionHandler::checkIsTrue(is_array($result), 303);
+                ExceptionHandler::checkIsTrue($result, 303);
                 $this->displayView("Taxas found", "/search.php",
                     ["nan.css"], ['taxaArrays' => $result]);
-            } catch (Exception $e) {
+            } catch (Exception) {
                 FlashMessages::add("warning", "Pas de taxons trouvés avec : " . $searchInput);
                 header("Location: /Orissa/Search");
                 exit();
