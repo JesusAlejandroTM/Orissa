@@ -1,5 +1,5 @@
 <header>
-    <a href="/Orissa" class="logo"><img src="orissa-logo.png" alt="logo" /></a>
+    <a href="/Orissa" class="logo"><img src="Orissa/../assets/img/orissa-logo.png" alt="logo" /></a>
     <ul>
         <li><a href="">LIBRARY</a></li>
         <li><a href="">ARTICLE</a></li>

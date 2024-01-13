@@ -5,7 +5,7 @@
 }
 
 header {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
@@ -27,13 +27,13 @@ header {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     float: left;
-    margin-right: 20px; /* This adds some space between the logo and the next element */
+    margin-right: 20px;
 
 }
 
 .logo img {
-    display: block; /* Makes sure the image is a block element to take the float property */
-    max-width: 100%; /* Ensures the image is not larger than its container */
+    display: block;
+    max-width: 100%;
     height: 70px;
 }
 

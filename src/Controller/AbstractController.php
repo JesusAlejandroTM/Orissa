@@ -114,6 +114,7 @@
         public function displayView(string $pageTitle, string $pathViewBody, array $cssArray, array $parameters = []): void
         {
             $defaultCSSArray = [];
+            $defaultCSSArray += ['style.css', 'footer.css', 'header.css'];
             foreach ($defaultCSSArray as $css) {
                 $cssArray[] = $css;
             }
@@ -140,7 +141,7 @@
             $title = explode('/', $string)[1];
             $phpFile = '/' . strtolower($title) . '.php';
             //FIXME MAKE A CSS FILE BY DEFAULT FOR VIEWS?
-            $this->displayView($title, $phpFile,  ["footer.css", "header.css"]);
+            $this->displayView($title, $phpFile,  []);
         }
 
         /**Displays error page based on Exception's error code with specific message.
