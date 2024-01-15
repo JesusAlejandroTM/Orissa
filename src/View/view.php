@@ -8,7 +8,6 @@
 <?php
     // Require the header of HTML
     require_once(__DIR__ . '/../../assets/html/header.php');
-    echo "<p> ----------HEAD ---------</p>";
 
     // Check message if there's one
     App\Code\Lib\FlashMessages::executeMessage();
@@ -18,8 +17,7 @@
     if (isset($pathViewBody)) require __DIR__ . $pathViewBody;
 
     // Require the footer of HTML
-    echo "<p>----------FOOTER ---------</p>";
-    require_once(__DIR__ . '/../../assets/html/footer.HTML');
+    require_once(__DIR__ . '/../../assets/html/footer.html');
     ?>
 </body>
 </html>

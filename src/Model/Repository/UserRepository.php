@@ -41,16 +41,11 @@
             return new User(null, $email, $username, $password, $birthdate);
         }
 
-        public function SelectWithLogin(string $login, $withID = false): User|string
+        public function SelectWithLogin(string $login): User|string
         {
             try {
-                if ($withID) {
-                    $sql = 'SELECT ' . $this->GetSQLColumns() . ' FROM ' . $this->GetTableName() .
+                $sql = 'SELECT ' . $this->GetSQLColumns() . ' FROM ' . $this->GetTableName() .
                         ' WHERE username = :usernameTag;';
-                } else {
-                    $sql = 'SELECT ' . $this->GetSQLColumnsWithoutPrimary() . ' FROM ' . $this->GetTableName() .
-                        ' WHERE username = :usernameTag;';
-                }
 
                 $values = array(':usernameTag' => $login);
                 $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);

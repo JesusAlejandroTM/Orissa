@@ -34,7 +34,7 @@
             $title = explode('/', $string)[1];
             $phpFile = '/' . strtolower($title) . '.php';
             //FIXME MAKE A CSS FILE BY DEFAULT FOR VIEWS?
-            $this->displayView($title, $phpFile,  []);
+            $this->displayView($title, $phpFile,  ['login/style.css']);
         }
 
         protected function logging() : void

@@ -1,13 +1,13 @@
 .footer{
     background-color: #24262b ;
-    padding: 70px 0; 
+    padding: 70px 0;
     font-family: 'Poppins', sans-serif;
 
 }
 
 .containerfooter{
     max-width: 1170px;
-    margin: auto; 
+    margin: auto;
 
 
 }
@@ -25,7 +25,7 @@ ul{
 
 .footer-col{
     width: 33%;
-    padding: 0 15px;
+    padding-left: 10%;
 
 }
 
@@ -36,7 +36,7 @@ ul{
     margin-bottom: 30px;
     font-weight: 500;
     position: relative;
-  
+
 }
 
 .footer-col h4::before{
@@ -48,7 +48,7 @@ ul{
     height: 2px;
     box-sizing: border-box;
     width: 50px;
-    
+
 }
 
 .footer-col ul li:not(:last-child){
@@ -92,7 +92,7 @@ ul{
 .footer-col ul li p:hover{
     color: #ffffff;
     padding-left: 10px;
-    
+
 
 }
 
@@ -103,5 +103,5 @@ ul{
         width: 100%;
         margin-bottom: 30px;
     }
-    
+
 }

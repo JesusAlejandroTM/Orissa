@@ -25,7 +25,7 @@
             $session->delete(self::$cleConnexion);
         }
 
-        public static function getLoginUtilisateurConnecte(): ?string
+        public static function getLoggedUser(): ?string
         {
             $session = Session::getInstance();
             if (self::isConnected()) {
