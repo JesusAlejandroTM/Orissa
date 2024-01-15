@@ -39,7 +39,7 @@ header {
 header ul {
     display: flex;
     position: relative;
-    gap: 30px;
+    gap: 100px;
 }
 
 header ul li {

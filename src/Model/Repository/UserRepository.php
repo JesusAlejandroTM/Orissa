@@ -52,7 +52,7 @@
                 $pdoStatement->execute($values);
 
                 if ($pdoStatement->rowCount() < 1) {
-                    throw new InvalidArgumentException("$login inexistant");
+                    throw new InvalidArgumentException("$login doesn't exist");
                 }
                 $data = $pdoStatement->fetch(PDO::FETCH_ASSOC);
                 return $this->Build($data);
@@ -60,4 +60,28 @@
                 return $e->getMessage();
             }
         }
+
+        private static function UserDataGetter(int $id, string $sql) {
+            try {
+                $values = array(':idTag' => $id);
+                $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
+                $pdoStatement->execute($values);
+
+                if ($pdoStatement->rowCount() < 1) {
+                    throw new InvalidArgumentException("$id doesn't exist");
+                }
+                return $pdoStatement->fetch(PDO::FETCH_ASSOC);
+            } catch (InvalidArgumentException $e) {
+                return $e->getMessage();
+            } finally {
+                $pdoStatement = null;
+            }
+        }
+
+        public static function GetUserExtraInfo(int $id) : ?array
+        {
+            $sql = 'SELECT surname, name, phoneNumber, domain FROM user WHERE id_user = :idTag;';
+            return self::UserDataGetter($id, $sql);
+        }
+
     }

@@ -1,15 +1,13 @@
 .footer{
     background-color: #24262b ;
-    padding: 70px 0;
+    padding-top: 3%;
+    padding-bottom: 2%;
     font-family: 'Poppins', sans-serif;
-
 }
 
 .containerfooter{
     max-width: 1170px;
     margin: auto;
-
-
 }
 
 ul{

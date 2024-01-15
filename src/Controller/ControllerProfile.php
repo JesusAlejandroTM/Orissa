@@ -27,15 +27,10 @@
 
         public function view(): void
         {
-            $string = $this->getBodyFolder();
-            $title = explode('/', $string)[1];
-            $phpFile = '/' . strtolower($title) . '.php';
             $this->checkSession();
             $username = UserSession::getLoggedUser();
             $userObject = (new UserRepository())->SelectWithLogin($username);
-            var_dump($userObject);
-            var_dump($_SESSION);
-            $this->displayView($title, $phpFile, [], [$userObject]);
+            $this->displayView('Profile', '/profile.php', [], ["userObject" => $userObject]);
         }
 
         public function disconnectUser() : void

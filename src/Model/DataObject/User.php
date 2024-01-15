@@ -52,14 +52,15 @@
         {
             if (is_null($this->id)) {
                 return "Client{
-                Mail='$this->mail',  
+                Mail='$this->mail',
                 Username='$this->username', 
                 Password='$this->hashedPassword', 
                 Birthdate='" . $this->getBirthDateString() . "',
                 Role='$this->role'}";
             } else {
-                return "
+                return "Client{
                 ID: $this->id ;
+                Mail='$this->mail',
                 Username='$this->username', 
                 Password='$this->hashedPassword', 
                 Birthdate='" . $this->getBirthDateString() . "',
