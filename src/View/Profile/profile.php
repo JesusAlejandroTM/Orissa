@@ -1,3 +1,4 @@
+<h1 class="profileTitle">Votre profil</h1>
 <?php
     include_once 'userData.php';
 

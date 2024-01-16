@@ -1,0 +1,125 @@
+#container {
+    display: flex;
+    align-items: start;
+}
+
+#filtre, #recherche_barre, #resultats li .caption {
+    background-color: #D9D9D9;
+}
+
+#recherche_barre input[type="submit"] {
+    border-radius: 15px;
+}
+
+#filtre, #resultats li {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#filtre, #resultats li img, #resultats li .caption {
+    margin: 0;
+}
+
+.searchTitle {
+    text-align: center;
+}
+
+#filtre {
+    font-family: Arial, sans-serif;
+    width: 15%;
+    padding: 10px;
+    height: 25%;
+    margin-top: 0;
+    margin-left: 2%;
+    margin-right: 20px;
+    position: absolute;
+    border-radius: 10px;
+}
+
+#filtre li, #filtre label {
+    cursor: pointer;
+}
+
+#filtre li {
+    padding: 2px 0;
+    list-style: none;
+    color: #000;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    font-size: 14px;
+    margin-left: -5px;
+    padding-bottom: 15px;
+
+}
+
+#recherche_barre {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    width: 60%;
+    margin-left: 25%;
+    border: 2px solid #a6a6a6;
+    border-radius: 5px;
+}
+
+#recherche_barre input[type="text"], #recherche_barre input[type="submit"] {
+    background-color: inherit;
+    border: none;
+    outline: none;
+}
+
+#recherche_barre input[type="text"] {
+    width: 100%;
+    padding: 6px 0;
+    border-bottom: 1px solid #000;
+}
+
+#recherche_barre input[type="submit"] {
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+#resultats ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    padding: 0;
+}
+
+#resultats li {
+    list-style: none;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    background-color: #a6e1ec;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+#resultats li img {
+    width: 100%;
+    border-radius: 0 0 10% 10%;
+    height: auto;
+    object-fit: cover;
+}
+
+#resultats li .caption {
+    text-align: center;
+    background-color: #a6e1ec;
+    border-radius: 0 0 10px 10px;
+    margin-top: -5%;
+}
+
+#resultats {
+    width: 60%;
+    margin-left: 25%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#filtre ul {
+    padding: 0;
+}
+

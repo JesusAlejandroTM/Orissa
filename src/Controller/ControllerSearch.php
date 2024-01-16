@@ -22,6 +22,14 @@
          */
         protected static string $bodyFolder = '/Search';
 
+        public function view(): void
+        {
+            $string = $this->getBodyFolder();
+            $title = explode('/', $string)[1];
+            $phpFile = '/' . strtolower($title) . '.php';
+            $this->displayView($title, $phpFile,  ["search/search.css"]);
+        }
+
         protected function SearchTaxas(): void
         {
             try {
@@ -29,7 +37,7 @@
                 $result = TaxaAPI::SearchVernacularList($searchInput, 10);
                 ExceptionHandler::checkIsTrue($result, 303);
                 $this->displayView("Taxas found", "/search.php",
-                    ["nan.css"], ['taxaArrays' => $result]);
+                    ["search/search.css"], ['taxaArrays' => $result]);
             } catch (Exception) {
                 FlashMessages::add("warning", "Pas de taxons trouvés avec : " . $searchInput);
                 header("Location: /Orissa/Search");

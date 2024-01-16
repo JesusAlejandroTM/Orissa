@@ -38,7 +38,10 @@
         public function view(): void
         {
             $this->LoadUserData();
-            parent::view();
+            $string = $this->getBodyFolder();
+            $title = explode('/', $string)[1];
+            $phpFile = '/' . strtolower($title) . '.php';
+            $this->displayView($title, $phpFile,  ['profile/profile.css']);
         }
 
         public function disconnectUser() : void
