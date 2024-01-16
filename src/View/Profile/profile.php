@@ -13,3 +13,4 @@
     ?>
 <p><a href="Profile/Disconnect">Disconnect</a></p>
 <p><a href="Profile/Settings">Settings</a></p>
+<p><a href="Profile/Password">Change password</a></p>

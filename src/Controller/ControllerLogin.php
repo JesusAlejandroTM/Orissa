@@ -40,7 +40,7 @@
         protected function logging() : void
         {
             try {
-                $user = (new UserRepository())->SelectWithLogin($_GET['username'], true);
+                $user = (new UserRepository())->SelectWithLogin($_GET['username']);
                 $inputPassword = $_GET['password'];
 
                 ExceptionHandler::checkIsTrue($user instanceof User, 103);
@@ -52,7 +52,7 @@
                 header("Location: /Orissa/Home");
                 exit();
             } catch (Exception $e) {
-                FlashMessages::add("danger", "Verifier que vos informations sont corrects!");
+                FlashMessages::add("danger", "Vérifiez que vos informations sont corrects!");
                 // Redirect user if login failed
                 header("Location: /Orissa/Login");
                 exit();

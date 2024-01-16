@@ -11,7 +11,7 @@
     $userDomain = $GLOBALS['userDomain'];
     ?>
 
-<form method="GET" action="Profile/Update">
+<form method="GET" action="Profile/UpdateInfo">
     <fieldset>
         <legend>Your Profile Settings</legend>
         <p>Your ID : <?php echo $userId ?></p>
@@ -40,6 +40,10 @@
         <p>
             <label for="phoneNumber_id">Phone number :</label>
             <input type="number" placeholder="<?php echo $userPhoneNumber ?>" name="phoneNumber" id="phoneNumber_id"/>
+        </p>
+        <p>
+            <label for="password_id">Password :</label>
+            <input type="password" placeholder="Private password" name="password" id="password_id" required/>
         </p>
         <p>
             <input type="submit" value="Envoyer"/>
