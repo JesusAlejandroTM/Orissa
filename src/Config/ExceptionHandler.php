@@ -6,18 +6,16 @@
 
     class ExceptionHandler
     {
-        // 100 = users
-        // 200 = taxas
-        // idk for the rest
         protected static array $errorMessages = [
             103 => "Vérifiez votre nom d'utilisateur ou votre mot de passe",
             104 => "Cet utilisateur existe déjà",
             204 => "Ce taxon n'a pas de fiche d'informations disponible",
             205 => "Ce taxon n'a pas de fiche d'interactions disponible",
-            404 => "Page non trouvée",
             301 => "Erreur pendant la requête à l'API",
             302 => "Erreur avec le décodage de votre requête",
             303 => "Taxa introuvable",
+            404 => "Page non trouvée",
+            501 => "Vérifiez vos données",
         ];
 
         private static function throwException($errorCode): void

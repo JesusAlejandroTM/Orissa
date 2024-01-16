@@ -6,6 +6,7 @@
     global $userId, $username, $userMail, $userRole, $userBirthDate,
            $userSurname, $userFamilyName, $userPhoneNumber, $userDomain;
 
+    $userObject = $GLOBALS['userObject'];
     $userId = $userObject->getId();
     $username = $userObject->getUsername();
     $userMail = $userObject->getMail();

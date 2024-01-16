@@ -2,6 +2,7 @@
 
     namespace App\Code\Model\Repository;
 
+    use App\Code\Lib\FlashMessages;
     use App\Code\Lib\PasswordManager;
     use App\Code\Model\DataObject\AbstractDataObject;
     use App\Code\Model\DataObject\User;
@@ -84,4 +85,41 @@
             return self::UserDataGetter($id, $sql);
         }
 
+        private static function UpdateUserInfo($id, $sql, $values): void
+        {
+            try {
+                $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
+                $pdoStatement->execute($values);
+
+                if ($pdoStatement->rowCount() < 1) {
+                    throw new InvalidArgumentException("Failure updating $id");
+                }
+            } catch (InvalidArgumentException $e) {
+                FlashMessages::add("warning", "Error updating");
+                header("Location: /Orissa/Home");
+            } finally {
+                $pdoStatement = null;
+            }
+        }
+
+        public static function UpdateSurname(int $id, string $surname) : void
+        {
+            $sql = 'UPDATE user SET surname = :surnameTag WHERE id_user = :idTag';
+            $values = [':surnameTag' => $surname, ':idTag' => $id];
+            self::UpdateUserInfo($id, $sql, $values);
+        }
+
+        public static function UpdateFamilyName(int $id, string $familyName) : void
+        {
+            $sql = 'UPDATE user SET name = :nameTag WHERE id_user = :idTag';
+            $values = [':nameTag' => $familyName, ':idTag' => $id];
+            self::UpdateUserInfo($id, $sql, $values);
+        }
+
+        public static function UpdatePhoneNumber(int $id, string $phoneNumber) : void
+        {
+            $sql = 'UPDATE user SET phoneNumber = :phoneTag WHERE id_user = :idTag';
+            $values = [':phoneTag' => $phoneNumber, ':idTag' => $id];
+            self::UpdateUserInfo($id, $sql, $values);
+        }
     }

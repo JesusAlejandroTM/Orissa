@@ -46,7 +46,6 @@
             if ($tagMode) {
                 $setColonnes = '';
                 foreach ($arrayColonnes as $colonne) {
-                    if ($arrayColonnes[0] == $colonne) continue;
                     $setColonnes .=  $colonne . ' = :' . $colonne . 'Tag, ';
                 }
                 return rtrim($setColonnes, ', ');
@@ -136,11 +135,15 @@
                 $setColonnes = $this->GetSQLColumnsWithoutPrimary(true);
 
                 $sql = 'UPDATE ' . $this->GetTableName() . ' SET ' . $setColonnes .
-                    ' WHERE ' . $this->GetPrimaryKeyColumn() . ' = ' . $this->GetPrimaryKeyColumn() . 'Tag;';
+                    ' WHERE ' . $this->GetPrimaryKeyColumn() . ' = :' . $this->GetPrimaryKeyColumn() . 'Tag;';
 
                 $values = $objet->formatTableau();
+                $id = $objet->getPrimaryKeyValue();
+                $values += ['id_userTag' => $id];
 
                 $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
+                var_dump($sql);
+                var_dump($values);
                 $pdoStatement->execute($values);
 
                 if ($pdoStatement->rowCount() < 1) {

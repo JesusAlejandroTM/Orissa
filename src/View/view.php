@@ -12,7 +12,6 @@
     // Check message if there's one
     App\Code\Lib\FlashMessages::executeMessage();
 
-
     // Require the view from path
     if (isset($pathViewBody)) require __DIR__ . $pathViewBody;
 

@@ -12,3 +12,4 @@
     echo '<p>Your Domain : ' . $GLOBALS['userDomain'] . ' </p>';
     ?>
 <p><a href="Profile/Disconnect">Disconnect</a></p>
+<p><a href="Profile/Settings">Settings</a></p>
