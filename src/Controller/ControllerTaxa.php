@@ -5,6 +5,7 @@
     use App\Code\Config\ExceptionHandler;
     use App\Code\Lib\FlashMessages;
     use App\Code\Model\API\TaxaAPI;
+    use App\Code\Model\Repository\TaxaRegisters;
     use Exception;
 
     class ControllerTaxa extends AbstractController
@@ -17,6 +18,8 @@
             'Taxa/:param:' => 'viewTaxa',
             'Taxa/:param:/factsheet' => 'viewTaxaFactsheet',
             'Taxa/:param:/interactions' => 'viewTaxaInteractions',
+            'Taxa/:param:/register' => 'registerSelectedTaxa',
+            'Taxa/:param:/unregister' => 'unregisterSelectedTaxa',
         ];
 
         /**Home Controller's definition of Home body's folder directory
@@ -81,5 +84,19 @@
                     exit();
                 }
             }
+        }
+
+        protected function registerSelectedTaxa(int $taxaIdParameter) : void
+        {
+            TaxaRegisters::RegisterTaxa($taxaIdParameter);
+            FlashMessages::add('success', 'Enregistrement du taxon avec succès');
+            header("Location: /Orissa/Taxa/$taxaIdParameter");
+        }
+
+        protected function unregisterSelectedTaxa(int $taxaIdParameter) : void
+        {
+            TaxaRegisters::UnregisterTaxa($taxaIdParameter);
+            FlashMessages::add('success', 'Suppression du taxon avec succès');
+            header("Location: /Orissa/Taxa/$taxaIdParameter");
         }
     }

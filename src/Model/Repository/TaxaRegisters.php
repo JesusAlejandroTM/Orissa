@@ -16,10 +16,11 @@
          */
         public static function RegisterTaxa(int $taxaId): void
         {
+            $id = UserSession::getLoggedId();
+            $sql = "INSERT INTO register (id_registerer, id_registered) VALUES (:idUserTag, :idTaxaTag)";
+            $values = ["idUserTag" => $id, "idTaxaTag" => $taxaId];
+
             try {
-                $id = UserSession::getLoggedId();
-                $sql = "INSERT INTO register (id_registerer, id_registered) VALUES (:idUserTag, :idTaxaTag)";
-                $values = ["idUserTag" => $id, "idTaxaTag" => $taxaId];
                 $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
                 $pdoStatement->execute($values);
 
@@ -34,6 +35,27 @@
             }
         }
 
+        public static function UnregisterTaxa(int $taxaId) : void
+        {
+            $id = UserSession::getLoggedId();
+            $sql = "DELETE FROM register WHERE id_registerer = :idUserTag AND id_registered = :idTaxaTag;";
+            $values = ["idUserTag" => $id, "idTaxaTag" => $taxaId];
+
+            try {
+                $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
+                $pdoStatement->execute($values);
+
+                if ($pdoStatement->rowCount() < 1) {
+                    throw new Exception("Erreur suppression $taxaId");
+                }
+            } catch (Exception $e) {
+                FlashMessages::add("warning", "Erreur suppression");
+                header("Location: /Orissa/Home");
+            } finally {
+                $pdoStatement = null;
+            }
+        }
+
         /**
          * Check if logged-in user has registered a taxa through their IDs
          * @param int $taxaId
@@ -41,12 +63,12 @@
          */
         public static function CheckRegisteredTaxa(int $taxaId) : bool
         {
-            try {
-                $id = UserSession::getLoggedId();
-                $sql = "SELECT COUNT(*) > 0 AS data_exists FROM register 
+            $id = UserSession::getLoggedId();
+            $sql = "SELECT COUNT(*) > 0 AS data_exists FROM register 
                     WHERE id_registerer = :idUserTag AND id_registered = :idTaxaTag;";
-                $values = ["idUserTag" => $id, "idTaxaTag" => $taxaId];
+            $values = ["idUserTag" => $id, "idTaxaTag" => $taxaId];
 
+            try {
                 $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
                 $pdoStatement->execute($values);
                 $data = $pdoStatement->fetch(PDO::FETCH_NUM);
@@ -67,11 +89,11 @@
          */
         public static function SelectRegisteredTaxas() : array|null
         {
-            try {
-                $id = UserSession::getLoggedId();
-                $sql = "SELECT id_registered FROM register WHERE id_registerer = :idUserTag";
-                $values = ["idUserTag" => $id];
+            $id = UserSession::getLoggedId();
+            $sql = "SELECT id_registered FROM register WHERE id_registerer = :idUserTag";
+            $values = ["idUserTag" => $id];
 
+            try {
                 $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
                 $pdoStatement->execute($values);
                 return $pdoStatement->fetchAll(PDO::FETCH_NUM);
