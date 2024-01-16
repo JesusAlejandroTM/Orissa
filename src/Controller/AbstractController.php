@@ -3,6 +3,8 @@
     namespace App\Code\Controller;
 
     use App\Code\Config\ExceptionHandler;
+    use App\Code\Lib\FlashMessages;
+    use App\Code\Lib\UserSession;
     use Exception;
 
      /**AbstractController is the parent controller which allows to create child controllers with dynamic
@@ -85,7 +87,7 @@
          * Execute controller action found with getRequestedAction with route,
          * if the route is not found redirect the user into a 404 error page instead.
          * @param string $route
-         * @param array|null $parameters
+         * @param array $parameters
          * @return void
          */
         public function executeAction(string $route, array $parameters = []): void
@@ -157,5 +159,16 @@
             //FIXME Default CSS missing
             $this->displayView("Erreur", "/../error.php", ["NaN.css"],
                 ["errorMessage" => $errorMessage]);
+        }
+
+        protected function CheckUserAccess() : bool
+        {
+            $username = UserSession::isConnected();
+            if (!$username) {
+                FlashMessages::add("warning", "You must be logged in to access this page");
+                header("Location: /Orissa/Home");
+                return false;
+            }
+            return true;
         }
     }

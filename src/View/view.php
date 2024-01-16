@@ -9,6 +9,7 @@
     // Require the header of HTML
     require_once(__DIR__ . '/../../assets/html/header.php');
 
+    var_dump(\App\Code\Model\Repository\TaxaRegisters::SelectRegisteredTaxas());
     // Check message if there's one
     App\Code\Lib\FlashMessages::executeMessage();
 

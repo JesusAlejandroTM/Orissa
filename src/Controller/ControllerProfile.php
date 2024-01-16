@@ -24,12 +24,10 @@
 
         protected static string $bodyFolder = '/Profile';
 
-        private function checkProfileAccess() : void
+        private function LoadUserData() : void
         {
-            $username = UserSession::getLoggedUser();
-            if ($username == null) {
-                FlashMessages::add("warning", "You must be logged in to access this page");
-                header("Location: /Orissa/Home");
+            // Check user is logged in before loading data
+            if (!$this->CheckUserAccess()) {
                 exit();
             }
             $username = UserSession::getLoggedUser();
@@ -39,13 +37,13 @@
 
         public function view(): void
         {
-            $this->checkProfileAccess();
+            $this->LoadUserData();
             parent::view();
         }
 
         public function disconnectUser() : void
         {
-            $this->checkProfileAccess();
+            $this->LoadUserData();
             UserSession::disconnect();
             FlashMessages::add("info", "User successfully disconnected");
             header("Location: /Orissa/Home");
@@ -53,7 +51,7 @@
 
         public function viewSettings() : void
         {
-            $this->checkProfileAccess();
+            $this->LoadUserData();
             $this->displayView("Profile Settings", "/profileSettings.php", []);
         }
 
@@ -61,7 +59,7 @@
         {
             try {
 
-                $this->checkProfileAccess();
+                $this->LoadUserData();
 
                 // Get data
                 $userId = $_GET['user_id'];
@@ -103,7 +101,7 @@
 
         public function viewPasswordSettings(): void
         {
-            $this->checkProfileAccess();
+            $this->LoadUserData();
             $this->displayView("Profile Settings", "/passwordSettings.php", []);
         }
 
