@@ -38,6 +38,9 @@ header {
 header ul {
     display: flex;
     position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
     gap: 100px;
 }
 
