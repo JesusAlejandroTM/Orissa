@@ -19,52 +19,51 @@
     </div>
 
 
+    <form method="GET" action="Search/SearchTaxas">
+        <div id="recherche_barre">
+            <input type="text" name="taxaName" placeholder="Rouge-gorge" id="taxaName" required>
+            <input type="submit" value="Search">
+        </div>
+    </form>
 
-    <div id="recherche_barre">
-        <input type="text" name="recherche" placeholder="Rechercher" id="recherche">
-        <input type="submit" name="recherche" value="Rechercher" id="recherche">
-    </div>
 
+    <?php
+        if (isset($taxaArrays)) {
+            echo '<div id="resultats">
+                        <ul id="liste">';
+            foreach ($taxaArrays as $taxa) {
+                $taxaId = $taxa->getId();
+                $taxaName = $taxa->getVernacularName();
 
-    <div id="resultats">
-        <ul id="liste">
-            <li>
-                <div class="image">
-                    <img src="Orissa/../assets/img/taxoni" alt="image">
-                </div>
+                // Get the image
+                $taxaMedia = $taxa->getLinks()['media']['href'];
+                $mediaContent = file_get_contents($taxaMedia);
+                $mediaData = json_decode($mediaContent, true);
 
-                    <div class="caption">
-                        <p>Esma</p>
-                    </div>
-            </li>
-            <li>
-                <div class="image">
-                    <img src="Orissa/../assets/img/taxoni" alt="image">
-                </div>
+                if (!empty($mediaData['_embedded']['media'][0]['_links']['file']['href'])) {
+                    $taxonThumbnailUrl = $mediaData['_embedded']['media'][0]['_links']['file']['href'];
+                    $resultat['taxonMedia'] = $taxonThumbnailUrl;
+                    $image = $resultat['taxonMedia'];
 
-                    <div class="caption">
-                        <p>Esma</p>
-                    </div>
-            </li>
-            <li>
-                <div class="image">
-                    <img src="Orissa/../assets/img/taxoni" alt="image">
-                </div>
-
-                    <div class="caption">
-                        <p>Esma</p>
-                    </div>
-            </li>
-            <li>
-                <div class="image">
-                    <img src="Orissa/../assets/img/taxoni" alt="image">
-                </div>
-
-                    <div class="caption">
-                        <p>Esma</p>
-                    </div>
-            </li>
-
-        </ul>
-    </div>
+                    if(!@is_array(getimagesize($image))){
+                        $image = 'Orissa/../assets/img/arachno.jpeg';
+                    }
+                } else $image = 'Orissa/../assets/img/arachno.jpeg';
+                echo '
+                        <li>
+                            <div class="image">
+                                <a href="/Orissa/Taxa/' . $taxaId . '" class="imageLink">
+                                    <img src="' . $image . '" alt="image">
+                                </a>
+                            </div>
+                    
+                            <div class="caption">
+                                <p>' . $taxaName . '</p>
+                            </div>
+                        </li>';
+            }
+            echo '    </ul>
+                </div>';
+        }
+    ?>
 </div>

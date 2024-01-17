@@ -34,7 +34,7 @@
         {
             try {
                 $searchInput = $_GET["taxaName"];
-                $result = TaxaAPI::SearchVernacularList($searchInput, 10);
+                $result = TaxaAPI::SearchVernacularList($searchInput, 100);
                 ExceptionHandler::checkIsTrue($result, 303);
                 $this->displayView("Taxas found", "/search.php",
                     ["search/search.css"], ['taxaArrays' => $result]);
