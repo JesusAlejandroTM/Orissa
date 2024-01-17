@@ -1,0 +1,61 @@
+/* Styles pour les écrans de tablettes */
+@media (max-width: 768px) {
+    nav a {
+        margin-right: 30px;
+    }
+    main {
+        padding-top: 0;
+    }
+    .container .item {
+        flex-direction: column;
+    }
+}
+/* Styles pour les écrans de mobiles */
+@media (max-width: 480px) {
+    nav{
+        margin-bottom: 0;
+        width: 100%;
+    }
+    nav a {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+    main {
+        padding-top: 0px;
+        
+    }
+    .container{
+        width: 100%;
+    }
+    .container .item {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px; 
+    }
+    .container h2 {
+        text-align: center; 
+        font-size: 15px;
+        margin-right: 10px;
+        margin-left: 40px;
+    }
+    .container h3{
+        text-align: center; 
+        font-size: 10px; 
+        margin-right: 10px; 
+    }
+    .container .item button {
+        width: 100%; 
+        margin: 10px auto; 
+        transition: background-color 0.3s ease;
+    }
+    .container .item button:hover {
+        background-color: #2e7d32;
+    }
+}
+@media (max-width: 767px){
+    .footer-col{
+        width: 100%;
+        margin-bottom: 20px;
+    }    
+}
