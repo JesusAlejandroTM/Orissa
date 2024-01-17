@@ -1,0 +1,120 @@
+            /* body {   
+
+            } */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#logo {
+    display: flex;
+    align-items: center;
+}
+
+#logo img {
+    margin-right: 10px;
+}
+
+#fond {
+    background-image: url('../../img/fond-ecran-site.jpeg');
+    background-size:cover;
+    padding-top: 30%;
+    min-height: 75vh;
+    box-sizing: content-box;
+}
+main.content {
+  /*background-color: darkgreen;*/
+    margin: 20px;
+    padding: 20px;
+}
+h1{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: whitesmoke;
+    text-shadow: #24262b;
+}
+p{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: whitesmoke;
+    text-shadow: #24262b;
+}
+.mainContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    /*width: 100%;*/
+    text-align: center;
+    background-color: #c8e6c9;
+    padding: 20px;
+    border-radius: 15px;
+}
+h2{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    color: black;
+    text-decoration:solid;
+}
+h3{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: black;
+    text-decoration:solid;
+}
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.image-container {
+    width: 100%;
+    height: 200px;
+    margin: 20px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}
+#bibliotheques1 {
+    background-image: url('../../img/arachno.jpeg');
+}
+#bibliotheques2 {
+    background-image: url('../../img/TREE.jpeg');
+}
+#bibliotheques3 {
+    background-image: url('../../img/ARTICLE.jpeg');
+}
+#button1, #button2, #button3 {
+    display: block;
+    margin: 20px auto;
+    background-color: #388e3c;
+    border: 1px solid #24262b;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#button1 a, #button2 a, #button3 a {
+    text-decoration: none;
+    color: white;
+}
+#button1:hover, #button2:hover, #button3:hover {
+    background-color: #2e7d32;
+    text-decoration: none;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.2);
+}
+
+ul{
+    list-style: none;
+    left: 0;
+}
+
+.row{
+    display: flex ;
+    flex-wrap: wrap;
+}

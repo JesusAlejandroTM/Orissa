@@ -1,6 +1,7 @@
 <?php
     if (isset($taxaId)) {
         if (isset($interactions)) {
+            var_dump($interactions['_embedded']['interactions']);
             $taxaTitle = $interactions["taxon"]["scientificName"];
             echo "<h1>" . $taxaTitle . "</h1><br>";
             echo $interactions['text'];

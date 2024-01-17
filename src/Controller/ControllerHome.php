@@ -15,4 +15,13 @@
          * @return string
          */
         protected static string $bodyFolder = '/Home';
+
+        public function view() : void
+        {
+            $string = $this->getBodyFolder();
+            $title = explode('/', $string)[1];
+            $phpFile = '/' . strtolower($title) . '.php';
+            //FIXME MAKE A CSS FILE BY DEFAULT FOR VIEWS?
+            $this->displayView($title, $phpFile,  ['home/homeMobile.css', 'home/home.css']);
+        }
     }

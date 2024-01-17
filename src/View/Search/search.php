@@ -40,6 +40,7 @@
                 $mediaContent = file_get_contents($taxaMedia);
                 $mediaData = json_decode($mediaContent, true);
 
+                // Check if the image is valid
                 if (!empty($mediaData['_embedded']['media'][0]['_links']['file']['href'])) {
                     $taxonThumbnailUrl = $mediaData['_embedded']['media'][0]['_links']['file']['href'];
                     $resultat['taxonMedia'] = $taxonThumbnailUrl;
