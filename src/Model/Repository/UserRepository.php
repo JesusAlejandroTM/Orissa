@@ -39,7 +39,7 @@
             $username = $userArray['username'];
             $password = PasswordManager::hash($userArray['password']);
             $birthdate = $userArray['birthdate'];
-            return new User(null, $email, $username, $password, $birthdate);
+            return new User(null, $email, $username, $password, $birthdate, "User");
         }
 
         public function SelectWithLogin(string $login): User|string

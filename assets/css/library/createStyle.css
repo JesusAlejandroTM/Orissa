@@ -1,13 +1,24 @@
 
+/* creation container */
+
+.creationContainer{
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+
+.page-creation {
+    margin-top: 1%;
+    margin-left: 2%;
+}
 
 /*page */
 
-.create-library-box h1{
+
+.creationContainer h1{
     font-size: 40px;
     font-weight: 300;
     margin-bottom: 20px;
-    
-    text-align: center;
+    text-align: left;
 
 }
 
@@ -119,7 +130,6 @@ textarea::-webkit-scrollbar{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
     width: 60%;
     
     
@@ -218,10 +228,9 @@ header{
 /* partie card list black box */
 
 .cartTab{
-    width: 30% ;
     background-color: #353432 ;
     color: #eee;
-    position: fixed;
+    position: relative;
     inset: 0 0 0 auto;
     display: grid;
     grid-template-rows :70px 1fr 70px ;
@@ -241,11 +250,12 @@ header{
     
 }
 
-.cartTab .btn button{
+.cartTab .btn input{
     border: none;
     background-color: #02a973;
     font-weight: 500;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .cartTab .btn .close{

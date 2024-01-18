@@ -11,7 +11,7 @@
         }
         if (isset($jsArray)) {
             foreach ($jsArray as $jsFile){
-                echo '<script src="Orissa/../assets/js/"' . $jsFile . '"></script>';
+                echo '<script src="Orissa/../assets/js/'. $jsFile . '"></script>';
             }
         }
     } ?>

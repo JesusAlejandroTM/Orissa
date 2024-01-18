@@ -1,31 +1,18 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <title>create-library</title>
-    <link rel="stylesheet" href="library.css">
-    <script src="library.js"></script>
-    <meta charset="utf-8">
-</head>
-
-<body>
+<div class="creationContainer">
     <div class="page-creation">
-
         <div class="create-library-box">
             <h1>Create Library</h1>
-            <form class="Library-Form" method="post">
+            <form id="formId" method="GET" action="Library/LibraryCreation" class="Library-Form">
 
                 <div class="textbox">
+                    <input type="text" name="title" id="title_id" required>
                     <label for="title_id">Titre de naturothèque :</label>
-                    <input type="text" name="title" placeholder="title" id="title_id">
                 </div>
 
-                <div class="wrapped ">
+                <div class="textbox ">
+                    <input type="text" name="description" id="description_id" required>
                     <label for="description_id">Description de votre naturothèque :</label>
-                    <input type="text" name="description" placeholder="description" id="description_id">
-
                 </div>
-                <input type="submit" value="create">
 
                 <script>
                     const textarea = document.querySelector('textarea');
@@ -44,12 +31,7 @@
 
 
         <div class="container-rech">
-            <header>
-                <div class="titre">LIST TAXON</div>
-
-
-            </header>
-
+            <div class="titre"><h1>Recherche Taxons</h1></div>
 
             <div id="recherche_barre">
                 <input type="text" name="recherche" placeholder="Rechercher" id="recherche">
@@ -66,7 +48,7 @@
                 <ul class="list-item-ul" id="">
                     <li>
                         <div class="item">
-                            <img src="../../../../../../Users/jesus/Downloads/library/create-library/orissa-remove-copy.png" alt="img taxon">
+                            <img src="Orissa/../assets/img/orissa-logo.png" alt="img taxon">
                             <h2>nom taxon</h2>
                             <button class="addlist" onclick="addListe()">Add to library</button>
                         </div>
@@ -83,10 +65,7 @@
             </ul>
         </div>
         <div class="btn">
-            <button class="save">SAVE</button>
+            <input form="formId" type="submit" value="SAVE">
         </div>
-
     </div>
-</body>
-
-</html>
+</div>

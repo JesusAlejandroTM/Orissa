@@ -1,29 +1,29 @@
-<div class="diagonal-image"></div>
-<div class="form-container">
-    <h2 class="create-title">CREATE ACCOUNT</h2>
+<div class="login-box">
+    <h1>Create Account</h1>
     <form method="GET" action="Login/create">
-        <div class="form-group">
-            <input type="email" id="email" name="email" placeholder="Mail" required>
+        <div class="textbox">
+            <input type="text" id="username" name="username" required>
+            <label>Username</label>
         </div>
-        <div class="form-group">
-            <input type="text" id="username" name="username" placeholder="Username" required>
+        <div class="textbox">
+            <input type="password" id="password" name="password" required>
+            <span></span>
+            <label>Password</label>
         </div>
-        <div class="form-group">
-            <input type="password" id="password" name="password" placeholder="Password" required>
+        <div class="textbox">
+            <input type="text" name="birthdate" id="birthdate" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" required>
+            <span></span>
+            <label for="dateInput">Date of Birth</label>
         </div>
-        <div class="form-group">
-            <input type="date" id="birthdate" name="birthdate" placeholder="12-02-2005" required>
+        <div class="textbox">
+
+            <input type="email" name="email" id="email" required>
+            <span></span>
+            <label>Email</label>
         </div>
-        <div class="form-group super-user-group">
-            <span class="super-user-text">Do you want to be a super user?</span>
-            <span class="super-user-icon">?</span>
-        </div>
-        <div class="form-login">
-            <a href="Login" class="login">I already have an account.</a>
-        </div>
-        <br>
-        <div class="form-group">
-            <input class="submit-btn" type="submit" value="Create Account"/>
+        <input type="submit" value="Create Account">
+        <div class="sign">
+            <p>You already have account<a href="#"> Login</a></p>
         </div>
     </form>
 </div>

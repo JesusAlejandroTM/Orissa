@@ -8,6 +8,7 @@
     use App\Code\Lib\UserSession;
     use App\Code\Model\DataObject\User;
     use App\Code\Model\Repository\UserRepository;
+    use Couchbase\ValueRecorder;
     use DateTime;
     use Exception;
 
@@ -61,7 +62,7 @@
 
         protected function displayCreateAccount() : void
         {
-            $this->displayView("Create an account", "/CreateAccount.php", ['style.css']);
+            $this->displayView("Create an account", "/CreateAccount.php", ['login/style.css']);
         }
 
         protected function creatingAccount() : void

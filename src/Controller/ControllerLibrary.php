@@ -34,7 +34,7 @@
         {
             $this->CheckUserAccess();
             $this->displayView("Create Library", "/createLibrary.php",
-                ['createStyle.css'], [], ['cartScript.js']);
+                ['library/createStyle.css'], [], ['cartScript.js']);
         }
 
         protected function createLibrary() : void
@@ -46,25 +46,27 @@
                 $_GET["id_creator"] = $userId;
 
                 // Check unique title
-                $newLibrary = LibraryRepository::BuildWithForm($_GET);
-                $libraryList = LibraryRepository::getUserLibraries($userId);
-
-                if ($libraryList) {
-                    foreach ($libraryList as $library) {
-                        $temp = $library->getTitle() == $newLibrary->getTitle();
-                        ExceptionHandler::checkIsTrue(!$temp, 606);
-                    }
-                }
-
-                // Insert data
-                $result = (new LibraryRepository())->Insert($newLibrary);
-                ExceptionHandler::checkIsTrue(!is_string($result), 605);
-
-                // Notification and redirect
-                $title = $_GET['title'];
-                FlashMessages::add("success", "Votre naturothèque " . $title . " a été créé!");
-                header("Location: /Orissa/Library");
-                exit();
+//                $newLibrary = LibraryRepository::BuildWithForm($_GET);
+//                $libraryList = LibraryRepository::getUserLibraries($userId);
+//
+//                if ($libraryList) {
+//                    foreach ($libraryList as $library) {
+//                        $temp = $library->getTitle() == $newLibrary->getTitle();
+//                        ExceptionHandler::checkIsTrue(!$temp, 606);
+//                    }
+//                }
+//
+//                // Insert data
+//                $result = (new LibraryRepository())->Insert($newLibrary);
+//                ExceptionHandler::checkIsTrue(!is_string($result), 605);
+//
+//                // Notification and redirect
+//                $title = $_GET['title'];
+//                FlashMessages::add("success", "Votre naturothèque " . $title . " a été créé!");
+                var_dump($GLOBALS);
+                var_dump($_SERVER);
+//                header("Location: /Orissa/Library");
+//                exit();
             } catch (Exception $e) {
                 $errorMessage = ExceptionHandler::getErrorMessage($e->getCode());
                 FlashMessages::add("danger", $errorMessage);
