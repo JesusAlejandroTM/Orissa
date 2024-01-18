@@ -102,7 +102,8 @@
             }
         }
 
-        /**Display specific page passed in $pathViewBody into the
+        /**
+         * Display specific page passed in $pathViewBody into the
          * web interface, this method uses main file view.php to structure HTMLs
          * CSS file names must be passed as arrays to properly iterate over them and
          * link them into the corresponding HTML, dynamically linking CSS files by
@@ -111,20 +112,23 @@
          * @param string $pathViewBody
          * @param array $cssArray
          * @param array $parameters Optional
+         * @param array $jsArray
          * @return void
          */
-        public function displayView(string $pageTitle, string $pathViewBody, array $cssArray, array $parameters = []): void
+        public function displayView(string $pageTitle, string $pathViewBody, array $cssArray,
+                                    array $parameters = [], array $jsArray = []): void
         {
-            $defaultCSSArray = [];
-            $defaultCSSArray += ['footer.css', 'header.css', 'alert.css'];
+            $defaultCSSArray = ['footer.css', 'header.css', 'alert.css'];
             foreach ($defaultCSSArray as $css) {
                 $cssArray[] = $css;
             }
+
             // We add $pageTitle and $pathViewBody in our parameters array
             $parameters += [
                 'pageTitle' => $pageTitle,
                 'pathViewBody' => $this->getBodyFolder() . $pathViewBody,
                 'cssArray' => $cssArray,
+                'jsArray' => $jsArray,
             ];
 
             extract($parameters); // We extract the variables from our parameters array

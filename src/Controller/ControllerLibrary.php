@@ -33,7 +33,8 @@
         protected function displayCreateLibrary(): void
         {
             $this->CheckUserAccess();
-            $this->displayView("Create Library", "/createLibrary.php", []);
+            $this->displayView("Create Library", "/createLibrary.php",
+                ['createStyle.css'], [], ['cartScript.js']);
         }
 
         protected function createLibrary() : void
@@ -67,7 +68,7 @@
             } catch (Exception $e) {
                 $errorMessage = ExceptionHandler::getErrorMessage($e->getCode());
                 FlashMessages::add("danger", $errorMessage);
-                header("Location: /Orissa/Library/CreateLibrary ");
+                header("Location: /Orissa/Library/CreateLibrary");
                 exit();
             }
         }

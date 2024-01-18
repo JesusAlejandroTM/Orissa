@@ -9,5 +9,10 @@
         foreach ($cssArray as $cssFile){
             echo '<link rel="stylesheet" href="Orissa/../assets/css/' . $cssFile . '">';
         }
+        if (isset($jsArray)) {
+            foreach ($jsArray as $jsFile){
+                echo '<script src="Orissa/../assets/js/"' . $jsFile . '"></script>';
+            }
+        }
     } ?>
 </head>
