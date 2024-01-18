@@ -47,7 +47,7 @@
         private static function convertMessageToHTML(array $messageArray) : string
         {
             return '<div class="alert alert-'. $messageArray[0] . '" role="alert">' .
-                '<strong>' . ucwords($messageArray[0]) . '!</strong> ' . $messageArray[1]
+                '<strong>' . ucwords($messageArray[0]) . '!</strong> ' . htmlspecialchars($messageArray[1])
                 . '</div>';
         }
     }

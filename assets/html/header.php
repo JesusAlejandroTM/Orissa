@@ -2,9 +2,9 @@
     <a href="/Orissa" class="logo"><img src="Orissa/../assets/img/orissa-logo.png" alt="logo" /></a>
     <ul>
         <li><a href="">LIBRARY</a></li>
-        <li><a href="Taxa">TAXON</a></li>
+        <li><a href="Search">TAXON</a></li>
         <li><a href="">DISCOVER</a></li>
-        <li><a href="">ABOUT</a></li>
+        <li><a href="Home">ABOUT</a></li>
     </ul>
     <div class="search">
         <a href="Search" class="searchIcon">

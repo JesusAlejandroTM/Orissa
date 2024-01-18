@@ -8,6 +8,9 @@
 
     class TaxaAPI
     {
+        private static array $allowed_chars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+            "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "-"];
+
         /**
          * Builds a Taxa instance from an array that contains all of its necessary data.
          * Use SelectWithID to comfortably build a Taxa with the API with just the ID.
@@ -71,6 +74,19 @@
                 $taxa = $taxa->getId();
             }
             return $taxa;
+        }
+
+        public static function checkAllowedChars(string $string) : bool
+        {
+            try {
+                for ($i = 0; $i < strlen($string); $i++) {
+                    $char = $string[$i];
+                    ExceptionHandler::checkIsTrue(in_array($char, self::$allowed_chars), 303);
+                }
+                return true;
+            } catch (Exception) {
+                return false;
+            }
         }
 
         private static function ExecuteAPIRequest($apiUrl) : array|false
@@ -141,7 +157,7 @@
                 $name = str_replace(" ","%20", $name);
                 $apiUrl = APIConnection::GetApiURL() . "/taxa/search?frenchVernacularNames=$name&page=1&size=$size";
                 $data = self::ExecuteAPIRequest($apiUrl);
-                if ($data['page']['totalElements'] == 0) return false;
+                if ($data['page']['totalElements'] == 0 || !$data) return false;
 
                 $dataArray = $data["_embedded"]["taxa"];
                 $returnResult = [];

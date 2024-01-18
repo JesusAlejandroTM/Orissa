@@ -92,7 +92,7 @@
     flex-direction: column;
     justify-content: space-between;
     border-radius: 10px;
-    background-color: #a6e1ec;
+    background-color: #02A973;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     overflow: hidden;
 }
@@ -106,7 +106,7 @@
 
 #resultats li .caption {
     text-align: center;
-    background-color: #a6e1ec;
+    background-color: #02A973;
     border-radius: 0 0 10px 10px;
     margin-top: -5%;
 }

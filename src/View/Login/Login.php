@@ -1,19 +1,23 @@
-<div class="diagonal-image"></div>
-<div class="form-container">
+<div class="login-box">
+    <h1>Login</h1>
     <form method="GET" action="Login/logging">
-        <h2 class="create-title">LOGIN</h2>
-        <div class="form-group">
-            <input type="text" id="username" name="username" placeholder="Username" required>
+        <div class="textbox">
+            <input type="text" id="username" name="username" required>
+            <label>Username</label>
         </div>
-        <div class="form-group">
-            <input type="password" id="password" name="password" placeholder="Password" required>
+
+        <div class="textbox">
+            <input type="password" id="password" name="password" required>
+            <span></span>
+            <label>Password</label>
         </div>
-        <div class="form-login">
-            <a href="Login/CreateAccount" class="login">I don't have an account.</a>
-        </div>
-        <br>
-        <div class="form-group">
-            <input class="submit-btn" type="submit" value="Login"/>
+        <div class="pass">Forgot Password?</div>
+        <input type="submit" value="Login">
+
+
+        <div class="signup">
+            <p>Don't have an account? <a href="Login/CreateAccount">Sign up</a></p>
+
         </div>
     </form>
 </div>

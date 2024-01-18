@@ -116,7 +116,7 @@
         public function displayView(string $pageTitle, string $pathViewBody, array $cssArray, array $parameters = []): void
         {
             $defaultCSSArray = [];
-            $defaultCSSArray += ['footer.css', 'header.css'];
+            $defaultCSSArray += ['footer.css', 'header.css', 'alert.css'];
             foreach ($defaultCSSArray as $css) {
                 $cssArray[] = $css;
             }

@@ -34,13 +34,25 @@
         {
             try {
                 $searchInput = $_GET["taxaName"];
+                ExceptionHandler::checkisTrue(TaxaAPI::checkAllowedChars($searchInput), 304);
+
                 $result = TaxaAPI::SearchVernacularList($searchInput, 100);
                 ExceptionHandler::checkIsTrue($result, 303);
                 $this->displayView("Taxas found", "/search.php",
                     ["search/search.css"], ['taxaArrays' => $result]);
-            } catch (Exception) {
-                FlashMessages::add("warning", "Pas de taxons trouvés avec : " . $searchInput);
-                header("Location: /Orissa/Search");
+            } catch (Exception $e) {
+                if ($e->getCode() == 303) {
+                    FlashMessages::add("warning", "Pas de taxons trouvés avec : " . $searchInput);
+                    header("Location: /Orissa/Search");
+                }
+                else if ($e->getCode() == 304) {
+                    FlashMessages::add("warning", "Les caractères spéciaux ne sont pas autorisés");
+                    header("Location: /Orissa/Search");
+                }
+                else {
+                    FlashMessages::add("warning", "Une erreur est survenue");
+                    header("Location: /Orissa/Search");
+                }
                 exit();
             }
         }

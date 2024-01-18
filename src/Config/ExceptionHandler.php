@@ -14,6 +14,7 @@
             301 => "Erreur pendant la requête à l'API",
             302 => "Erreur avec le décodage de votre requête",
             303 => "Taxa introuvable",
+            304 => "Les caractères spéciaux ne sont pas autorisés",
             404 => "Page non trouvée",
             501 => "Vérifiez vos données",
         ];
