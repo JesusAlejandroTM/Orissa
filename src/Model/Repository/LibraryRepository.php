@@ -3,6 +3,8 @@
     namespace App\Code\Model\Repository;
 
     use App\Code\Model\DataObject\Library;
+    use Exception;
+    use PDO;
 
     class LibraryRepository extends AbstractRepository
     {
@@ -35,4 +37,16 @@
             $description = $inputArray['description'];
             return new Library(null, $id_user, $title, $description);
         }
+
+       public static function getUserLibraries($id) : array|bool
+       {
+           $sql = 'SELECT * FROM library WHERE id_creator = :idTag;';
+           $results = self::SingleDataGetter($id, $sql);
+           if (is_array($results)) {
+               foreach ($results as $key => $data) {
+                   $results[$key] = (new LibraryRepository)->Build($data);
+               }
+           } else return false;
+           return $results;
+       }
     }

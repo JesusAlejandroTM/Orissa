@@ -113,14 +113,14 @@
             try {
                 // Get the data
                 $user = (new UserRepository())->Select($_GET['user_id']);
-                $inputPassword = $_GET['oldPassword'];
+                $inputOldPassword = $_GET['oldPassword'];
                 $inputNewPassword = $_GET['newPassword'];
                 $inputCheckNewPassword = $_GET['newPasswordCheck'];
-                ExceptionHandler::checkIsTrue($inputPassword != $inputNewPassword, 103);
+                ExceptionHandler::checkIsTrue($inputOldPassword != $inputNewPassword, 103);
 
                 // Check current password
                 ExceptionHandler::checkIsTrue($user instanceof User, 103);
-                $checkPassword = PasswordManager::verify($inputPassword, $user->getHashedPassword());
+                $checkPassword = PasswordManager::verify($inputOldPassword, $user->getHashedPassword());
                 ExceptionHandler::checkIsTrue($checkPassword, 103);
 
                 // Check new password
@@ -128,8 +128,8 @@
 
                 // Hash and update database
                 $user->setHashedPassword($inputNewPassword);
-                (new UserRepository())->Update($user);
-
+                $result = (new UserRepository())->Update($user);
+                ExceptionHandler::checkIsTrue(!is_string($result), 103);
                 // Redirect
                 header("Location: /Orissa/Profile");
                 exit();

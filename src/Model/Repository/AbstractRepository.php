@@ -3,6 +3,7 @@
     namespace App\Code\Model\Repository;
 
     use App\Code\Model\DataObject\AbstractDataObject;
+    use Exception;
     use InvalidArgumentException;
     use LogicException;
     use PDO;
@@ -179,5 +180,23 @@
                 }
             }
             return $values;
+        }
+
+        protected static function SingleDataGetter(int $id, string $sql) : array|bool
+        {
+            try {
+                $values = array(':idTag' => $id);
+                $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
+                $pdoStatement->execute($values);
+
+                if ($pdoStatement->rowCount() < 1) {
+                    throw new Exception("$id doesn't exist");
+                }
+                return $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+            } catch (Exception $e) {
+                return false;
+            } finally {
+                $pdoStatement = null;
+            }
         }
     }

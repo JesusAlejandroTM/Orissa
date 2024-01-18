@@ -71,17 +71,17 @@
                 $_GET['birthdate'] = date_format($birthDate, 'Y-m-d');
                 $createdUser = UserRepository::BuildWithForm($_GET);
                 $result = (new UserRepository())->Insert($createdUser);
-                ExceptionHandler::checkIsTrue($result, 104);
+                ExceptionHandler::checkIsTrue(!is_string($result), 104);
 
                 FlashMessages::add("success", "Bienvenu à Orissa, " . $createdUser->getUsername() . "!");
                 UserSession::connect($createdUser->getUsername());
                 header("Location: /Orissa/Home");
                 exit();
             } catch (Exception $e){
-                if ($e->getCode() == 104){
-                    FlashMessages::add("danger", "Cet utilisateur existe déjà");
-                    $this->error($e);
-                }
+                $errorMessage = ExceptionHandler::getErrorMessage($e->getCode());
+                FlashMessages::add("danger", $errorMessage);
+                header("Location: CreateAccount");
+                exit();
             }
         }
     }

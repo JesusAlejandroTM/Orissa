@@ -35,6 +35,7 @@
         public function formatTableau(): array
         {
             return [
+                'id_userTag' => $this->getId(),
                 'mailTag' => $this->getMail(),
                 'usernameTag' => $this->getUsername(),
                 'birthDateTag' => $this->getBirthDateString(),

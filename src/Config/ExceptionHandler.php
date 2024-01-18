@@ -17,6 +17,8 @@
             304 => "Les caractères spéciaux ne sont pas autorisés",
             404 => "Page non trouvée",
             501 => "Vérifiez vos données",
+            605 => "Erreur dans la création de naturothèque",
+            606 => "Vous avez déjà une naturothèque avec ce titre",
         ];
 
         private static function throwException($errorCode): void
@@ -31,7 +33,7 @@
 
         public static function getErrorMessage(int $errorCode): string
         {
-            return "Erreur $errorCode : " . self::$errorMessages[$errorCode] ?? 'Erreur inconnue';
+            return self::$errorMessages[$errorCode] ?? 'Erreur inconnue';
         }
 
         // INVALID ARGUMENT EXCEPTIONS HANDLING DANS LES 100

@@ -2,8 +2,11 @@
 
     namespace App\Code\Controller;
 
+    use App\Code\Config\ExceptionHandler;
+    use App\Code\Lib\FlashMessages;
     use App\Code\Lib\UserSession;
-    use App\Code\Model\HTTP\Session;
+    use App\Code\Model\Repository\LibraryRepository;
+    use Exception;
 
     class ControllerLibrary extends AbstractController
     {
@@ -13,6 +16,7 @@
         protected static array $routesMap = [
             'Library' => 'view',
             'Library/CreateLibrary' => 'displayCreateLibrary',
+            'Library/LibraryCreation' => 'createLibrary',
         ];
 
         /**Library Controller's definition of Library body's folder directory
@@ -30,5 +34,41 @@
         {
             $this->CheckUserAccess();
             $this->displayView("Create Library", "/createLibrary.php", []);
+        }
+
+        protected function createLibrary() : void
+        {
+            try {
+                // Get the data
+                $this->CheckUserAccess();
+                $userId = UserSession::getLoggedId();
+                $_GET["id_creator"] = $userId;
+
+                // Check unique title
+                $newLibrary = LibraryRepository::BuildWithForm($_GET);
+                $libraryList = LibraryRepository::getUserLibraries($userId);
+
+                if ($libraryList) {
+                    foreach ($libraryList as $library) {
+                        $temp = $library->getTitle() == $newLibrary->getTitle();
+                        ExceptionHandler::checkIsTrue(!$temp, 606);
+                    }
+                }
+
+                // Insert data
+                $result = (new LibraryRepository())->Insert($newLibrary);
+                ExceptionHandler::checkIsTrue(!is_string($result), 605);
+
+                // Notification and redirect
+                $title = $_GET['title'];
+                FlashMessages::add("success", "Votre naturothèque " . $title . " a été créé!");
+                header("Location: /Orissa/Library");
+                exit();
+            } catch (Exception $e) {
+                $errorMessage = ExceptionHandler::getErrorMessage($e->getCode());
+                FlashMessages::add("danger", $errorMessage);
+                header("Location: /Orissa/Library/CreateLibrary ");
+                exit();
+            }
         }
     }
