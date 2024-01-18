@@ -118,6 +118,7 @@
                 $sql = 'DELETE FROM ' . $this->GetTableName() .
                     ' WHERE ' . $this->GetPrimaryKeyColumn() . ' = :' . $this->GetPrimaryKeyColumn() . 'Tag;';
                 $values = array(':' . $this->GetPrimaryKeyColumn() . 'Tag' => $identifier);
+
                 $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
                 $pdoStatement->execute($values);
                 if ($pdoStatement->rowCount() == 0) {
@@ -136,14 +137,10 @@
 
                 $sql = 'UPDATE ' . $this->GetTableName() . ' SET ' . $setColonnes .
                     ' WHERE ' . $this->GetPrimaryKeyColumn() . ' = :' . $this->GetPrimaryKeyColumn() . 'Tag;';
-
                 $values = $objet->formatTableau();
-                $id = $objet->getPrimaryKeyValue();
-                $values += ['id_userTag' => $id];
+                $values = self::unsetEmptyValues($values);
 
                 $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
-                var_dump($sql);
-                var_dump($values);
                 $pdoStatement->execute($values);
 
                 if ($pdoStatement->rowCount() < 1) {
@@ -159,8 +156,8 @@
             try {
                 $sql = 'INSERT INTO ' . $this->GetTableName() . ' (' . $this->GetSQLColumnsWithoutPrimary() .
                     ') VALUES ' . '(' . $this->GetSQLTagsWithoutPrimary() . ');';
-
                 $values = $object->formatTableau();
+                $values = self::unsetEmptyValues($values);
                 $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
                 $pdoStatement->execute($values);
                 if ($pdoStatement->rowCount() < 1){
@@ -170,5 +167,17 @@
             } catch (LogicException|PDOException $e) {
                 return $e->getMessage();
             }
+        }
+
+        private static function unsetEmptyValues(array $values) : array
+        {
+            foreach ($values as $key => $value)
+            {
+                if (empty($values[$key]))
+                {
+                    unset($values[$key]);
+                }
+            }
+            return $values;
         }
     }
