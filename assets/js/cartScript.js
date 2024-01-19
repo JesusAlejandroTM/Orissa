@@ -1,44 +1,68 @@
 let taxaList = [];
-var taxaName = 'rouge-gorge';
 
-// Replace 'https://api.example.com' with the actual API endpoint
-const apiUrl = `https://taxref.mnhn.fr/api/taxa/search?frenchVernacularNames=${taxaName}`;
-// Make a GET request
-fetch(apiUrl)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        var result = processApiData(data);
-        console.log(result);
-        return result;
-    })
-    .catch(error => {
-        // Handle errors
-        console.error('Fetch error:', error);
-    });
 
-function processApiData(data) {
+function apiRequest() {
+    var taxaName = document.getElementById('recherche').value;
+    const apiUrl = `https://taxref.mnhn.fr/api/taxa/search?frenchVernacularNames=${taxaName}&size=100&page=1`;
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            return processApiData(data);
+        })
+        .then(result => {
+            console.log(result);
+        })
+        .catch(error => {
+            // Handle errors
+            console.error('Fetch error:', error);
+        });
+}
+
+function processImage(apiUrl) {
+    return fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                return 'DefaultImage.png';
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data && data['_embedded'] && data['_embedded']['media']) {
+                return data['_embedded']['media'][0]['_links']['file'].href;
+            } else {
+                return 'DefaultImage.png';
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            return 'DefaultImage.png';
+        });
+}
+
+async function processApiData(data) {
     data = data['_embedded']['taxa'];
     var result = [];
-    for ( var i = 0; i < data.length; i++) {
-        if (data[i]['parentId'] == null) {
-            continue;
+
+    var promises = data.map(async (taxon) => {
+        if (taxon['parentId'] != null) {
+            var taxaObject = {
+                id: taxon['id'],
+                taxaName: taxon['frenchVernacularName'],
+                taxaImg: await processImage(taxon['_links']['media'].href)
+            };
+            result.push(taxaObject);
         }
-        var taxaArray = [];
-        var taxaId = data[i]['id'];
-        var taxaName = data[i]['frenchVernacularName']
-        var taxaImg = data[i]['_links']['media'].href;
-        taxaArray['id'] = taxaId;
-        taxaArray['taxaName'] = taxaName;
-        taxaArray['taxaImg'] = taxaImg;
-        result.push(taxaArray);
-    }
-    return result;
+    });
+
+    return Promise.all(promises).then(() => result);
 }
+
+
 
 function addListe(event) {
     // Trouver le conteneur du taxon (le parent de l'élément bouton cliqué)

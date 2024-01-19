@@ -35,7 +35,7 @@
 
             <div id="recherche_barre">
                 <input type="text" name="recherche" placeholder="Rechercher" id="recherche">
-                <input type="submit" name="recherche" value="Rechercher">
+                <input type="submit" name="recherche" value="Rechercher" onclick="apiRequest()">
             </div>
 
             <div class="registered">
