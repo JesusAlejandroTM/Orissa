@@ -4,8 +4,6 @@
 
     use App\Code\Config\ExceptionHandler;
     use App\Code\Model\DataObject\Taxa;
-    use App\Code\Model\DataObject\User;
-    use App\Code\Model\Repository\UserRepository;
     use Exception;
 
     class TaxaAPI
@@ -175,12 +173,10 @@
             }
         }
 
-        public static function SearchVernacularListJSON() : string|false
+        public static function SearchVernacularListJSON(string $name, int $size) : string|false
         {
             try {
-                $name = urldecode($_GET['name']);
-                $size = $_GET['size'];
-
+                $name = str_replace(" ","%20", $name);
                 $apiUrl = APIConnection::GetApiURL() . "/taxa/search?frenchVernacularNames=$name&page=1&size=$size";
                 $data = self::ExecuteAPIRequest($apiUrl);
                 if ($data['page']['totalElements'] == 0 || !$data) return false;

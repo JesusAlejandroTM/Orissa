@@ -1,36 +1,43 @@
 let taxaList = [];
+var taxaName = 'rouge-gorge';
 
-const phpScript = './src/Model/API/TaxaAPI.php';
-const phpFunction = 'SearchVernacularListJSON';
-const taxaName = 'rouge-gorge'; // Replace with the actual value
-const sizeQuery = 100; // Replace with the actual value
-const apiUrl = `${phpScript}?function=${phpFunction}&name=${encodeURIComponent(taxaName)}&size=${sizeQuery}`;
+// Replace 'https://api.example.com' with the actual API endpoint
+const apiUrl = `https://taxref.mnhn.fr/api/taxa/search?frenchVernacularNames=${taxaName}`;
+// Make a GET request
 fetch(apiUrl)
     .then(response => {
         if (!response.ok) {
-            console.log(response);
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
-        return response.text();
+        return response.json();
     })
     .then(data => {
-        console.log(data);
+        var result = processApiData(data);
+        console.log(result);
+        return result;
     })
     .catch(error => {
+        // Handle errors
         console.error('Fetch error:', error);
     });
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Ajout des gestionnaires d'événements pour tous les boutons 'Add to library' existants
-    var addButtons = document.querySelectorAll('.addlist');
-    addButtons.forEach(function(button) {
-        button.addEventListener('click', addListe);
-    });
-});
-
-function searchTaxa(event) {
-
+function processApiData(data) {
+    data = data['_embedded']['taxa'];
+    var result = [];
+    for ( var i = 0; i < data.length; i++) {
+        if (data[i]['parentId'] == null) {
+            continue;
+        }
+        var taxaArray = [];
+        var taxaId = data[i]['id'];
+        var taxaName = data[i]['frenchVernacularName']
+        var taxaImg = data[i]['_links']['media'].href;
+        taxaArray['id'] = taxaId;
+        taxaArray['taxaName'] = taxaName;
+        taxaArray['taxaImg'] = taxaImg;
+        result.push(taxaArray);
+    }
+    return result;
 }
 
 function addListe(event) {
