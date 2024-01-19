@@ -4,6 +4,8 @@
 
     use App\Code\Config\ExceptionHandler;
     use App\Code\Model\DataObject\Taxa;
+    use App\Code\Model\DataObject\User;
+    use App\Code\Model\Repository\UserRepository;
     use Exception;
 
     class TaxaAPI
@@ -168,6 +170,33 @@
                 }
                 if (!$returnResult) return false;
                 return $returnResult;
+            } catch (Exception) {
+                return false;
+            }
+        }
+
+        public static function SearchVernacularListJSON() : string|false
+        {
+            try {
+                $name = urldecode($_GET['name']);
+                $size = $_GET['size'];
+
+                $apiUrl = APIConnection::GetApiURL() . "/taxa/search?frenchVernacularNames=$name&page=1&size=$size";
+                $data = self::ExecuteAPIRequest($apiUrl);
+                if ($data['page']['totalElements'] == 0 || !$data) return false;
+                $dataArray = $data["_embedded"]["taxa"];
+                $results = [];
+                foreach ($dataArray as $taxa)
+                {
+                    if ($taxa['parentId'] == null)
+                        continue;
+                    $taxaId = $taxa['id'];
+                    $taxaName = $taxa['frenchVernacularName'];
+                    $taxaImg = $taxa['_links']['media']['href'] ?? null;
+                    $taxaData = ["taxaId" => $taxaId, "taxaName" => $taxaName, "taxaImg" => $taxaImg];
+                    $results[] = $taxaData;
+                }
+                return json_encode($results);
             } catch (Exception) {
                 return false;
             }

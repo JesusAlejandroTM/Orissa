@@ -27,6 +27,7 @@
         {
             $session = Session::getInstance();
             $session->delete(self::$_loginKey);
+            $session->delete(self::$_idKey);
         }
 
         public static function getLoggedUser(): ?string
