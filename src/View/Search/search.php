@@ -1,3 +1,4 @@
+<div class="loader--hidden"></div>
 <h1 class="searchTitle">Recherche de taxon</h1>
 <div>
     <div id="filtre">
@@ -19,52 +20,54 @@
     </div>
 
 
-    <form method="GET" action="Search/SearchTaxas">
-        <div id="recherche_barre">
-            <input type="text" name="taxaName" placeholder="Rouge-gorge" id="taxaName" required>
-            <input type="submit" value="Search">
-        </div>
-    </form>
+    <div id="recherche_barre">
+        <input type="text" name="taxaName" placeholder="Nom de taxon" id="taxaName" required>
+        <input type="submit" value="Search" onclick="searchApi()">
+    </div>
+    <div id="resultats">
+        <ul id="liste">
+        </ul>
+    </div>
 
 
-    <?php
-        if (isset($taxaArrays)) {
-            echo '<div id="resultats">
-                        <ul id="liste">';
-            foreach ($taxaArrays as $taxa) {
-                $taxaId = $taxa->getId();
-                $taxaName = $taxa->getVernacularName();
-
-                // Get the image
-                $taxaMedia = $taxa->getLinks()['media']['href'];
-                $mediaContent = file_get_contents($taxaMedia);
-                $mediaData = json_decode($mediaContent, true);
-
-                // Check if the image is valid
-                if (!empty($mediaData['_embedded']['media'][0]['_links']['file']['href'])) {
-                    $taxonThumbnailUrl = $mediaData['_embedded']['media'][0]['_links']['file']['href'];
-                    $resultat['taxonMedia'] = $taxonThumbnailUrl;
-                    $image = $resultat['taxonMedia'];
-
-                    if(!@is_array(getimagesize($image))){
-                        $image = 'Orissa/../assets/img/taxaUnavailable.png';
-                    }
-                } else $image = 'Orissa/../assets/img/taxaUnavailable.png';
-                echo '
-                        <li>
-                            <div class="image">
-                                <a href="/Orissa/Taxa/' . $taxaId . '" class="imageLink">
-                                    <img src="' . $image . '" alt="image">
-                                </a>
-                            </div>
-                    
-                            <div class="caption">
-                                <p>' . $taxaName . '</p>
-                            </div>
-                        </li>';
-            }
-            echo '    </ul>
-                </div>';
-        }
-    ?>
+<!--    --><?php
+//        if (isset($taxaArrays)) {
+//            echo '<div id="resultats">
+//                        <ul id="liste">';
+//            foreach ($taxaArrays as $taxa) {
+//                $taxaId = $taxa->getId();
+//                $taxaName = $taxa->getVernacularName();
+//
+//                // Get the image
+//                $taxaMedia = $taxa->getLinks()['media']['href'];
+//                $mediaContent = file_get_contents($taxaMedia);
+//                $mediaData = json_decode($mediaContent, true);
+//
+//                // Check if the image is valid
+//                if (!empty($mediaData['_embedded']['media'][0]['_links']['file']['href'])) {
+//                    $taxonThumbnailUrl = $mediaData['_embedded']['media'][0]['_links']['file']['href'];
+//                    $resultat['taxonMedia'] = $taxonThumbnailUrl;
+//                    $image = $resultat['taxonMedia'];
+//
+//                    if(!@is_array(getimagesize($image))){
+//                        $image = 'Orissa/../assets/img/taxaUnavailable.png';
+//                    }
+//                } else $image = 'Orissa/../assets/img/taxaUnavailable.png';
+//                echo '
+//                        <li>
+//                            <div class="image">
+//                                <a href="/Orissa/Taxa/' . $taxaId . '" class="imageLink">
+//                                    <img src="' . $image . '" alt="image">
+//                                </a>
+//                            </div>
+//
+//                            <div class="caption">
+//                                <p>' . $taxaName . '</p>
+//                            </div>
+//                        </li>';
+//            }
+//            echo '    </ul>
+//                </div>';
+//        }
+//    ?>
 </div>

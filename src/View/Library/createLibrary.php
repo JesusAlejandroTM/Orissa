@@ -1,3 +1,4 @@
+<div class="loader--hidden"></div>
 <div class="creationContainer">
     <div class="page-creation">
         <div class="create-library-box">

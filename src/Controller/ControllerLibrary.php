@@ -37,7 +37,8 @@
         {
             $this->CheckUserAccess();
             $this->displayView("Create Library", "/createLibrary.php",
-                ['library/createStyle.css'], [], ['cartScript.js']);
+                ['library/createStyle.css', 'loaderCreateLibrary.css'], [],
+                ['cartScript.js', 'apiDataProcesses.js']);
         }
 
         protected function createLibrary() : void

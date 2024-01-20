@@ -27,7 +27,8 @@
             $string = $this->getBodyFolder();
             $title = explode('/', $string)[1];
             $phpFile = '/' . strtolower($title) . '.php';
-            $this->displayView($title, $phpFile,  ["search/search.css"]);
+            $this->displayView($title, $phpFile,  ['search/search.css', 'loaderCreateLibrary.css'],
+                [], ['taxaSearch.js', 'apiDataProcesses.js']);
         }
 
         protected function SearchTaxas(): void
