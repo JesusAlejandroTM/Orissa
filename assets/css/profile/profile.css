@@ -13,7 +13,7 @@
     object-fit: cover ;
     width: 100%;
     height: 100%;
-    background-image: url('../../img/banner-image.png'); /* à tester */
+    background-image: url('../../img/banner-image.png');
     background-size: 100% 100%;
 }
 
@@ -41,13 +41,15 @@
 #detail-profil {
     position: relative;
     max-width: 310px;
+    margin-left: 1vw;
 }
 .photo-profile {
     position: relative;
     width: 142px;
     height: 141px;
     margin-top: 2.5vh;
-    margin-left: 2.5vh;
+    margin-left: 1.6vw;
+    margin-bottom: 2.5vh;
     background: #D9D9D9;
     border-radius: 50%;
 }
@@ -93,14 +95,14 @@
     margin-top: 1.2%;
     margin-bottom: 1.2%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(182px, 1fr));
     gap: 20px;
     justify-content: space-evenly;
 }
 
 .libraryUnit {
     position: relative;
-    width: 90%;
+    width: 100%;
     height: 212px;
     background: #81AE64;
     border-radius: 8px;
@@ -152,7 +154,7 @@
     width: 95px;
     height: 19px;
     margin-top: 6%;
-    margin-left: 19%;
+    margin-left: 14.5%;
     background: #D9D9D9;
     border-radius: 7px;
     font-family: 'Inter', serif;
@@ -170,12 +172,13 @@
     position: relative;
     width: 150px;
     height: 65px;
+    margin-bottom: 5%;
 }
 .logout-button {
     position: relative;
     justify-content: center;
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
     background: #C60000;
     border-radius: 33px;
     border: none;

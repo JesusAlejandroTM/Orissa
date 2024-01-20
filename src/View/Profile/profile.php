@@ -95,37 +95,7 @@
                 </div>
                 <div class="name-library">Nom naturo</div>
             </div>
-            <div class="libraryUnit">
-                <div class="imageSpace">
-                    <div class="backgroundLock">
-                        <div class="boutonLock">
-                            <div id="img"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="name-library">Nom naturo</div>
-            </div>
-            <div class="libraryUnit">
-                <div class="imageSpace">
-                    <div class="backgroundLock">
-                        <div class="boutonLock">
-                            <div id="img"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="name-library">Nom naturo</div>
-            </div>
-            <div class="libraryUnit">
-                <div class="imageSpace">
-                    <div class="backgroundLock">
-                        <div class="boutonLock">
-                            <div id="img"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="name-library">Nom naturo</div>
-            </div>
+
         </div>
     </div>
-
 </main>
