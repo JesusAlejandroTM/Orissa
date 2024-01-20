@@ -5,22 +5,28 @@
     </div>
 
     <div class="mainContainer">
-        <h2>All about us</h2>
+        <h2>Parcourir</h2>
         <br>
-        <h3>On retrouve 3 possibilités, les bibliothèques, les taxons et les articles : </h3>
+        <h3>Orissa vous donne le plaisir d'offrir une toute nouvelle éxperience de recherche. Vous pouvez 
+            retrouver les animaux, les plantes, les bactéries et plus encore en naviguant dans les différentes catégories qu'on vous met à disposition.
+            Nous vous conseillons de jeter un coup d'oeil à notre page sur nos naturothèques produites par nos utilisateurs, ou encore à notre page decouverte qui vous amenèra sur une page aléatoire de taxon.    </h3>
         <br>
+
+        <div class="rows">
         <div class="item">
             <div class="image-container" id="bibliotheques1"></div>
-            <button id="button1"><a href="html/biblio.html">Allez plus loin</a></button>
+            <button id="button2"><a href="html/biblio.html">Recherche</a></button>
         </div>
+
         <div class="item">
             <div class="image-container" id="bibliotheques2"></div>
-            <button id="button2"><a href="html/biblio.html">Allez plus loin</a></button>
+            <button id="button2"><a href="html/biblio.html">naturothèques</a></button>
         </div>
         <div class="item">
             <div class="image-container" id="bibliotheques3"></div>
-            <button id="button3"><a href="html/biblio.html">Allez plus loin</a></button>
+            <button id="button3"><a href="html/biblio.html">Decouverte</a></button>
         </div>
+    </div>
     </div>
 </main>
 
@@ -50,7 +56,7 @@
     // Effet de survol pour les images
     document.querySelectorAll('.image-container').forEach(container => {
     container.addEventListener('mouseover', function () {
-        this.style.transform = 'scale(1.1)';
+        this.style.transform = 'scale(1)';
         this.style.transition = 'transform 0.5s ease'; // Ajout d'une transition pour un effet plus fluide
     });
 
