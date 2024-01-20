@@ -1,0 +1,65 @@
+
+/*body*/ 
+.html {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  
+}
+
+
+.section h3{
+    background-color: #81AE64;
+    border-radius: 20px;
+    padding: 10px;  
+    color: white;
+    width: 50%;
+    margin-left: 15px;
+    
+}
+
+.left-column{
+    padding: 20px;
+    margin-left: 50px;
+}
+
+.right-column{
+   
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    padding: 20px;
+    padding-top: 25px;
+    margin-left: 55px ;
+    border-radius: 20px;
+}
+
+.section{
+    padding: 5px;
+
+}
+
+.section p{
+
+    margin-left: 25px;
+  
+   
+}
+
+table {
+    
+    border-collapse: collapse;
+    margin: 20px;
+    border-radius: 3px;
+
+}
+
+th{
+    background-color: #353432;
+    color: white;
+
+    
+}
+
+td, th {
+    border: 1px solid #272726;
+    padding: 15px;
+}
