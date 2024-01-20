@@ -157,7 +157,7 @@
                 $name = str_replace(" ","%20", $name);
                 $apiUrl = APIConnection::GetApiURL() . "/taxa/search?frenchVernacularNames=$name&page=1&size=$size";
                 $data = self::ExecuteAPIRequest($apiUrl);
-                if ($data['page']['totalElements'] == 0 || !$data) return false;
+                if ($data['page']['totalElements'] == 0 || !$data || is_null($data)) return false;
 
                 $dataArray = $data["_embedded"]["taxa"];
                 $returnResult = [];

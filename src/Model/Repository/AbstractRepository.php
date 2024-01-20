@@ -104,11 +104,11 @@
                 $pdoStatement->execute($values);
 
                 if ($pdoStatement->rowCount() < 1) {
-                    throw new InvalidArgumentException("$identifier inexistant");
+                    throw new Exception("$identifier inexistant");
                 }
                 $data = $pdoStatement->fetch(PDO::FETCH_ASSOC);
                 return $this->Build($data);
-            } catch (InvalidArgumentException $e) {
+            } catch (Exception $e) {
                 return $e->getMessage();
             }
         }
@@ -123,10 +123,10 @@
                 $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
                 $pdoStatement->execute($values);
                 if ($pdoStatement->rowCount() == 0) {
-                    throw new InvalidArgumentException("$identifier inexistant");
+                    throw new Exception("$identifier inexistant");
                 }
                 return true;
-            } catch (InvalidArgumentException $e) {
+            } catch (Exception $e) {
                 return $e->getMessage();
             }
         }

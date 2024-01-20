@@ -47,9 +47,9 @@
                     $image = $resultat['taxonMedia'];
 
                     if(!@is_array(getimagesize($image))){
-                        $image = 'Orissa/../assets/img/arachno.jpeg';
+                        $image = 'Orissa/../assets/img/taxaUnavailable.png';
                     }
-                } else $image = 'Orissa/../assets/img/arachno.jpeg';
+                } else $image = 'Orissa/../assets/img/taxaUnavailable.png';
                 echo '
                         <li>
                             <div class="image">

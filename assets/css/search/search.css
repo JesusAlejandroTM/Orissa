@@ -99,7 +99,7 @@
 
 #resultats li img {
     width: 100%;
-    height: 150px;
+    height: 225px;
     border-radius: 0 0 10% 10%;
     object-fit: cover;
 }
@@ -127,3 +127,10 @@
     height: 100%;
 }
 
+p {
+    margin: 0 auto 0.5rem 0.5rem;
+    max-width: 220px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

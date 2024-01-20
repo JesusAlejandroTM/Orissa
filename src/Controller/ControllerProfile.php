@@ -20,6 +20,7 @@
             'Profile/UpdateInfo' => 'updateUser',
             'Profile/Password' => 'viewPasswordSettings',
             'Profile/UpdatePassword' => 'updatePassword',
+            'Profile/DeleteAccount' => 'deleteUserAccount',
         ];
 
         protected static string $bodyFolder = '/Profile';
@@ -56,6 +57,27 @@
         {
             $this->LoadUserData();
             $this->displayView("Profile Settings", "/profileSettings.php", []);
+        }
+
+        protected function deleteUserAccount(): void
+        {
+            try {
+                $this->LoadUserData();
+                $userId = UserSession::getLoggedId();
+                $result = (new UserRepository())->Delete($userId);
+                var_dump($result);
+                ExceptionHandler::checkIsTrue($result, 105);
+
+                UserSession::disconnect();
+                FlashMessages::add('success', 'Suppréssion de compte réussie');
+                header("Location: /Orissa/Home");
+            } catch (Exception $e) {
+                $errorMessage = ExceptionHandler::getErrorMessage($e->getCode());
+                FlashMessages::add("danger", $errorMessage);
+                // Redirect user if delete account failed
+                header("Location: /Orissa/Profile");
+                exit();
+            }
         }
 
         public function updateUser() : void

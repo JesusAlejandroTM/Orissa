@@ -37,7 +37,7 @@
                 ExceptionHandler::checkisTrue(TaxaAPI::checkAllowedChars($searchInput), 304);
 
                 $result = TaxaAPI::SearchVernacularList($searchInput, 100);
-                ExceptionHandler::checkIsTrue($result, 303);
+                ExceptionHandler::checkIsTrue(is_array($result), 303);
                 $this->displayView("Taxas found", "/search.php",
                     ["search/search.css"], ['taxaArrays' => $result]);
             } catch (Exception $e) {

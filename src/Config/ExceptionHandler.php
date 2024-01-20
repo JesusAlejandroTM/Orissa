@@ -9,6 +9,7 @@
         protected static array $errorMessages = [
             103 => "Vérifiez votre nom d'utilisateur ou votre mot de passe",
             104 => "Cet utilisateur existe déjà",
+            105 => "Erreur durant la suppréssion de votre compte, veuillez réessayer",
             204 => "Ce taxon n'a pas de fiche d'informations disponible",
             205 => "Ce taxon n'a pas de fiche d'interactions disponible",
             301 => "Erreur pendant la requête à l'API",

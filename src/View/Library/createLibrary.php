@@ -45,21 +45,7 @@
             </div>
 
             <div class="list-taxon">
-                <ul class="list-item-ul" id="">
-                    <li>
-                        <div class="item">
-                            <img src="Orissa/../assets/img/orissa-logo.png" alt="img taxon">
-                            <h2 id="id-taxa">nom taxon</h2>
-                            <button class="addlist" onclick="addListe()">Add to library</button>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item">
-                            <img src="Orissa/../assets/img/orissa-logo.png" alt="img taxon">
-                            <h2 id="id-taxa">Name taxa</h2>
-                            <button class="addlist" onclick="addListe()">Add to library</button>
-                        </div>
-                    </li>
+                <ul class="list-item-ul" id="search-list-result">
                 </ul>
             </div>
         </div>
