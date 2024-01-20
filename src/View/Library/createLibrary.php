@@ -2,7 +2,7 @@
     <div class="page-creation">
         <div class="create-library-box">
             <h1>Create Library</h1>
-            <form id="formId" method="GET" action="Library/LibraryCreation" class="Library-Form">
+            <form id="formId" method="POST" class="Library-Form">
 
                 <div class="textbox">
                     <input type="text" name="title" id="title_id" required>
@@ -58,7 +58,7 @@
             </ul>
         </div>
         <div class="btn">
-            <input form="formId" type="submit" value="SAVE">
+            <input form="formId" type="submit" value="SAVE" id="saveButton" onclick="sendData()">
         </div>
     </div>
 </div>

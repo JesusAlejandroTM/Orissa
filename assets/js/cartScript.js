@@ -1,14 +1,21 @@
 let taxaList = [];
-
 document.addEventListener('DOMContentLoaded', function() {
-    // This code will run after the DOM has fully loaded
     var addButtons = document.querySelectorAll('.addlist');
 
+    // Appeler addListe
     addButtons.forEach(function(button) {
         button.addEventListener('click', addListe);
     });
 });
 
+document.getElementById('saveButton').addEventListener('click', function(event) {
+    event.preventDefault();
+
+    // Appeler sendData
+    sendData();
+});
+
+// Exécuter la requête de recherche de taxon à l'API
 function apiRequest() {
     var searchList = document.getElementById('search-list-result');
 
@@ -44,6 +51,7 @@ function apiRequest() {
         });
 }
 
+// Récupérer l'image d'un taxon
 function processImage(apiUrl) {
     return fetch(apiUrl)
         .then(response => {
@@ -65,6 +73,7 @@ function processImage(apiUrl) {
         });
 }
 
+// Nettoyer les données obtenus par l'API
 async function processApiData(data) {
     data = data['_embedded']['taxa'];
     var result = [];
@@ -84,7 +93,7 @@ async function processApiData(data) {
 }
 
 
-
+// Ajouter taxon dans la liste
 function addListe(event) {
     // Trouver le conteneur du taxon (le parent de l'élément bouton cliqué)
     var taxonContainer = event.target.closest('.item');
@@ -169,4 +178,23 @@ function generateListItem(taxa) {
       </div>
     </li>
   `;
+}
+
+// Send data to PHP and execute the functions
+function sendData() {
+    var titleValue = document.getElementById('title_id').value;
+    var descriptionValue = document.getElementById('description_id').value;
+
+    // Cancel if data is not valid
+    if (titleValue == null || descriptionValue == null || titleValue === '' || descriptionValue === '') return;
+
+    var dataToSend = {
+        listTaxa : taxaList,
+        title : titleValue,
+        description : descriptionValue
+    };
+    $.post("http://localhost/Orissa/Library/LibraryCreation", dataToSend, function (response) {
+        // Handle the response from the server
+        console.log(response);
+    });
 }

@@ -49,4 +49,14 @@
            } else return false;
            return $results;
        }
+
+       public function insertGetLastId(Library $library) : bool|int
+       {
+           $result = $this->Insert($library);
+           if ($result === true)
+           {
+               return DatabaseConnection::getPdo()->lastInsertId();
+           }
+           else return false;
+       }
     }

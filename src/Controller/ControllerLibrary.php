@@ -5,7 +5,10 @@
     use App\Code\Config\ExceptionHandler;
     use App\Code\Lib\FlashMessages;
     use App\Code\Lib\UserSession;
+    use App\Code\Model\Repository\AbstractRepository;
+    use App\Code\Model\Repository\DatabaseConnection;
     use App\Code\Model\Repository\LibraryRepository;
+    use App\Code\Model\Repository\LibraryTaxaManager;
     use Exception;
 
     class ControllerLibrary extends AbstractController
@@ -43,34 +46,43 @@
                 // Get the data
                 $this->CheckUserAccess();
                 $userId = UserSession::getLoggedId();
-                $_GET["id_creator"] = $userId;
+                $_POST['id_creator'] = $userId;
 
                 // Check unique title
-//                $newLibrary = LibraryRepository::BuildWithForm($_GET);
-//                $libraryList = LibraryRepository::getUserLibraries($userId);
-//
-//                if ($libraryList) {
-//                    foreach ($libraryList as $library) {
-//                        $temp = $library->getTitle() == $newLibrary->getTitle();
-//                        ExceptionHandler::checkIsTrue(!$temp, 606);
-//                    }
-//                }
-//
-//                // Insert data
-//                $result = (new LibraryRepository())->Insert($newLibrary);
-//                ExceptionHandler::checkIsTrue(!is_string($result), 605);
-//
-//                // Notification and redirect
-//                $title = $_GET['title'];
-//                FlashMessages::add("success", "Votre naturothèque " . $title . " a été créé!");
-                var_dump($GLOBALS);
-                var_dump($_SERVER);
-//                header("Location: /Orissa/Library");
-//                exit();
+                $newLibrary = LibraryRepository::BuildWithForm($_POST);
+                $libraryList = LibraryRepository::getUserLibraries($userId);
+
+                if ($libraryList) {
+                    foreach ($libraryList as $library) {
+                        $temp = $library->getTitle() == $newLibrary->getTitle();
+                        ExceptionHandler::checkIsTrue(!$temp, 606);
+                    }
+                }
+
+                // Insert data
+                $idLib = (new LibraryRepository())->insertGetLastId($newLibrary);
+                ExceptionHandler::checkIsTrue(is_int($idLib), 605);
+
+                // Insert selected taxas to the library
+                if (isset($_POST['listTaxa']))
+                {
+                    $taxaList = $_POST['listTaxa'];
+                    foreach ($taxaList as $taxaId) {
+                        $result = LibraryTaxaManager::addTaxaToLib($idLib, $userId, $taxaId);
+                        ExceptionHandler::checkIsTrue($result, 607);
+                    }
+                }
+
+
+                // Notification and redirect
+                $title = $_POST['title'];
+                FlashMessages::add("success", "Votre naturothèque " . $title . " a été créé!");
+                header("Location: /Orissa/Library");
+                exit();
             } catch (Exception $e) {
                 $errorMessage = ExceptionHandler::getErrorMessage($e->getCode());
                 FlashMessages::add("danger", $errorMessage);
-                header("Location: /Orissa/Library/CreateLibrary");
+                header("Location: /Orissa/Library");
                 exit();
             }
         }

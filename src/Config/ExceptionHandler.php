@@ -20,6 +20,7 @@
             501 => "Vérifiez vos données",
             605 => "Erreur dans la création de naturothèque",
             606 => "Vous avez déjà une naturothèque avec ce titre",
+            607 => "Erreur ajout des taxons dans votre naturothèque",
         ];
 
         private static function throwException($errorCode): void
