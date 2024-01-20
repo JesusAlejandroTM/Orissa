@@ -158,7 +158,8 @@ textarea::-webkit-scrollbar{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 60%;
+    width: 600px;
+    max-width: 90%;
 
 
 }
@@ -185,9 +186,8 @@ textarea::-webkit-scrollbar{
 
 /* partie card add list */
 .container-rech{
-    width: 900px;
+    margin-right: 30px;
     max-width: 90vw;
-    margin: auto auto auto 0;
     text-align: center;
     padding-top:10px ;
     transition: transform 0.5s ;
@@ -223,12 +223,14 @@ header{
 
 }
 
-.list-item-ul{
+.list-item-ul {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    margin-left: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
     padding-left: 0;
 }
+
 
 .list-taxon .item{
     background-color: #eeeee6;

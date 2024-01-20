@@ -29,8 +29,25 @@ function apiRequest() {
     const apiUrl = `https://taxref.mnhn.fr/api/taxa/search?frenchVernacularNames=${taxaName}&size=100&page=1`;
     const loader = document.querySelector(".loader--hidden");
     loader.classList = "loader";
-    fetch(apiUrl)
+
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    const warningTimeout = setTimeout(() => {
+        console.warn("Votre requête semble prendre du temps");
+    }, 15000);
+
+    const cancelTimeOut = setTimeout(() => {
+        controller.abort();
+        loader.classList = "loader--hidden";
+        console.error("Votre requête a été annulée");
+        }, 30000
+    )
+
+    fetch(apiUrl, { signal })
         .then(response => {
+            clearTimeout(warningTimeout);
+            clearTimeout(cancelTimeOut);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -38,7 +55,13 @@ function apiRequest() {
             return response.json();
         })
         .then(data => {
-            return processApiData(data);
+            const totalElements = data['page']['totalElements'];
+            if (totalElements < 1) {
+                throw new Error('No taxas found')
+            } else {
+                // Process the non-empty 'data'
+                return processApiData(data);
+            }
         })
         .then(result => {
             var searchList = document.getElementById('search-list-result');
@@ -49,7 +72,7 @@ function apiRequest() {
             }
         })
         .catch(error => {
-            // Handle errors
+            loader.classList = "loader--hidden";
             console.error('Fetch error:', error);
         });
 }

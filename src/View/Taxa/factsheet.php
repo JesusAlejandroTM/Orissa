@@ -1,3 +1,4 @@
+<div class="factsheetText">
 <?php
     if (isset($taxaId)) {
         if (isset($factsheet)) {
@@ -15,3 +16,6 @@
     else {
         echo "<p>Ce taxon n'existe pas</p>";
     }
+    ?>
+</div>
+
