@@ -3,7 +3,7 @@
     use App\Code\Model\Repository\UserRepository;
 
     /** @var User $userObject */
-    global $userId, $username, $userMail, $userRole, $userBirthDate,
+    global $userId, $username, $userMail, $userRole, $userBirthDate, $dateCreated,
            $userSurname, $userFamilyName, $userPhoneNumber, $userDomain;
 
     $userObject = $GLOBALS['userObject'];
@@ -14,6 +14,9 @@
     $userBirthDate = $userObject->getBirthDateString();
 
     $userExtraData = UserRepository::GetUserExtraInfo($userId);
+
+    $dateCreated = $userExtraData['created_at'];
+    if (is_null($dateCreated)) $dateCreated = 'Unknown';
 
     $userSurname = $userExtraData['surname'];
     if (is_null($userSurname)) $userSurname = 'Unknown';

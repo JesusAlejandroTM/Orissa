@@ -1,20 +1,41 @@
+<?php
+    include_once 'userData.php';
+
+    $userId = $GLOBALS['userId'];
+    $username = $GLOBALS['username'];
+    $userMail = $GLOBALS['userMail'];
+    $role = $GLOBALS['userRole'];
+    $birthDate = $GLOBALS['userBirthDate'];
+    $userSurname = $GLOBALS['userSurname'];
+    $userFamilyName = $GLOBALS['userFamilyName'];
+    $userPhoneNumber = $GLOBALS['userPhoneNumber'];
+    $dateTime = $GLOBALS['dateCreated'];
+    $dateCreated = date('Y-m-d', strtotime($dateTime));
+    ?>
 <div class="banner-div">
     <div class="banner-image"></div>
 </div>
 <main class="mainContainer">
     <div id="detail-profil">
-        <div class="photo-profile"></div>
-        <div class="username">Username</div>
-        <div class="name">Nom</div>
-        <div class="familyName">Nom de famille</div>
-        <div class="role">Role</div>
-        <div class="dates">Date d'inscription</div>
-        <div class="dates">Date de naissance</div>
-        <div class="description-du-profile">Vous avez la possibilité de </div>
-        <button id="edit-profile-button">Modifier le profil</button>
+        <div class="username">Nom d'utilisateur : <?php echo $username ?></div>
+        <div class="mail">Mail : <?php echo $userMail ?></div>
+        <div class="familyName">Nom : <?php echo $userFamilyName ?></div>
+        <div class="name">Prénom : <?php echo $userSurname ?></div>
+        <div class="role">Rôle : <?php echo $role ?></div>
+        <div class="userIdentifier">Identifiant : <?php echo $userId ?></div>
+        <div class="dates">Date de naissance : <?php echo $dateCreated ?></div>
+        <div class="dates">Date de création : <?php echo $birthDate ?></div>
+        <button onclick="window.location.href='Profile/Settings';" id="edit-profile-button">
+            Modifier le profil
+        </button>
         <div class="logout-section">
-            <button class="logout-button">
-                <span class="logout">LOG OUT</span>
+            <button onclick="window.location.href='Profile/Disconnect';" class="logout-button">
+                <span class="logout">Déconnecter</span>
+            </button>
+        </div>
+        <div class="delete-section">
+            <button onclick="window.location.href='Profile/DeleteAccount';" class="delete-button">
+                <span class="delete">SUPPRIMER VOTRE COMPTE</span>
             </button>
         </div>
     </div>
@@ -24,7 +45,6 @@
             <a href="" class="nav-link nav-Register">Register</a>
             <a href="" class="nav-link nav-Creation">Creation de naturotheques</a>
         </div>
-
         <div class="list-grid">
             <div class="libraryUnit">
                 <div class="imageSpace">

@@ -64,7 +64,7 @@
 
         public static function GetUserExtraInfo(int $id) : ?array
         {
-            $sql = 'SELECT surname, name, phoneNumber, domain FROM user WHERE id_user = :idTag;';
+            $sql = 'SELECT created_at, surname, name, phoneNumber, domain FROM user WHERE id_user = :idTag;';
             $results = self::SingleDataGetter($id, $sql);
             return $results['0'];
         }
