@@ -7,12 +7,12 @@ setTimeout(function() {
         let taxaId = taxaLink.id;
         let taxaImage = result.querySelector("img");
         let taxaCaption = result.querySelector("p");
-        apiRequest(taxaId, taxaCaption, taxaImage);
+        apiTaxaUnitRequest(taxaId, taxaCaption, taxaImage);
     }
 }, 100);
 
 // Exécuter la requête de recherche de taxon à l'API
-function apiRequest(taxaId, taxaCaption, taxaHref) {
+function apiTaxaUnitRequest(taxaId, taxaCaption, taxaHref) {
     const apiUrl = `https://taxref.mnhn.fr/api/taxa/${taxaId}`;
 
     const controller = new AbortController();
