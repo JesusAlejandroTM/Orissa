@@ -1,4 +1,4 @@
-header {
+.nav-container {
     position: relative;
     top: 0;
     left: 0;
@@ -18,6 +18,7 @@ header {
     font-size: 1.5em;
     font-weight: 700;
     text-transform: uppercase;
+    justify-self: start ;
     letter-spacing: 0.1em;
     float: left;
     margin-right: 20px;
@@ -35,20 +36,23 @@ header {
     align-items: center;
 }
 
-header ul {
-    display: flex;
+.nav-menu {
+    display: grid ;
+    grid-template-columns: repeat(6, auto);
+    justify-content: space-evenly;
     position: relative;
     top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    margin-top: 20px;
     gap: 100px;
 }
 
-header ul li {
+.nav-links{
     list-style: none;
 }
 
-header ul li a {
+
+
+.nav-links {
     text-decoration: none;
     position: relative;
     color: #333;
@@ -56,7 +60,7 @@ header ul li a {
     letter-spacing: 0.2em;
 }
 
-header ul li a::before {
+.nav-links::before {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -79,7 +83,7 @@ header .search {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5em;
+  
     cursor: pointer;
 }
 
@@ -88,8 +92,104 @@ header .search {
     color: black;
 }
 
+.nav-container span{
+    text-decoration: none;
+    color: black;
+    font-size: 1.5em;
+
+}
+
 .searchIcon {
     padding-right: 50%;
 }
 
+.menu-toggle .bar{
+    width: 25px; /* Adjust the width of the bars as needed */
+    height: 3px; /* Adjust the height of the bars as needed */
+    background-color: #333; /* Set the color of the bars */
+    margin: 5px auto; /* Adjust the spacing between bars */
+    transition: all 0.3s ease-in-out;
 
+}
+
+
+@media screen and (max-width: 768px){
+    .nav-container {
+        position: relative;
+        width: 100%;
+    }
+
+    .nav-menu { 
+        display: grid;
+        grid-template-columns: auto;
+        background-color: #81AE64;
+        margin:0;
+        width: 100%;
+        position: absolute;
+        top : 80px;
+       left: -100%;
+        opacity: 0;
+        transition: all 0.5s ease;
+    }
+
+    .search {
+        display: none;
+    }
+
+    .logo {
+        margin-left: 20px;
+    } 
+    
+    .nav-menu.active{
+        background-color: #81AE64;
+        left: 0;
+        opacity: 1;
+        transition: all 0.5s ease;
+
+    }
+    .nav-links{
+        text-align: center;
+        line-height: 30px;
+        width: 100%;
+        display: table;
+        color:#fff
+       
+
+    }
+    .nav-links:hover{
+        background-color: #333;
+        color: #fff;
+        transition: all 0.5s ease-out;
+    }
+
+    .navbar{
+        width: 100%;
+        color: #333;
+    }
+
+    #mobile-menu{
+        display: block;
+        top: 20px;
+        right: -170px;
+        transform: translate(5%, 20%);
+    }
+
+    .menu-toggle .bar{
+        width: 25px; /* Adjust the width of the bars as needed */
+        height: 3px; /* Adjust the height of the bars as needed */
+        background-color: #333; /* Set the color of the bars */
+        margin: 5px 0; /* Adjust the spacing between bars */
+        display: block;
+        cursor: pointer;
+
+
+    }
+
+    .menu-toggle:hover{
+        cursor: pointer;
+    }
+
+
+
+
+}
