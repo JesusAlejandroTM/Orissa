@@ -1,0 +1,46 @@
+
+
+
+/* page entiere*/
+.factsheetText{
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 20px 35px 50px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    clear: both;
+    padding: 20px;
+    background-color: #eee;
+    border-radius: 8px;
+    color: #333;
+    max-width: 95%;
+    
+    
+   
+}
+
+.factsheetText h1{
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 40px;
+
+}
+
+.factsheetText a{
+    background-color: #81AE64;
+    border-radius: 30px;
+    color: #FFFFFF;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px 20px; 
+}
+
+
+/* titre*/
+b{
+    margin-left: 35px;
+    text-decoration: underline;
+}
+

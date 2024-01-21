@@ -48,7 +48,7 @@
                     throw new Exception("Ce taxon n'a pas de fiche d'informations disponible", 204);
                 }
                 $this->displayView("Taxa factsheet", "/factsheet.php",
-                    ["nan.css"], ["factsheet" => $factsheet, "taxaId" => $taxaIdParameter]);
+                    ["taxa/factsheet.css"], ["factsheet" => $factsheet, "taxaId" => $taxaIdParameter]);
             } catch (Exception $e) {
                 if ($e->getCode() == 204) {
                     $exceptionMessage = $e->getMessage();
