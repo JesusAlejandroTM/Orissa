@@ -124,7 +124,7 @@ header .search {
         grid-template-columns: auto;
         background-color: #81AE64;
         margin:0;
-        width: 100%;
+        z-index: 1000;
         position: absolute;
         top : 80px;
        left: -100%;
