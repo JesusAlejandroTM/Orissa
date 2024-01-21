@@ -19,12 +19,15 @@
             
 
 
-              <li><div class="search">
-                <a href="Search" class="searchIcon">
-                    <span>
-                        <ion-icon name="search-outline" class="searchBtn"></ion-icon>
-                    </span>
-                </a></li>
+              <li>
+                  <div class="search">
+                      <a href="Search" class="searchIcon">
+                          <span>
+                              <ion-icon name="search-outline" class="searchBtn"></ion-icon>
+                          </span>
+                      </a>
+                  </div>
+              </li>
                
                 <?php
 

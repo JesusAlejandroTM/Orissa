@@ -3,8 +3,6 @@
     namespace App\Code\Model\Repository;
 
     use App\Code\Model\DataObject\Library;
-    use Exception;
-    use PDO;
 
     class LibraryRepository extends AbstractRepository
     {
@@ -60,20 +58,4 @@
            else return false;
        }
 
-       public static function GenerateLibraryUnitHTML(string $title): string
-       {
-            return '
-           <div class="libraryUnit">
-                <div class="imageSpace">
-                    <div class="backgroundLock">
-                        <div class="boutonLock">
-                            <div id="img"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="name-library">
-                    <span class="innerName">' . $title . '</span>
-                </div>
-            </div>';
-       }
     }

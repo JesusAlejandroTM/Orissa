@@ -139,6 +139,13 @@
     background-image: url("../../img/banner-image.png");
     border-radius: 8px;
 }
+
+.libraryLink {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
 .backgroundLock{
     position: relative;
     width: 34px;

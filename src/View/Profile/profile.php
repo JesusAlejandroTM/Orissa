@@ -1,6 +1,6 @@
 <?php
 
-    use App\Code\Model\Repository\LibraryRepository;
+    use App\Code\Lib\HTMLGenerator;
 
     include_once 'userData.php';
 
@@ -55,7 +55,8 @@
                     foreach ($libraries as $library)
                     {
                         $libraryTitle = $library->getTitle();
-                        echo LibraryRepository::GenerateLibraryUnitHTML($libraryTitle);
+                        $libraryId = $library->getId();
+                        echo HTMLGenerator::GenerateLibraryUnitHTML($libraryId, $libraryTitle);
                     }
                 }
             ?>
