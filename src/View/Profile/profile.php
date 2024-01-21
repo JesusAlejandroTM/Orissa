@@ -1,4 +1,7 @@
 <?php
+
+    use App\Code\Model\Repository\LibraryRepository;
+
     include_once 'userData.php';
 
     $userId = $GLOBALS['userId'];
@@ -46,18 +49,16 @@
             <a href="" class="nav-link nav-Creation">Creation de naturotheques</a>
         </div>
         <div class="list-grid">
-            <div class="libraryUnit">
-                <div class="imageSpace">
-                    <div class="backgroundLock">
-                        <div class="boutonLock">
-                            <div id="img"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="name-library">
-                    <span class="innerName">12345678 9012345 6789012 345678 9012345 67890123 4567890</span>
-                </div>
-            </div>
+            <?php
+                if (isset($libraries) && !empty($libraries))
+                {
+                    foreach ($libraries as $library)
+                    {
+                        $libraryTitle = $library->getTitle();
+                        echo LibraryRepository::GenerateLibraryUnitHTML($libraryTitle);
+                    }
+                }
+            ?>
         </div>
     </div>
 </main>

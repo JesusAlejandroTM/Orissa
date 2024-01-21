@@ -7,6 +7,7 @@
     use App\Code\Lib\PasswordManager;
     use App\Code\Lib\UserSession;
     use App\Code\Model\DataObject\User;
+    use App\Code\Model\Repository\LibraryRepository;
     use App\Code\Model\Repository\UserRepository;
     use Exception;
     use http\Header;
@@ -17,8 +18,8 @@
             'Profile' => 'view',
             'Profile/Disconnect' => 'disconnectUser',
             'Profile/Settings' => 'viewSettings',
-            'Profile/UpdateInfo' => 'updateUser',
             'Profile/Password' => 'viewPasswordSettings',
+            'Profile/UpdateInfo' => 'updateUser',
             'Profile/UpdatePassword' => 'updatePassword',
             'Profile/DeleteAccount' => 'deleteUserAccount',
         ];
@@ -39,10 +40,10 @@
         public function view(): void
         {
             $this->LoadUserData();
-            $string = $this->getBodyFolder();
-            $title = explode('/', $string)[1];
-            $phpFile = '/' . strtolower($title) . '.php';
-            $this->displayView($title, $phpFile,  ['profile/profile.css']);
+            $userId = UserSession::getLoggedId();
+            $libraries = LibraryRepository::getUserLibraries($userId);
+            $this->displayView('Profile', '/profile.php',
+                ['profile/profile.css'], ["libraries" => $libraries]);
         }
 
         public function disconnectUser() : void

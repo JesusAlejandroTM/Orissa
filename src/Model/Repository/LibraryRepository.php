@@ -38,10 +38,10 @@
             return new Library(null, $id_user, $title, $description);
         }
 
-       public static function getUserLibraries($id) : array|bool
+       public static function getUserLibraries(int $userId) : array|bool
        {
            $sql = 'SELECT * FROM library WHERE id_creator = :idTag;';
-           $results = self::SingleDataGetter($id, $sql);
+           $results = self::SingleDataGetter($userId, $sql);
            if (is_array($results)) {
                foreach ($results as $key => $data) {
                    $results[$key] = (new LibraryRepository)->Build($data);
@@ -58,5 +58,22 @@
                return DatabaseConnection::getPdo()->lastInsertId();
            }
            else return false;
+       }
+
+       public static function GenerateLibraryUnitHTML(string $title): string
+       {
+            return '
+           <div class="libraryUnit">
+                <div class="imageSpace">
+                    <div class="backgroundLock">
+                        <div class="boutonLock">
+                            <div id="img"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="name-library">
+                    <span class="innerName">' . $title . '</span>
+                </div>
+            </div>';
        }
     }

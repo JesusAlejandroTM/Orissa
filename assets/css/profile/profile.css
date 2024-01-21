@@ -184,7 +184,7 @@
     margin-top: 5%;
     position: relative;
     width: 42%;
-    height: 10%;
+    height: 5vh;
 }
 
 .logout-button {
@@ -213,7 +213,7 @@
     margin-left: 10%;
     position: relative;
     width: 42%;
-    height: 16%;
+    height: 8vh;
     margin-bottom: 5%;
 }
 .delete-button {
