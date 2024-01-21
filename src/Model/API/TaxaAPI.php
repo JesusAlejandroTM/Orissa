@@ -111,7 +111,7 @@
                 // Get date from API request
 
                 $data = self::ExecuteAPIRequest($apiUrl);
-
+                if (!$data) return false;
                 return self::Build($data);
             } catch (Exception) {
                 return false;
@@ -217,6 +217,37 @@
                 return self::ExecuteAPIRequest($apiUrl);
             } catch (Exception) {
                 return false;
+            }
+        }
+
+        public static function GetTaxaMedia(int $idTaxa) : array|null
+        {
+            try {
+                $apiUrl = APIConnection::GetApiURL() . "/taxa/$idTaxa/media";
+                return self::ExecuteAPIRequest($apiUrl);
+            } catch (Exception) {
+                return null;
+            }
+        }
+
+        public static function GetTaxaImage(int $idTaxa) : mixed
+        {
+            try {
+                $taxaMedia = self::GetTaxaMedia($idTaxa);
+                return $taxaMedia['_embedded']['media'][0]['_links']['file']['href'] ?? null;
+            } catch (Exception) {
+                return null;
+            }
+        }
+
+        public static function GetTaxaStatus(int $idTaxa) : array|null
+        {
+            try {
+                $apiUrl = APIConnection::GetApiURL() . "/taxa/$idTaxa/status/columns";
+                $result = self::ExecuteAPIRequest($apiUrl);
+                return $result['_embedded']['status'][0] ?? null;
+            } catch (Exception) {
+                return null;
             }
         }
     }

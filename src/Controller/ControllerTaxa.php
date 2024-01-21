@@ -27,15 +27,19 @@
          */
         protected static string $bodyFolder = '/Taxa';
 
-        protected function viewTaxa(int $taxaIdParameter): void
+        protected function viewTaxa(int $idTaxa): void
         {
             try {
-                $taxa = TaxaAPI::SelectWithID($taxaIdParameter);
+                $taxa = TaxaAPI::SelectWithID($idTaxa);
+                ExceptionHandler::checkIsTrue($taxa, 203);
+                $taxaImage = TaxaAPI::GetTaxaImage($idTaxa);
+                $taxaStatus = TaxaAPI::GetTaxaStatus($idTaxa);
                 $this->displayView("Taxas found", "/selectTaxa.php",
-                    ["nan.css"], ["taxa" => $taxa]);
+                    ["taxa/taxa.css"], ["taxa" => $taxa, "taxaImage" => $taxaImage, "taxaStatus" => $taxaStatus]);
             } catch (Exception $e) {
-                FlashMessages::add("warning", "Ce taxon n'existe pas");
-                header("Location: /Orissa/Taxa");
+                $errorMessage = ExceptionHandler::getErrorMessage($e->getCode());
+                FlashMessages::add("danger", $errorMessage);
+                header("Location: /Orissa/Search");
                 exit();
             }
         }
