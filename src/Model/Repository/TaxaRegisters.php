@@ -87,11 +87,10 @@
          * Get all registered taxas of user from database
          * @return array|null array of taxa ids or null if none
          */
-        public static function SelectRegisteredTaxas() : array|null
+        public static function SelectRegisteredTaxas($userId) : array|null
         {
-            $id = UserSession::getLoggedId();
             $sql = "SELECT id_registered FROM register WHERE id_registerer = :idUserTag";
-            $values = ["idUserTag" => $id];
+            $values = ["idUserTag" => $userId];
 
             try {
                 $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);

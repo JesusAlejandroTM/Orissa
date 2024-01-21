@@ -50,3 +50,13 @@ async function processApiTaxaData(taxon, taxaCaption, taxaHref) {
     taxaHref.src = taxaImg;
     console.log(taxaName);
 }
+
+async function processApiRegisteredTaxaData(taxon, taxaCaption, taxaImageSpace) {
+    const [taxaName, taxaImg] = await Promise.all([
+        taxon['frenchVernacularName'],
+        processImage(taxon['_links']['media'].href)
+    ]);
+
+    taxaCaption.textContent = taxaName;
+    taxaImageSpace.style.backgroundImage = `url('${taxaImg}')`;
+}

@@ -8,6 +8,7 @@
     use App\Code\Lib\UserSession;
     use App\Code\Model\DataObject\User;
     use App\Code\Model\Repository\LibraryRepository;
+    use App\Code\Model\Repository\TaxaRegisters;
     use App\Code\Model\Repository\UserRepository;
     use Exception;
     use http\Header;
@@ -45,6 +46,16 @@
             $libraries = LibraryRepository::getUserLibraries($userId);
             $this->displayView('Profile', '/profile.php',
                 ['profile/profile.css'], ["libraries" => $libraries]);
+        }
+
+        public function viewRegisteredTaxas() : void
+        {
+            $this->LoadUserData();
+            $userId = UserSession::getLoggedId();
+            $taxas = TaxaRegisters::SelectRegisteredTaxas($userId);
+            $this->displayView('Profile', '/profile.php',
+                ['profile/profile.css'], ["taxas" => $taxas],
+                ['registersDisplay.js', 'apiDataProcesses.js']);
         }
 
         public function disconnectUser() : void

@@ -23,7 +23,7 @@
         {
             return '
            <div class="libraryUnit">
-                <div class="imageSpace">
+                <div class="imageSpace" id="imageSpace">
                     <a href="Library/' . $libraryId . '" class="libraryLink">
                     <div class="backgroundLock">
                         <div class="boutonLock">
@@ -34,6 +34,20 @@
                 </div>
                 <div class="name-library">
                     <span class="innerName">' . $libraryTitle . '</span>
+                </div>
+            </div>';
+        }
+
+        public static function GenerateRegisteredProfileHTML(int $taxaId): string
+        {
+            return '
+           <div class="libraryUnit">
+                <div class="imageSpace" id="imageSpace">
+                    <a id="' . $taxaId . '" href="Taxa/' . $taxaId . '" class="libraryLink">
+                    </a>
+                </div>
+                <div class="name-library" id="name-library">
+                    <span class="innerName"></span>
                 </div>
             </div>';
         }

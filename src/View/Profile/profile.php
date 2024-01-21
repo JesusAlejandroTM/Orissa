@@ -44,11 +44,11 @@
     </div>
     <div class="content-section">
         <div class="nav-barre">
-            <a href="" class="nav-link nav-Naturothèques">Mes naturotheques</a>
-            <a href="" class="nav-link nav-Register">Register</a>
+            <a href="Profile" class="nav-link nav-Naturothèques">Mes naturotheques</a>
+            <a href="Profile/Registers" class="nav-link nav-Register">Register</a>
             <a href="Library/CreateLibrary" class="nav-link nav-Creation">Creation de naturotheques</a>
         </div>
-        <div class="list-grid">
+        <div class="list-grid" id="list-grid">
             <?php
                 if (isset($libraries) && !empty($libraries))
                 {
@@ -57,6 +57,14 @@
                         $libraryTitle = $library->getTitle();
                         $libraryId = $library->getId();
                         echo HTMLGenerator::GenerateLibraryUnitHTML($libraryId, $libraryTitle);
+                    }
+                }
+                else if (!empty($taxas))
+                {
+                    foreach ($taxas as $taxa)
+                    {
+                        $taxaId = $taxa[0];
+                        echo HTMLGenerator::GenerateRegisteredProfileHTML($taxaId);
                     }
                 }
             ?>

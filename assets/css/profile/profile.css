@@ -132,12 +132,13 @@
     justify-content: center;
 }
 
-.imageSpace{
+#imageSpace{
     position: relative;
     width: 100%;
     height: 151px;
     background-image: url("../../img/banner-image.png");
     border-radius: 8px;
+    background-size: cover;
 }
 
 .libraryLink {
