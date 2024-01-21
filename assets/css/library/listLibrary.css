@@ -1,0 +1,46 @@
+.libraryTitle {
+    margin-top: 2vh;
+    text-align: center;
+}
+
+#resultats {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#resultats ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 0;
+    width: 80%;
+}
+
+#resultats li {
+    list-style: none;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    background-color: #02A973;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+#resultats li img {
+    width: 100%;
+    height: 225px;
+    border-radius: 0 0 10% 10%;
+    object-fit: cover;
+}
+
+#resultats li .caption {
+    text-align: center;
+    background-color: #02A973;
+    border-radius: 0 0 10px 10px;
+    margin-top: -5%;
+}

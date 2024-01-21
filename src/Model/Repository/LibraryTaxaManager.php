@@ -30,16 +30,16 @@
             return true;
         }
 
-        public static function deleteTaxaFromLib(int $idLib, int $idUser, int $idTaxa): bool|string
+        public static function deleteTaxaFromLib(int $idLib, int $idTaxa): bool|string
         {
-            $sql = "DELETE FROM librarylist WHERE id_lib = :idLibTag AND id_user = :idUserTag AND id_taxa = :idTaxaTag";
-            $values = ["idLibTag" => $idLib, "idUserTag" => $idUser, "idTaxaTag" => $idTaxa];
+            $sql = "DELETE FROM librarylist WHERE id_lib = :idLibTag AND id_taxa = :idTaxaTag";
+            $values = ["idLibTag" => $idLib, "idTaxaTag" => $idTaxa];
             try {
                 $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);
                 $pdoStatement->execute($values);
 
                 if ($pdoStatement->rowCount() < 1) {
-                    throw new Exception("Erreur suppression $idTaxa dans $idLib par $idUser");
+                    throw new Exception("Erreur suppression $idTaxa dans $idLib");
                 }
             } catch (PDOException|Exception $e) {
                 return $e->getMessage();
@@ -49,10 +49,10 @@
             return true;
         }
 
-        public static function selectAllTaxaFromUserLib(int $idLib, int $idUser): array|string
+        public static function selectAllTaxaFromUserLib(int $idLib): array|string
         {
-            $sql = "SELECT id_taxa FROM librarylist WHERE id_lib = :idLibTag AND id_user = :idUserTag";
-            $values = ["idLibTag" => $idLib, "idUserTag" => $idUser];
+            $sql = "SELECT id_taxa FROM librarylist WHERE id_lib = :idLibTag";
+            $values = ["idLibTag" => $idLib];
 
             try {
                 $pdoStatement = DatabaseConnection::getPdo()->prepare($sql);

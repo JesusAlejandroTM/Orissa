@@ -47,8 +47,11 @@
                 $libraryCreatorId =  $library->getIdUser();
                 ExceptionHandler::checkIsTrue($userId == $libraryCreatorId, 608);
 
+                // Select taxas inside the library
+                $taxas = LibraryTaxaManager::selectAllTaxaFromUserLib($idLibrary);
+
                 $this->displayView($library->getTitle(), "/selectLibrary.php",
-                    ["nan.css"], ["library" => $library]);
+                    ["library/listLibrary.css"], ["library" => $library, "taxas" => $taxas]);
             } catch (Exception $e) {
                 $errorMessage = ExceptionHandler::getErrorMessage($e->getCode());
                 FlashMessages::add("danger", $errorMessage);
