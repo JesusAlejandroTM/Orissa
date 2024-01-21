@@ -16,6 +16,7 @@
     {
         protected static array $routesMap = [
             'Profile' => 'view',
+            'Profile/Registers' => 'viewRegisteredTaxas',
             'Profile/Disconnect' => 'disconnectUser',
             'Profile/Settings' => 'viewSettings',
             'Profile/Password' => 'viewPasswordSettings',

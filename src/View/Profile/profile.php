@@ -46,7 +46,7 @@
         <div class="nav-barre">
             <a href="" class="nav-link nav-Naturothèques">Mes naturotheques</a>
             <a href="" class="nav-link nav-Register">Register</a>
-            <a href="" class="nav-link nav-Creation">Creation de naturotheques</a>
+            <a href="Library/CreateLibrary" class="nav-link nav-Creation">Creation de naturotheques</a>
         </div>
         <div class="list-grid">
             <?php

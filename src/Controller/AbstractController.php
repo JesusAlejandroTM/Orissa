@@ -169,7 +169,7 @@
         {
             $username = UserSession::isConnected();
             if (!$username) {
-                FlashMessages::add("warning", "You must be logged in to access this page");
+                FlashMessages::add("warning", "Vous devez être connecté pour accéder à cette page");
                 header("Location: /Orissa/Home");
                 return false;
             }

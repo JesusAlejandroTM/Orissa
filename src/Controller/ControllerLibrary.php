@@ -5,6 +5,7 @@
     use App\Code\Config\ExceptionHandler;
     use App\Code\Lib\FlashMessages;
     use App\Code\Lib\UserSession;
+    use App\Code\Model\DataObject\Library;
     use App\Code\Model\Repository\AbstractRepository;
     use App\Code\Model\Repository\DatabaseConnection;
     use App\Code\Model\Repository\LibraryRepository;
@@ -18,6 +19,7 @@
          */
         protected static array $routesMap = [
             'Library' => 'view',
+            'Library/:param:' => 'viewLibrary',
             'Library/CreateLibrary' => 'displayCreateLibrary',
             'Library/LibraryCreation' => 'createLibrary',
         ];
@@ -31,6 +33,28 @@
         {
             if (UserSession::isConnected()) $this->displayView("Library", "/library.php",  []);
             else $this->displayView("Library", "/loginError.html",  []);
+        }
+
+        protected function viewLibrary(int $idLibrary): void
+        {
+            try {
+                $this->CheckUserAccess();
+                // Get the libray from the URL
+                $library = (new LibraryRepository())->Select($idLibrary);
+
+                // Check that the user is owner of the library
+                $userId = UserSession::getLoggedId();
+                $libraryCreatorId =  $library->getIdUser();
+                ExceptionHandler::checkIsTrue($userId == $libraryCreatorId, 608);
+
+                $this->displayView($library->getTitle(), "/selectLibrary.php",
+                    ["nan.css"], ["library" => $library]);
+            } catch (Exception $e) {
+                $errorMessage = ExceptionHandler::getErrorMessage($e->getCode());
+                FlashMessages::add("danger", $errorMessage);
+                header("Location: /Orissa/Taxa");
+                exit();
+            }
         }
 
         protected function displayCreateLibrary(): void
