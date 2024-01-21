@@ -21,7 +21,7 @@ function processImage(apiUrl) {
 }
 
 // Nettoyer les données obtenus par l'API
-async function processApiData(data) {
+async function processApiSearchData(data) {
     data = data['_embedded']['taxa'];
     var result = [];
 
@@ -37,4 +37,16 @@ async function processApiData(data) {
     });
 
     return Promise.all(promises).then(() => result);
+}
+
+// Nettoyer les données obtenus par l'API à partir de la base de données
+async function processApiTaxaData(taxon, taxaCaption, taxaHref) {
+    const [taxaName, taxaImg] = await Promise.all([
+        taxon['frenchVernacularName'],
+        processImage(taxon['_links']['media'].href)
+    ]);
+
+    taxaCaption.textContent = taxaName;
+    taxaHref.src = taxaImg;
+    console.log(taxaName);
 }

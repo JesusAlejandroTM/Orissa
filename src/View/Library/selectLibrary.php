@@ -8,6 +8,7 @@
         exit();
     }
     ?>
+<div class="loader--hidden"></div>
 <main class="libaryContainer">
     <h2 class="libraryTitle"><?php echo $library->getTitle()?></h2>
     <div id="resultats">

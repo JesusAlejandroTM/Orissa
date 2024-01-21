@@ -51,7 +51,8 @@
                 $taxas = LibraryTaxaManager::selectAllTaxaFromUserLib($idLibrary);
 
                 $this->displayView($library->getTitle(), "/selectLibrary.php",
-                    ["library/listLibrary.css"], ["library" => $library, "taxas" => $taxas]);
+                    ["library/listLibrary.css"], ["library" => $library, "taxas" => $taxas],
+                    ['libraryDisplay.js', 'apiDataProcesses.js']);
             } catch (Exception $e) {
                 $errorMessage = ExceptionHandler::getErrorMessage($e->getCode());
                 FlashMessages::add("danger", $errorMessage);

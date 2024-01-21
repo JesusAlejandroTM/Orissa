@@ -9,12 +9,12 @@
             return '
             <li>
                 <div class="image">
-                    <a id="' . $taxaId .'" href="/Orissa/Taxa/' . $taxaId . '" class="imageLink">
-                        <img class="taxaHref" src="BLANK" alt="image">
+                    <a id="' . $taxaId .'" href="/Orissa/Taxa/' . $taxaId . '" class="taxaLink">
+                        <img class="taxaHref" src="Orissa/../assets/img/taxaUnavailable.png" alt="image">
                     </a>
                 </div>
                 <div class="caption">
-                    <p class="taxaName">BLANK</p>
+                    <p class="taxaName"></p>
                 </div>
             </li>';
         }

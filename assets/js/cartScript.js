@@ -60,7 +60,7 @@ function apiRequest() {
                 throw new Error('No taxas found')
             } else {
                 // Process the non-empty 'data'
-                return processApiData(data);
+                return processApiSearchData(data);
             }
         })
         .then(result => {
