@@ -2,11 +2,6 @@
 <html lang="fr">
 <?php
     // Require the head of HTML
-    use App\Code\Config\ExceptionHandler;
-    use App\Code\Model\DataObject\User;
-    use App\Code\Model\Repository\LibraryTaxaManager;
-    use App\Code\Model\Repository\UserRepository;
-
     require_once(__DIR__ . '/../../assets/html/head.php');?>
 
 <body>
