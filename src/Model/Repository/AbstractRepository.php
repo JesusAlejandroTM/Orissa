@@ -19,7 +19,11 @@
 
         protected abstract function GetColumnsNames(): array;
 
-        // Get SQL Columns of corresponding repository, set tagmode to true if you want the tag version for inputs
+        /**
+         * Get SQL Columns of corresponding repository
+         * @param bool $tagMode set to true if you want the tag version for inputs
+         * @return string the SQL Columns of corresponding repository
+         */
         public function GetSQLColumns(bool $tagMode = false) : string
         {
             $arrayColonnes = $this->GetColumnsNames();
@@ -37,8 +41,11 @@
             }
         }
 
-        // Get SQL Columns of corresponding repository without primaryKey,
-        // set tagmode to true if you want the tag version for inputs
+        /**
+         * Get SQL Columns of corresponding repository without the primary key
+         * @param bool $tagMode set to true if you want the tag version for inputs
+         * @return string the SQL Columns of corresponding repository without the primary key
+         */
         public function GetSQLColumnsWithoutPrimary(bool $tagMode = false) : string
         {
             $arrayColonnes = $this->GetColumnsNames();
@@ -58,6 +65,10 @@
             }
         }
 
+        /**
+         * Get SQL Tags of corresponding repository
+         * @return string the SQL Tags of corresponding repository
+         */
         private function GetSQLTags() : string
         {
             $arrayColonnes = $this->GetColumnsNames();
@@ -68,6 +79,10 @@
             return rtrim($setColonnes, ', ');
         }
 
+        /**
+         * Get SQL Tags of corresponding repository without the primary key
+         * @return string the SQL Tags of corresponding repository without the primary key
+         */
         private function GetSQLTagsWithoutPrimary() : string
         {
             $arrayColonnes = $this->GetColumnsNames();
@@ -79,8 +94,10 @@
             return rtrim($setColonnes, ', ');
         }
 
+
         /**
-         * @return AbstractDataObject[]
+         * Select all the data from the corresponding repository
+         * @return array an array of AbstractDataObject
          */
         public function SelectAll(): array
         {
@@ -94,6 +111,11 @@
             return $result;
         }
 
+        /**
+         * Select one data from the corresponding repository with its primary key
+         * @param string $identifier the primary key of the data to select
+         * @return AbstractDataObject|string the data selected or an error message
+         */
         public function Select(string $identifier): AbstractDataObject|string
         {
             try {
@@ -113,6 +135,12 @@
             }
         }
 
+
+        /**
+         * Delete one data from the corresponding repository with its primary key
+         * @param string $identifier the primary key of the data to delete
+         * @return bool|string true if the data has been deleted, false otherwise
+         */
         public function Delete(string $identifier): bool|string
         {
             try {
@@ -131,6 +159,11 @@
             }
         }
 
+        /**
+         * Update one data from the corresponding repository with its primary key
+         * @param AbstractDataObject $objet the data to update with its primary key
+         * @return bool|string true if the data has been updated, false otherwise
+         */
         public function Update(AbstractDataObject $objet): bool|string
         {
             try {

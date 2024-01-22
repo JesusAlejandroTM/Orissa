@@ -11,7 +11,7 @@
     {
         /**
          * Register a taxa to a user to the database through their IDs
-         * @param int $taxaId
+         * @param int $taxaId the id of the taxa
          * @return void
          */
         public static function RegisterTaxa(int $taxaId): void
@@ -35,6 +35,11 @@
             }
         }
 
+        /**
+         * Unregister a taxa from a user from the database through their IDs
+         * @param int $taxaId the id of the taxa
+         * @return void
+         */
         public static function UnregisterTaxa(int $taxaId) : void
         {
             $id = UserSession::getLoggedId();
@@ -85,7 +90,7 @@
 
         /**
          * Get all registered taxas of user from database
-         * @return array|null array of taxa ids or null if none
+         * @return array|null array of taxa ids, null if otherwise
          */
         public static function SelectRegisteredTaxas($userId) : array|null
         {

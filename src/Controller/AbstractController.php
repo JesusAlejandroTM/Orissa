@@ -165,6 +165,10 @@
                 ["errorMessage" => $errorMessage]);
         }
 
+        /**
+         * Check if the user is connected, if not redirect him to the home page
+         * @return bool
+         */
         protected function CheckUserAccess() : bool
         {
             $username = UserSession::isConnected();
@@ -176,6 +180,10 @@
             return true;
         }
 
+        /**
+         * Check if the user is not connected, if he is redirected him to the home page
+         * @return void
+         */
         protected function CheckNonUserAccess() : void
         {
             $username = UserSession::isConnected();

@@ -4,12 +4,17 @@
 
     use App\Code\Model\API\BiogeographicStatusIdentifier;
 
+    /**
+     * Class HTMLGenerator
+     * Generates HTML strings for displaying data in the views
+     * @package App\Code\Lib
+     */
     class HTMLGenerator
     {
         /**
-         * Generates a HTML unit for a taxa
-         * @param int $taxaId
-         * @return string
+         * Generates an HTML unit for a taxa in the library view
+         * @param int $taxaId the id of the taxa
+         * @return string the HTML unit
          */
         public static function GenerateTaxaUnitHTML(int $taxaId) : string
         {
@@ -26,6 +31,12 @@
             </li>';
         }
 
+        /**
+         * Generates an HTML unit for a library in the list of libraries view
+         * @param int $libraryId the id of the library
+         * @param string $libraryTitle the title of the library
+         * @return string the HTML unit
+         */
         public static function GenerateLibraryUnitHTML(int $libraryId, string $libraryTitle): string
         {
             return '
@@ -44,6 +55,11 @@
             </div>';
         }
 
+        /**
+         * Generates an HTML unit for a registered taxa in the profile view
+         * @param int $taxaId the id of the taxa
+         * @return string the HTML unit
+         */
         public static function GenerateRegisteredProfileHTML(int $taxaId): string
         {
             return '
@@ -58,7 +74,16 @@
             </div>';
         }
 
-        public static function GenerateInteractionTableRow(int $sourceId, string $sourceName,
+
+        /**
+         * Generates an HTML unit for an interaction in the profile view
+         * @param int $sourceId the id of the source taxa
+         * @param string $sourceName the name of the source taxa
+         * @param string $relationId the id of the relation
+         * @param string $relationName the name of the relation
+         * @return string the HTML unit
+         */
+        public static function GenerateInteractionTableRow(int    $sourceId, string $sourceName,
                                                            string $relationId, string $relationName) : string
         {
             return "
@@ -71,6 +96,11 @@
             ";
         }
 
+        /**
+         * Generates an interaction table for the taxa view using GenerateInteractionTableRow
+         * @param array $interactions the interactions to display
+         * @return string the HTML table
+         */
         public static function GenerateInteractionTable(array $interactions) : string
         {
             $tableRowsHTML = '';
@@ -104,7 +134,15 @@
             </div>';
         }
 
-        public static function GenerateRedListHTML($world, $europe, $national, $local): string
+        /**
+         * Generates an HTML unit for a red list status in the taxa view
+         * @param string $world the world status
+         * @param string $europe the european status
+         * @param string $national the national status
+         * @param string $local the local status
+         * @return string
+         */
+        public static function GenerateRedListHTML(string $world, string $europe, string $national, string $local): string
         {
             return "
                 <h3>Status listes rouges </h3>
@@ -115,6 +153,10 @@
             ";
         }
 
+        /**
+         * Generates an HTML unit for the header logo in the header view depending on the user session
+         * @return string the HTML unit
+         */
         public static function GenerateHeaderLogo(): string
         {
             if (UserSession::isConnected()) {
@@ -133,6 +175,13 @@
             </a>';
         }
 
+
+        /**
+         * Generates an HTML unit for the biogeo status in the taxa view
+         * Multiple biogeo status can be displayed at the same time
+         * @param string $statusIds the ids of the biogeo status to display, can be separated by commas (ex: 'A,E')
+         * @return string
+         */
         public static function GenerateBiogeographicStatusHTML(string $statusIds) : string
         {
             $html = "<h3>Status biogéographique</h3>";

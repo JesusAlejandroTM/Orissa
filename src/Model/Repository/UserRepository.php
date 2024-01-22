@@ -4,7 +4,6 @@
 
     use App\Code\Lib\FlashMessages;
     use App\Code\Lib\PasswordManager;
-    use App\Code\Model\DataObject\AbstractDataObject;
     use App\Code\Model\DataObject\User;
     use InvalidArgumentException;
     use PDO;
@@ -22,7 +21,7 @@
         }
 
 
-        protected function Build(array $arrayData): AbstractDataObject|bool
+        protected function Build(array $arrayData): User|bool
         {
             if (empty($arrayData)) return false;
             else return new User(...array_values($arrayData));
