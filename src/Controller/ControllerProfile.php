@@ -69,7 +69,8 @@
         public function viewSettings() : void
         {
             $this->LoadUserData();
-            $this->displayView("Profile Settings", "/profileSettings.php", []);
+            $this->displayView("Profile Settings", "/profileSettings.php",
+                ["profile/profileEdit.css"]);
         }
 
         protected function deleteUserAccount(): void
@@ -140,7 +141,8 @@
         public function viewPasswordSettings(): void
         {
             $this->LoadUserData();
-            $this->displayView("Profile Settings", "/passwordSettings.php", []);
+            $this->displayView("Profile Settings", "/passwordSettings.php",
+                ["profile/profileEdit.css"]);
         }
 
         public function updatePassword() : void

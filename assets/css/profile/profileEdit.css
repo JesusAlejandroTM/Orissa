@@ -1,0 +1,104 @@
+.setting{
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 20px 244px 50px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    clear: both;
+    padding: 20px;
+    background-color: #eee;
+    border-radius: 8px;
+    color: #333;
+    max-width: 95%;
+}
+
+.form h1{
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 40px;
+}
+
+.setting a{
+    background-color: #81AE64;
+    border-radius: 30px;
+    color: #FFFFFF;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px 20px; 
+}
+
+form .textbox{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+.textbox input{
+    width: 50%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.textbox label {
+    position: relative;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+ 
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.text-box span::before{
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #81AE64;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.textbox input:focus ~ label,
+.textbox input:valid ~ label{
+    top: -5px;
+    color: #81AE64;
+    font-size: 12px;
+}
+
+.textbox input:focus ~ span::before,
+.textbox input:valid ~ span::before{
+    width: 100%;
+}
+
+/*button "envoyer" */
+
+input[type="submit"]{
+   
+    border: 1px solid;
+    color: #e9f4fb;
+    cursor: pointer;
+    border-radius: 25px;
+    font-size: 18px;
+    width: 100%;
+    height: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    background: #2691d9;
+}
+
+input[type="submit"]:hover{
+   border-color: #2691d9;
+   transition:.5s ;
+
+}
