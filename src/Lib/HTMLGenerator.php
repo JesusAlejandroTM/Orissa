@@ -145,6 +145,7 @@
             for ($i = 0; $i < strlen($statusIds); $i++)
             {
                 $char = $statusIds[$i];
+                if ($char == ',') continue;
                 $statusName = BiogeographicStatusIdentifier::GetBiogeographicStatusDescription($char);
                 $html .= "<p>$statusName</p>";
             }

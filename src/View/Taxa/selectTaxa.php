@@ -2,7 +2,6 @@
 
     use App\Code\Lib\HTMLGenerator;
     use App\Code\Lib\UserSession;
-    use App\Code\Model\API\BiogeographicStatusIdentifier;
     use App\Code\Model\API\RedListIdentifier;
     use App\Code\Model\API\TaxaAPI;
     use App\Code\Model\API\TaxaHabitatIdentifier;
@@ -10,7 +9,6 @@
 
     if (isset($taxa))
     {
-        /** @var \App\Code\Model\DataObject\Taxa $taxa */
         $taxaId = $taxa->getId();
         $taxaAuthority = $taxa->getAuthority();
         $taxaParentId = $taxa->getParentId();
