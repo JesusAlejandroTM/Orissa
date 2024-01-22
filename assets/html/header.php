@@ -12,7 +12,7 @@
             </div>
 
             <ul class="nav-menu">
-                <li><a href="Library" class="nav-links">LIBRARY</a></li>
+                <li><a href="Library/CreateLibrary" class="nav-links">LIBRARY</a></li>
                 <li><a href="Search" class="nav-links">TAXON</a></li>
                 <li><a href="" class="nav-links">DISCOVER</a></li>
                 <li><a href="Home" class="nav-links">ABOUT</a></li>
@@ -67,6 +67,4 @@
     
 
     </script>
-    </div>
-    </div>
 </header>

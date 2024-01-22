@@ -42,11 +42,11 @@
 
         public static function GetNameHabitat($idHabitat): string
         {
-            return self::HabitatData[$idHabitat]['name'];
+            return self::HabitatData[$idHabitat]['name'] ?? "Inconnue";
         }
 
         public static function GetDescriptionHabitat($idHabitat): string
         {
-            return self::HabitatData[$idHabitat]['desc'];
+            return self::HabitatData[$idHabitat]['desc'] ?? "Inconnue";
         }
     }

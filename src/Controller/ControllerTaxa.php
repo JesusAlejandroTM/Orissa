@@ -10,7 +10,7 @@
 
     class ControllerTaxa extends AbstractController
     {
-        /**Home Controller's definition of routes Map
+        /**Taxa Controller's definition of routes Map
          * @var array|string[]
          */
         protected static array $routesMap = [
@@ -22,7 +22,7 @@
             'Taxa/:param:/unregister' => 'unregisterSelectedTaxa',
         ];
 
-        /**Home Controller's definition of Home body's folder directory
+        /**Taxa Controller's definition of Home body's folder directory
          * @return string
          */
         protected static string $bodyFolder = '/Taxa';
@@ -34,9 +34,10 @@
                 ExceptionHandler::checkIsTrue($taxa, 203);
                 $taxaImage = TaxaAPI::GetTaxaImage($idTaxa);
                 $taxaStatus = TaxaAPI::GetTaxaStatus($idTaxa);
-                $this->displayView("Taxas found", "/selectTaxa.php",
-                    ["taxa/taxa.css"],
-                    ["taxa" => $taxa, "taxaImage" => $taxaImage, "taxaStatus" => $taxaStatus]);
+                $interactions = TaxaAPI::GetTaxaInteractions($idTaxa);
+                $this->displayView("Taxas found", "/selectTaxa.php", ["taxa/taxa.css"],
+                    ["taxa" => $taxa, "taxaImage" => $taxaImage,
+                        "taxaStatus" => $taxaStatus, "interactions" => $interactions]);
             } catch (Exception $e) {
                 $errorMessage = ExceptionHandler::getErrorMessage($e->getCode());
                 FlashMessages::add("danger", $errorMessage);

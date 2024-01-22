@@ -51,4 +51,61 @@
                 </div>
             </div>';
         }
+
+        public static function GenerateInteractionTableRow(int $sourceId, string $sourceName,
+                                                           string $relationId, string $relationName) : string
+        {
+            return "
+            <tr>
+                <td>$sourceId</td>
+                <td>$sourceName</td>
+                <td>$relationId</td>
+                <td>$relationName</td>
+            </tr>
+            ";
+        }
+
+        public static function GenerateInteractionTable(array $interactions) : string
+        {
+            $tableRowsHTML = '';
+            foreach ($interactions as $row) {
+                $sourceTaxaId = $row['taxon']['id'];
+                $sourceTaxaName = $row['taxon']['fullNameHtml'];
+                $relationId = $row['relationId'];
+                $relationName = $row['relationName'];
+                $tableRowsHTML .= self::GenerateInteractionTableRow($sourceTaxaId, $sourceTaxaName,
+                    $relationId, $relationName);
+            }
+            return
+            '
+            <div class="table-section">
+                <h3>Relations</h3>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>ID taxon</th>
+                        <th>Nom taxon</th>
+                        <th>ID de la relation</th>
+                        <th>Nom de la relation</th>
+                    </tr>
+                    </thead>
+                    <tbody>'
+                    .
+                    $tableRowsHTML
+                    .
+                    '</tbody>
+                </table>
+            </div>';
+        }
+
+        public static function GenerateRedListHTML($world, $europe, $national, $local): string
+        {
+            return "
+                <h3>Status listes rouges </h3>
+                <p>Liste rouge international : $world</p>
+                <p>Liste rouge européenne : $europe</p>
+                <p>Liste rouge nationale : $national</p>
+                <p>Liste rouge locale : $local</p>   
+            ";
+        }
     }

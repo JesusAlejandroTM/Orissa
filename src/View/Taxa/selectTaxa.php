@@ -1,7 +1,10 @@
 <?php
 
+    use App\Code\Lib\HTMLGenerator;
+    use App\Code\Lib\UserSession;
     use App\Code\Model\API\RedListIdentifier;
     use App\Code\Model\API\TaxaHabitatIdentifier;
+    use App\Code\Model\Repository\TaxaRegisters;
 
     if (isset($taxa))
     {
@@ -30,6 +33,21 @@
         $nationalRedList = RedListIdentifier::GetAcronymDescription($taxaStatus['nationalRedList']);
         $localRedList = RedListIdentifier::GetAcronymDescription($taxaStatus['localRedList']);
     }
+    if (isset($interactions) && is_array($interactions))
+    {
+        // Clean interactions data (duplicates happen)
+        $interactions = $interactions['_embedded']['interactions'];
+        $interactionResults = [];
+        $existingIds = [];
+        foreach ($interactions as $row) {
+            $sourceTaxaId = $row['taxon']['id'];
+            if (in_array($sourceTaxaId, $existingIds)) {
+                continue;
+            }
+            $existingIds[] = $sourceTaxaId;
+            $interactionResults[] = $row;
+        }
+    }
     ?>
 
 <div class="html">
@@ -55,12 +73,13 @@
         <!-- colonne droite -->
         <div class="right-column">
             <div class="section">
-                <h3>Status listes rouges </h3>
-                <p>Liste rouge international : <?php echo $worldRedListStatus ?></p>
-                <p>Liste rouge européenne : <?php echo $europeanRedListStatus ?></p>
-                <p>Liste rouge nationale : <?php echo $nationalRedList ?></p>
-                <p>Liste rouge locale : <?php echo $localRedList ?></p>
-
+                <?php
+                    if (isset($taxaStatus))
+                    {
+                        echo HTMLGenerator::GenerateRedListHTML($worldRedListStatus, $europeanRedListStatus,
+                            $nationalRedList, $localRedList);
+                    }
+                ?>
             </div>
 
             <div class="section">
@@ -79,43 +98,26 @@
                 Famille : <?php echo $taxaFamilyName ?><br>
                 Genre : <?php echo $taxaGenusName ?><br></p>
             </div>
+            <a href="Taxa/<?php echo $taxaParentId ?>">Taxon parent</a>
+            <a href="Taxa/<?php echo $taxaId ?>/factsheet">Factsheet</a>
+            <?php
+                if (UserSession::isConnected()) {
+                    if (!TaxaRegisters::CheckRegisteredTaxa($taxaId)) {
+                        echo '<p><a href="Taxa/' . $taxaId . '/register">Register</a></p>';
+                    }
+                    else {
+                        echo '<p><a href="Taxa/' . $taxaId . '/unregister">Unregister</a></p>';
+                    }
+                }
+            ?>
         </div>
         <!--fin de la colonne droite -->
     </div>
-    <!-- partie tableau -->
-    <div class="table-section">
-        <h3>Relations</h3>
-        <table>
-            <thead>
-            <tr>
-                <th>ID taxon</th>
-                <th>Nom taxon</th>
-                <th>ID de la relation</th>
-                <th>Nom de la relation</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>parametre</td>
-                <td>parametre</td>
-                <td>parametre</td>
-                <td>parametre</td>
-            </tr>
-            <tr>
-                <td>parametre</td>
-                <td>parametre</td>
-                <td>parametre</td>
-                <td>parametre</td>
-            </tr>
-            <tr>
-                <td>parametre</td>
-                <td>parametre</td>
-                <td>parametre</td>
-                <td>parametre</td>
-
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <?php
+        if (isset($interactionResults) && is_array($interactionResults))
+        {
+            echo HTMLGenerator::GenerateInteractionTable($interactionResults);
+        }
+    ?>
     <!-- fin de la partie tableau -->
 </div>

@@ -175,4 +175,14 @@
             }
             return true;
         }
+
+        protected function CheckNonUserAccess() : void
+        {
+            $username = UserSession::isConnected();
+            if ($username) {
+                FlashMessages::add("warning", "Vous n'avez pas accès à cette page");
+                header("Location: /Orissa/Home");
+                exit();
+            }
+        }
     }

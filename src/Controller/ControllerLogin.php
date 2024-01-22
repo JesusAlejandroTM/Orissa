@@ -31,6 +31,7 @@
 
         public function view() : void
         {
+            self::CheckNonUserAccess();
             $string = $this->getBodyFolder();
             $title = explode('/', $string)[1];
             $phpFile = '/' . strtolower($title) . '.php';
@@ -41,6 +42,7 @@
         protected function logging() : void
         {
             try {
+                self::CheckNonUserAccess();
                 $user = (new UserRepository())->SelectWithLogin($_GET['username']);
                 $inputPassword = $_GET['password'];
 
@@ -62,11 +64,13 @@
 
         protected function displayCreateAccount() : void
         {
+            self::CheckNonUserAccess();
             $this->displayView("Create an account", "/CreateAccount.php", ['login/style.css']);
         }
 
         protected function creatingAccount() : void
         {
+            self::CheckNonUserAccess();
             try {
                 $birthDate = new DateTime($_GET['birthdate']);
                 $_GET['birthdate'] = date_format($birthDate, 'Y-m-d');
