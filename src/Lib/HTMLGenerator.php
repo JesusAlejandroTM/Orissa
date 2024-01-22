@@ -86,14 +86,14 @@
         public static function GenerateInteractionTableRow(int    $sourceId, string $sourceName,
                                                            string $relationId, string $relationName) : string
         {
-            return "
+            return '
             <tr>
-                <td>$sourceId</td>
-                <td>$sourceName</td>
-                <td>$relationId</td>
-                <td>$relationName</td>
+                <td><a class="interactionLink" href="Taxa/' . $sourceId . '">' . $sourceId . '</a></td>
+                <td>' . $sourceName . '</td>
+                <td>' . $relationId . '</td>
+                <td>' . $relationName . '</td>
             </tr>
-            ";
+            ';
         }
 
         /**

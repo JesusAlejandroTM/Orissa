@@ -83,3 +83,8 @@ td, th {
     border: 1px solid #272726;
     padding: 15px;
 }
+
+.interactionLink {
+    color: #81AE64;
+    text-decoration: none;
+}
