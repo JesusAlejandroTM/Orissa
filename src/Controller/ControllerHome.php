@@ -2,6 +2,8 @@
 
     namespace App\Code\Controller;
 
+    use App\Code\Model\API\TaxaAPI;
+
     class ControllerHome extends AbstractController
     {
         /**Home Controller's definition of routes Map
@@ -9,6 +11,7 @@
          */
         protected static array $routesMap = [
             'Home' => 'view',
+            'Home/Discovery' => 'discoverTaxa',
         ];
 
         /**Home Controller's definition of Home body's folder directory
@@ -23,5 +26,11 @@
             $phpFile = '/' . strtolower($title) . '.php';
             //FIXME MAKE A CSS FILE BY DEFAULT FOR VIEWS?
             $this->displayView($title, $phpFile,  ['home/homeMobile.css', 'home/home.css']);
+        }
+
+        public function discoverTaxa()
+        {
+            $taxaId = TaxaAPI::GetRandomTaxa();
+            header("Location: /Orissa/Taxa/$taxaId");
         }
     }

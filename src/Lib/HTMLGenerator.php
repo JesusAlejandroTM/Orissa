@@ -25,11 +25,12 @@
            <div class="libraryUnit">
                 <div class="imageSpace" id="imageSpace">
                     <a href="Library/' . $libraryId . '" class="libraryLink">
+                    <!-- 
                     <div class="backgroundLock">
                         <div class="boutonLock">
                             <div id="img"></div>
                         </div>
-                    </div>
+                    </div>  -->
                     </a>
                 </div>
                 <div class="name-library">

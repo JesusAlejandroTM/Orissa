@@ -8,7 +8,9 @@
 
     if (isset($taxa))
     {
+        /** @var \App\Code\Model\DataObject\Taxa $taxa */
         $taxaId = $taxa->getId();
+        $taxaAuthority = $taxa->getAuthority();
         $taxaParentId = $taxa->getParentId();
         $taxaScientificName = $taxa->getScientificName();
         $taxaVernacularName = $taxa->getVernacularName();
@@ -59,7 +61,8 @@
                 <div class="zone-de-texte">
                     <h1><?php echo $taxaScientificName ?></h1>
                     <h2><?php echo $taxaVernacularName ?></h2>
-                    <p>Identifiant TaxRef : <?php echo $taxaId?></p>
+                    <p>Identifiant TaxRef : <?php echo $taxaId?><br>
+                        Authorité : <?php echo $taxaAuthority?></p>
                 </div>
                 <div class="image-taxon"></div>
                 <img class="taxaImage" src="<?php echo $taxaImage ?>" alt="image-taxon">

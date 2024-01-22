@@ -26,8 +26,8 @@
         <div class="name">Prénom : <?php echo $userSurname ?></div>
         <div class="role">Rôle : <?php echo $role ?></div>
         <div class="userIdentifier">Identifiant : <?php echo $userId ?></div>
-        <div class="dates">Date de naissance : <?php echo $dateCreated ?></div>
-        <div class="dates">Date de création : <?php echo $birthDate ?></div>
+        <div class="dates">Date de naissance : <?php echo  $birthDate?></div>
+        <div class="dates">Date de création : <?php echo $dateCreated ?></div>
         <button onclick="window.location.href='Profile/Settings';" id="edit-profile-button">
             Modifier le profil
         </button>

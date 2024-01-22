@@ -250,4 +250,15 @@
                 return null;
             }
         }
+
+        public static function GetRandomTaxa() : int|false
+        {
+            $alphabetSet = range('a', 'z');
+            $randomIndex = array_rand($alphabetSet);
+            $randomCharacter = $alphabetSet[$randomIndex];
+            $taxaResults = self::SearchVernacularList($randomCharacter, 100);
+            $taxaRandomIndex = array_rand($taxaResults);
+            $randomTaxa = $taxaResults[$taxaRandomIndex];
+            return $randomTaxa->getId();
+        }
     }
