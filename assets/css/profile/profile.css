@@ -117,19 +117,34 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 19px;
+    width: 100%;
+    height: 29%;
+}
+
+.libraryLink {
+    display: flex;
+    text-align: center;
+    align-items: center;
     color: white;
+    position: relative;
     text-decoration: none;
 }
 
 .name-library .innerName {
     text-align: center;
     align-items: center;
+    color: white;
     height: 60px;
     display: flex;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     justify-content: center;
+}
+
+.innerName a {
+    text-decoration: none;
+    color: white;
 }
 
 #imageSpace{
@@ -141,34 +156,27 @@
     background-size: cover;
 }
 
-.libraryLink {
-    height: 100%;
-    width: 100%;
-    display: flex;
-}
-
 .backgroundLock{
     position: relative;
-    width: 34px;
-    height: 17px;
+    width: 80px;
+    height: 30px;
     background: #888888;
     border-radius: 9px;
     opacity: 0.9;
 }
 .boutonLock{
     position: relative;
-    width: 13px;
-    height: 15px;
+    width: 25px;
+    height: 25px;
     background: #D9D9D9;
     border-radius: 7px;
 }
 #img{
     position: relative;
-    width: 7px;
-    height: 9px;
-    left: 3px;
-    top: 3px;
-    background-image: url('../../img/cadena.png');
+    float: right;
+    width: 25px;
+    height: 25px;
+    border-radius: 7px;
 }
 #edit-profile-button {
     position: relative;

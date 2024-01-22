@@ -26,17 +26,15 @@
             return '
            <div class="libraryUnit">
                 <div class="imageSpace" id="imageSpace">
-                    <a href="Library/' . $libraryId . '" class="libraryLink">
-                    <!-- 
-                    <div class="backgroundLock">
-                        <div class="boutonLock">
-                            <div id="img"></div>
-                        </div>
-                    </div>  -->
+                    <div class="boutonLock">
+                        <a href="Library/' . $libraryId . '/Delete">
+                        <img id="img" src="assets/img/delete_image.png" alt="delete">
+                        
+                    </div>
                     </a>
                 </div>
                 <div class="name-library">
-                    <span class="innerName">' . $libraryTitle . '</span>
+                    <a href="Library/' . $libraryId . '" class="libraryLink">' . $libraryTitle . '</a>
                 </div>
             </div>';
         }
