@@ -234,9 +234,9 @@
         {
             try {
                 $taxaMedia = self::GetTaxaMedia($idTaxa);
-                return $taxaMedia['_embedded']['media'][0]['_links']['file']['href'] ?? null;
+                return $taxaMedia['_embedded']['media'][0]['_links']['file']['href'] ?? false;
             } catch (Exception) {
-                return null;
+                return false;
             }
         }
 

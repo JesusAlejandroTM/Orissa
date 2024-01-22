@@ -1,15 +1,27 @@
 <?php
 
     use App\Code\Model\API\RedListIdentifier;
+    use App\Code\Model\API\TaxaHabitatIdentifier;
 
-    if (!isset($taxa))
+    if (isset($taxa))
     {
-        header("Location: Search");
+        $taxaId = $taxa->getId();
+        $taxaParentId = $taxa->getParentId();
+        $taxaScientificName = $taxa->getScientificName();
+        $taxaVernacularName = $taxa->getVernacularName();
+        $taxaKingdomName = $taxa->getKingdomName() ?? "Indeterminé";
+        $taxaPhylumName = $taxa->getPhylumName() ?? "Indeterminé";
+        $taxaClassName = $taxa->getClassName() ?? "Indeterminé";
+        $taxaOrderName = $taxa->getOrderName() ?? "Indeterminé";
+        $taxaFamilyName = $taxa->getFamilyName() ?? "Indeterminé";
+        $taxaGenusName = $taxa->getGenusName() ?? "Indeterminé";
+        $taxaHabitat = $taxa->getHabitat();
+        $taxaHabitatName = TaxaHabitatIdentifier::GetNameHabitat($taxaHabitat);
+        $taxaHabitatDescription = TaxaHabitatIdentifier::GetDescriptionHabitat($taxaHabitat);
     }
-
     if (isset($taxaImage)) {
-        if(!@is_array(getimagesize($taxaImage))){
-            $taxaImage = "../../taxaUnavailable.png";
+        if(!$taxaImage || !@is_array(getimagesize($taxaImage))){
+            $taxaImage = "Orissa/../assets/img/taxaUnavailable.png";
         }
     }
     if (isset($taxaStatus)) {
@@ -21,82 +33,82 @@
     ?>
 
 <div class="html">
-    <!--colonne a gauche-->
-    <div class="left-column">
-        <!-- head contient nom image et son -->
-        <div class="head">
-            <div class="zone-de-texte">
-                <h1>NOM TAXONeeeeEEEEEEEEEEEE EEEEEEEEEEEEEEEEEEE</h1>
-                <h2>Scientific Name / Full NamegfAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAA</h2>
+    <div class="taxaGrid">
+        <!--colonne a gauche-->
+        <div class="left-column">
+            <!-- head contient nom image et son -->
+            <div class="head">
+                <div class="zone-de-texte">
+                    <h1><?php echo $taxaScientificName ?></h1>
+                    <h2><?php echo $taxaVernacularName ?></h2>
+                    <p>Identifiant TaxRef : <?php echo $taxaId?></p>
+                </div>
+                <div class="image-taxon"></div>
+                <img class="taxaImage" src="<?php echo $taxaImage ?>" alt="image-taxon">
             </div>
-            <div class="image-taxon"></div>
-            <img src="<?php echo $taxaImage ?>" alt="image-taxon">
         </div>
+        <!--fin de head-->
+
+
+        <!--fin de la colonne gauche -->
+
+        <!-- colonne droite -->
+        <div class="right-column">
+            <div class="section">
+                <h3>Status listes rouges </h3>
+                <p>Liste rouge international : <?php echo $worldRedListStatus ?></p>
+                <p>Liste rouge européenne : <?php echo $europeanRedListStatus ?></p>
+                <p>Liste rouge nationale : <?php echo $nationalRedList ?></p>
+                <p>Liste rouge locale : <?php echo $localRedList ?></p>
+
+            </div>
+
+            <div class="section">
+                <h3>Type d'habitat</h3>
+
+                <h4><?php echo $taxaHabitatName ?></h4>
+                <p><?php echo $taxaHabitatDescription ?></p>
+            </div>
+
+            <div class="section">
+                <h3>Taxonomie</h3>
+                <p>Règne : <?php echo $taxaKingdomName ?><br>
+                Division : <?php echo $taxaPhylumName ?><br>
+                Classe : <?php echo $taxaClassName ?><br>
+                Ordre : <?php echo $taxaOrderName ?><br>
+                Famille : <?php echo $taxaFamilyName ?><br>
+                Genre : <?php echo $taxaGenusName ?><br></p>
+            </div>
+        </div>
+        <!--fin de la colonne droite -->
     </div>
-    <!--fin de head-->
-
-
-    <!--fin de la colonne gauche -->
-
-    <!-- colonne droite -->
-    <div class="right-column">
-        <div class="section">
-            <h3>Evolution status protection</h3>
-            <p>Type de liste : parametre </p>
-            <p>statue : parametre </p>
-
-        </div>
-
-        <div class="section">
-            <h3>Domain et Territoire</h3>
-
-            <p>Domain: para </p>
-            <p>Territoire: parametre </p>
-        </div>
-
-        <div class="section">
-            <h3>Habitat</h3>
-            <p>Habitat: param</p>
-        </div>
-        <div class="section">
-            <h3>Nombre</h3>
-            <p>Nombre: para </p>
-        </div>
-    </div>
-    <!--fin de la colonne droite -->
-
     <!-- partie tableau -->
-    <div class="section">
-
+    <div class="table-section">
         <h3>Relations</h3>
         <table>
             <thead>
             <tr>
                 <th>ID taxon</th>
-                <th>Image taxon </th>
                 <th>Nom taxon</th>
-                <th>ID de la relation </th>
+                <th>ID de la relation</th>
                 <th>Nom de la relation</th>
             </tr>
             </thead>
             <tbody>
             <tr>
                 <td>parametre</td>
-                <td><img src="taxon.jpg" alt="image-taxon"></td>
                 <td>parametre</td>
                 <td>parametre</td>
                 <td>parametre</td>
             </tr>
             <tr>
                 <td>parametre</td>
-                <td><img src="taxon.jpg" alt="image-taxon"></td>
-                <td>paramefffffffffffffffff tre</td>
+                <td>parametre</td>
                 <td>parametre</td>
                 <td>parametre</td>
             </tr>
             <tr>
                 <td>parametre</td>
-                <td><img src="taxon.jpg" alt="image-taxon"></td>
                 <td>parametre</td>
                 <td>parametre</td>
                 <td>parametre</td>

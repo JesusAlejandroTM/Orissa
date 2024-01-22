@@ -35,7 +35,8 @@
                 $taxaImage = TaxaAPI::GetTaxaImage($idTaxa);
                 $taxaStatus = TaxaAPI::GetTaxaStatus($idTaxa);
                 $this->displayView("Taxas found", "/selectTaxa.php",
-                    ["taxa/taxa.css"], ["taxa" => $taxa, "taxaImage" => $taxaImage, "taxaStatus" => $taxaStatus]);
+                    ["taxa/taxa.css"],
+                    ["taxa" => $taxa, "taxaImage" => $taxaImage, "taxaStatus" => $taxaStatus]);
             } catch (Exception $e) {
                 $errorMessage = ExceptionHandler::getErrorMessage($e->getCode());
                 FlashMessages::add("danger", $errorMessage);

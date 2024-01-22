@@ -5,6 +5,7 @@
     class TaxaHabitatIdentifier
     {
         private const HabitatData = [
+            "null",
             [
                 "name" => "Marin", "desc" => "Espèces vivant uniquement en milieu marin."
             ],
@@ -33,7 +34,7 @@
                      si elles sont terrestres et/ou d’eau douce (taxons provenant de Fauna Europaea)"
             ],
             [
-                "Continental (terrestre et eau douce)" => "Marin",
+                "name" => "Continental (terrestre et eau douce)",
                     "desc" => "Espèces terrestres effectuant une partie de leur cycle en eau douce
                      (odonates par exemple), ou fortement liées au milieu aquatique (loutre par exemple)."
             ],

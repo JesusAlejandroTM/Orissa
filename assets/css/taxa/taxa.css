@@ -1,20 +1,8 @@
 
 /*body*/ 
-.html {
+.taxaGrid {
     display: grid;
-    grid-template-columns: 50% 50%;
-  
-}
-
-
-.section h3{
-    background-color: #81AE64;
-    border-radius: 20px;
-    padding: 10px;  
-    color: white;
-    width: 50%;
-    margin-left: 15px;
-    
+    grid-template-columns: 60% 40%;
 }
 
 .left-column{
@@ -22,12 +10,16 @@
     margin-left: 50px;
 }
 
+.taxaImage {
+    max-width: 85%;
+    max-height: 60vh;
+}
+
 .right-column{
-   
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 25px 20px 20px;
-    margin-left: 55px ;
     border-radius: 20px;
 }
 
@@ -36,11 +28,40 @@
 
 }
 
-.section p{
+.section h3{
+    width: 70%;
+    background-color: #81AE64;
+    border-radius: 20px;
+    padding: 10px;
+    padding-left: 20px;
+    color: white;
+}
 
-    margin-left: 25px;
-  
-   
+.section p {
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+    align-items: center;
+}
+
+.section h4 {
+    margin-left: 1rem;
+}
+
+.table-section {
+    margin-top: 6vh;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+}
+
+.table-section h3{
+    display: flex;
+    margin: auto;
+    text-align: center;
+    background-color: #81AE64;
+    border-radius: 20px;
+    padding: 10px 15vh;
+    color: white;
 }
 
 table {
