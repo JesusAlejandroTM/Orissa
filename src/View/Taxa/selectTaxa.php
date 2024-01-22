@@ -14,6 +14,7 @@
         $taxaParentId = $taxa->getParentId();
         $taxaScientificName = $taxa->getScientificName();
         $taxaVernacularName = $taxa->getVernacularName();
+        $taxaRank = $taxa->getRankName();
         $taxaKingdomName = $taxa->getKingdomName() ?? "Indeterminé";
         $taxaPhylumName = $taxa->getPhylumName() ?? "Indeterminé";
         $taxaClassName = $taxa->getClassName() ?? "Indeterminé";
@@ -64,7 +65,9 @@
                     <h1><?php echo $taxaScientificName ?></h1>
                     <h2><?php echo $taxaVernacularName ?></h2>
                     <p>Identifiant TaxRef : <?php echo $taxaId?><br>
-                        Authorité : <?php echo $taxaAuthority?></p>
+                        Authorité : <?php echo $taxaAuthority?><br>
+                        Rang taxonomique : <?php echo $taxaRank?>
+                    </p>
                 </div>
                 <div class="image-taxon"></div>
                 <img class="taxaImage" src="<?php echo $taxaImage ?>" alt="image-taxon">
