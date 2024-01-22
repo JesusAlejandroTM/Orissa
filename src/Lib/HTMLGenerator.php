@@ -109,4 +109,22 @@
                 <p>Liste rouge locale : $local</p>   
             ";
         }
+
+        public static function GenerateHeaderLogo(): string
+        {
+            if (UserSession::isConnected()) {
+                $link = 'Profile';
+                $icon = 'people-outline';
+            } else {
+                $link = 'Login';
+                $icon = 'log-in-outline';
+            }
+
+            return '
+            <a href="' . $link . '">
+            <span>
+                <ion-icon name="' . $icon . '" class="searchBtn"></ion-icon>
+            </span>
+            </a>';
+        }
     }

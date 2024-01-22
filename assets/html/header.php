@@ -1,6 +1,5 @@
 <header>
     <div class="nav-container">
-
         <div class="navbar">
             <a href="/Orissa" class="logo"><img src="Orissa/../assets/img/orissa-logo.png" alt="logo" /></a>
 
@@ -16,40 +15,20 @@
                 <li><a href="Search" class="nav-links">TAXON</a></li>
                 <li><a href="Home/Discovery" class="nav-links">DISCOVER</a></li>
                 <li><a href="Home" class="nav-links">ABOUT</a></li>
-            
-
-
-              <li>
-                  <div class="search">
-                      <a href="Search" class="searchIcon">
-                          <span>
-                              <ion-icon name="search-outline" class="searchBtn"></ion-icon>
-                          </span>
-                      </a>
-                  </div>
-              </li>
-               
+            </ul>
+            <div class="search">
+                <a href="Search" class="searchIcon">
+                            <span>
+                                <ion-icon name="search-outline" class="searchBtn"></ion-icon>
+                            </span>
+                </a>
                 <?php
-
-                use App\Code\Lib\UserSession;
-
-                if (UserSession::isConnected()) {
-                    $link = 'Profile';
-                    $icon = 'people-outline';
-                } else {
-                    $link = 'Login';
-                    $icon = 'log-in-outline';
-                }
-
-                echo '
-            <a href="' . $link . '">
-            <span>
-                <ion-icon name="' . $icon . '" class="searchBtn"></ion-icon>
-            </span>
-            </a>';
+                    use App\Code\Lib\HTMLGenerator;
+                    echo HTMLGenerator::GenerateHeaderLogo();
                 ?>
             </div>
         </div>
+    </div>
    
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -62,9 +41,5 @@
             menu.classList.toggle('is-active');
             menuLinks.classList.toggle('active');
         });
-
-    
-    
-
     </script>
 </header>

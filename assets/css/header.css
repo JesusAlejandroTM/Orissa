@@ -12,6 +12,10 @@
     box-shadow: 0 15px 15px rgba(0, 0, 0, 0.05);
 }
 
+.navbar {
+    width: 100%
+}
+
 .logo {
     color: #333;
     text-decoration: none;
@@ -49,8 +53,6 @@
 .nav-links{
     list-style: none;
 }
-
-
 
 .nav-links {
     text-decoration: none;
@@ -163,6 +165,8 @@ header .search {
     }
 
     .navbar{
+        display: grid;
+        grid-template-columns: 20% 60% 20%;
         width: 100%;
         color: #333;
     }
@@ -172,6 +176,10 @@ header .search {
         top: 20px;
         right: -170px;
         transform: translate(5%, 20%);
+    }
+
+    .profile-logo {
+        float: right;
     }
 
     .menu-toggle .bar{
