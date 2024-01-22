@@ -194,12 +194,6 @@ textarea::-webkit-scrollbar{
 }
 
 
-header{
-    display: flex ;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 0;
-}
 /*title and discription */
 .create-library-box{
     right: 20px;

@@ -1,7 +1,8 @@
 <main>
     <div id="fond" class="content">
-        <h1>ORISSA : RECHERCHE POUSSE DES <br> ANIMAUX</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi vitae pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
+        <h1>ORISSA : RECHERCHE TAXONOMIQUE DE <br> TAXONS</h1>
+        <p>La recherche taxonomique de Orissa vous permet de rechercher les différents êtres vivants de la divérsité du monde
+        vivant français<br> et étudier les différentes branches et catégories grâce à la source d'informations TaxRef</p>
     </div>
 
     <div class="mainContainer">
@@ -16,16 +17,16 @@
         <div class="rows">
         <div class="item">
             <div class="image-container" id="bibliotheques1"></div>
-            <button id="button2"><a href="">Recherche</a></button>
+            <button id="button2"><a href="Search">Recherche</a></button>
         </div>
 
         <div class="item">
             <div class="image-container" id="bibliotheques2"></div>
-            <button id="button2"><a href="">naturothèques</a></button>
+            <button id="button2"><a href="Library/CreateLibrary">Naturothèques</a></button>
         </div>
         <div class="item">
             <div class="image-container" id="bibliotheques3"></div>
-            <button id="button3"><a href="">Decouverte</a></button>
+            <button id="button3"><a href="Home/Discovery">Decouverte</a></button>
         </div>
     </div>
     </div>
