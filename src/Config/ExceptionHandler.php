@@ -104,12 +104,12 @@
         /**
          * Check if the passed value is true
          * If the value is an array, check if all the values inside are true
-         * @param bool|array $value the value to check, can be an array
+         * @param mixed $value the value to check, can be an array
          * @param int $errorCode the error code to throw if the value is not true
          * @return void
          * @throws Exception the exception with the error code
          */
-        public static function checkIsTrue(bool|array $value, int $errorCode): void
+        public static function checkIsTrue(mixed $value, int $errorCode): void
         {
             if (is_bool($value))
                 if (!$value) {
