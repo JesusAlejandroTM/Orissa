@@ -2,7 +2,9 @@
 
     use App\Code\Lib\HTMLGenerator;
     use App\Code\Lib\UserSession;
+    use App\Code\Model\API\BiogeographicStatusIdentifier;
     use App\Code\Model\API\RedListIdentifier;
+    use App\Code\Model\API\TaxaAPI;
     use App\Code\Model\API\TaxaHabitatIdentifier;
     use App\Code\Model\Repository\TaxaRegisters;
 
@@ -34,6 +36,8 @@
         $europeanRedListStatus = RedListIdentifier::GetAcronymDescription($taxaStatus['europeanRedList']);
         $nationalRedList = RedListIdentifier::GetAcronymDescription($taxaStatus['nationalRedList']);
         $localRedList = RedListIdentifier::GetAcronymDescription($taxaStatus['localRedList']);
+
+        $BioGeoId = $taxaStatus['biogeoStatus'] ?? null;
     }
     if (isset($interactions) && is_array($interactions))
     {
@@ -67,6 +71,26 @@
                 <div class="image-taxon"></div>
                 <img class="taxaImage" src="<?php echo $taxaImage ?>" alt="image-taxon">
             </div>
+
+            <a href="Taxa/<?php echo $taxaParentId ?>">Taxon parent</a>
+
+            <?php
+                // Check if the taxa has a factsheet
+                $factsheet = TaxaAPI::GetTaxaFactsheet($taxaId);
+                if ($factsheet && is_array($factsheet)) {
+                    echo '<a href="Taxa/' . $taxaId . '/factsheet">Factsheet</a>';
+                }
+
+                // Display register button if the user is connected
+                if (UserSession::isConnected()) {
+                    if (!TaxaRegisters::CheckRegisteredTaxa($taxaId)) {
+                        echo '<p><a href="Taxa/' . $taxaId . '/register">Register</a></p>';
+                    }
+                    else {
+                        echo '<p><a href="Taxa/' . $taxaId . '/unregister">Unregister</a></p>';
+                    }
+                }
+            ?>
         </div>
         <!--fin de head-->
 
@@ -81,6 +105,14 @@
                     {
                         echo HTMLGenerator::GenerateRedListHTML($worldRedListStatus, $europeanRedListStatus,
                             $nationalRedList, $localRedList);
+                    }
+                ?>
+            </div>
+
+            <div class="section">
+                <?php
+                    if (isset($BioGeoId)) {
+                        echo HTMLGenerator::GenerateBiogeographicStatusHTML($BioGeoId);
                     }
                 ?>
             </div>
@@ -101,18 +133,6 @@
                 Famille : <?php echo $taxaFamilyName ?><br>
                 Genre : <?php echo $taxaGenusName ?><br></p>
             </div>
-            <a href="Taxa/<?php echo $taxaParentId ?>">Taxon parent</a>
-            <a href="Taxa/<?php echo $taxaId ?>/factsheet">Factsheet</a>
-            <?php
-                if (UserSession::isConnected()) {
-                    if (!TaxaRegisters::CheckRegisteredTaxa($taxaId)) {
-                        echo '<p><a href="Taxa/' . $taxaId . '/register">Register</a></p>';
-                    }
-                    else {
-                        echo '<p><a href="Taxa/' . $taxaId . '/unregister">Unregister</a></p>';
-                    }
-                }
-            ?>
         </div>
         <!--fin de la colonne droite -->
     </div>

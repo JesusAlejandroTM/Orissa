@@ -261,4 +261,11 @@
             $randomTaxa = $taxaResults[$taxaRandomIndex];
             return $randomTaxa->getId();
         }
+
+        public static function GetBiogeographicStatusList() : array|null
+        {
+            $apiUrl = APIConnection::GetApiURL() . "/biogeographicStatus";
+            $result = self::ExecuteAPIRequest($apiUrl);
+            return $result['_embedded'] ?? null;
+        }
     }

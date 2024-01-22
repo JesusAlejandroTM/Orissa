@@ -2,6 +2,8 @@
 
     namespace App\Code\Lib;
 
+    use App\Code\Model\API\BiogeographicStatusIdentifier;
+
     class HTMLGenerator
     {
         public static function GenerateTaxaUnitHTML(int $taxaId) : string
@@ -126,5 +128,26 @@
                 <ion-icon name="' . $icon . '" class="searchBtn"></ion-icon>
             </span>
             </a>';
+        }
+
+        public static function GenerateBiogeographicStatusHTML(string $statusIds) : string
+        {
+            $html = "<h3>Status biogéographique</h3>";
+            for ($i = 0; $i < strlen($statusIds); $i++)
+            {
+                $char = $statusIds[$i];
+                $statusName = BiogeographicStatusIdentifier::GetBiogeographicStatusName($char);
+                if ($i == 0) $html .= "<h4>$statusName";
+                else if ($char == ',') continue;
+                else $html .= ", $statusName";
+            }
+            $html .= '</h4>';
+            for ($i = 0; $i < strlen($statusIds); $i++)
+            {
+                $char = $statusIds[$i];
+                $statusName = BiogeographicStatusIdentifier::GetBiogeographicStatusDescription($char);
+                $html .= "<p>$statusName</p>";
+            }
+            return $html;
         }
     }
