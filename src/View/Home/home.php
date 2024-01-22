@@ -9,22 +9,23 @@
         <br>
         <h3>Orissa vous donne le plaisir d'offrir une toute nouvelle éxperience de recherche. Vous pouvez 
             retrouver les animaux, les plantes, les bactéries et plus encore en naviguant dans les différentes catégories qu'on vous met à disposition.
-            Nous vous conseillons de jeter un coup d'oeil à notre page sur nos naturothèques produites par nos utilisateurs, ou encore à notre page decouverte qui vous amenèra sur une page aléatoire de taxon.    </h3>
+            Nous vous conseillons de jeter un coup d'oeil à notre page et créer et consulter vos propres naturothèques,
+            ou encore à notre page decouverte qui vous amenèra sur une page aléatoire de taxon.</h3>
         <br>
 
         <div class="rows">
         <div class="item">
             <div class="image-container" id="bibliotheques1"></div>
-            <button id="button2"><a href="html/biblio.html">Recherche</a></button>
+            <button id="button2"><a href="">Recherche</a></button>
         </div>
 
         <div class="item">
             <div class="image-container" id="bibliotheques2"></div>
-            <button id="button2"><a href="html/biblio.html">naturothèques</a></button>
+            <button id="button2"><a href="">naturothèques</a></button>
         </div>
         <div class="item">
             <div class="image-container" id="bibliotheques3"></div>
-            <button id="button3"><a href="html/biblio.html">Decouverte</a></button>
+            <button id="button3"><a href="">Decouverte</a></button>
         </div>
     </div>
     </div>
