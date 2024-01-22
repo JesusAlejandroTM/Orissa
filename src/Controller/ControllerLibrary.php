@@ -20,6 +20,7 @@
         protected static array $routesMap = [
             'Library' => 'view',
             'Library/:param:' => 'viewLibrary',
+            'Library/:param:/Delete' => 'deleteLibrary',
             'Library/CreateLibrary' => 'displayCreateLibrary',
             'Library/LibraryCreation' => 'createLibrary',
         ];
@@ -56,7 +57,32 @@
             } catch (Exception $e) {
                 $errorMessage = ExceptionHandler::getErrorMessage($e->getCode());
                 FlashMessages::add("danger", $errorMessage);
-                header("Location: /Orissa/Taxa");
+                header("Location: /Orissa/Profile");
+                exit();
+            }
+        }
+
+        public function deleteLibrary(int $idLibrary): void
+        {
+            try {
+                $this->CheckUserAccess();
+                $library = (new LibraryRepository())->Select($idLibrary);
+
+                $userId = UserSession::getLoggedId();
+                $libraryCreatorId =  $library->getIdUser();
+                ExceptionHandler::checkIsTrue($userId == $libraryCreatorId, 609);
+
+                $result = (new LibraryRepository())->delete($idLibrary);
+                ExceptionHandler::checkIsTrue($result, 610);
+
+                $title = $library->getTitle();
+                FlashMessages::add("success", "Votre naturothèque " . $title . " a été supprimé!");
+                header("Location: /Orissa/Profile");
+                exit();
+            } catch (Exception $e) {
+                $errorMessage = ExceptionHandler::getErrorMessage($e->getCode());
+                FlashMessages::add("danger", $errorMessage);
+                header("Location: Orissa/Profile");
                 exit();
             }
         }
@@ -101,7 +127,6 @@
                         ExceptionHandler::checkIsTrue($result, 607);
                     }
                 }
-
 
                 // Notification and redirect
                 $title = $_POST['title'];

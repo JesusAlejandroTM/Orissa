@@ -23,6 +23,8 @@
             606 => "Vous avez déjà une naturothèque avec ce titre",
             607 => "Erreur ajout des taxons dans votre naturothèque",
             608 => "Vous n'avez pas l'autorisation d'accéder à cette naturothèque",
+            609 => "Vous n'avez pas l'autorisation de supprimer cette naturothèque",
+            610 => "Erreur durant la suppréssion de votre naturothèque, veuillez réessayer",
         ];
 
         private static function throwException($errorCode): void

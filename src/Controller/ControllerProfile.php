@@ -62,7 +62,7 @@
         {
             $this->LoadUserData();
             UserSession::disconnect();
-            FlashMessages::add("info", "User successfully disconnected");
+            FlashMessages::add("info", "Déconnexion réussie");
             header("Location: /Orissa/Home");
         }
 
