@@ -6,6 +6,11 @@
 
     class HTMLGenerator
     {
+        /**
+         * Generates a HTML unit for a taxa
+         * @param int $taxaId
+         * @return string
+         */
         public static function GenerateTaxaUnitHTML(int $taxaId) : string
         {
             return '

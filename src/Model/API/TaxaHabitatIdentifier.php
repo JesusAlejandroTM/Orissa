@@ -40,11 +40,21 @@
             ],
         ];
 
+        /**
+         * Get the name of a habitat from its id
+         * @param $idHabitat int the id of the habitat
+         * @return string the name of the habitat
+         */
         public static function GetNameHabitat($idHabitat): string
         {
             return self::HabitatData[$idHabitat]['name'] ?? "Inconnue";
         }
 
+        /**
+         * Get the description of a habitat from its id
+         * @param $idHabitat int the id of the habitat
+         * @return string the description of the habitat
+         */
         public static function GetDescriptionHabitat($idHabitat): string
         {
             return self::HabitatData[$idHabitat]['desc'] ?? "Inconnue";

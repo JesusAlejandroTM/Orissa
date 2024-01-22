@@ -29,7 +29,7 @@
          * @return string
          */
         protected static string $bodyFolder = '/Library';
-
+        
         public function view(): void
         {
             if (UserSession::isConnected()) $this->displayView("Library", "/library.php",  []);

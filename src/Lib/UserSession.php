@@ -9,6 +9,11 @@
         private static string $_loginKey = '_connectedUser';
         private static string $_idKey = '_connectedUserId';
 
+        /**
+         * Connects a user to the session
+         * @param string $loginUtilisateur
+         * @return void
+         */
         public static function connect(string $loginUtilisateur): void
         {
             $session = Session::getInstance();
@@ -17,12 +22,20 @@
             $session->save(self::$_idKey, $user->getId());
         }
 
+        /**
+         * Checks if a user is connected
+         * @return bool true if connected, false otherwise
+         */
         public static function isConnected(): bool
         {
             $session = Session::getInstance();
             return $session->contains(self::$_loginKey);
         }
 
+        /**
+         * Disconnects a user from the session
+         * @return void
+         */
         public static function disconnect(): void
         {
             $session = Session::getInstance();
@@ -30,6 +43,10 @@
             $session->delete(self::$_idKey);
         }
 
+        /**
+         * Gets the login of the connected user
+         * @return string|null the login of the connected user, null otherwise
+         */
         public static function getLoggedUser(): ?string
         {
             $session = Session::getInstance();
@@ -38,6 +55,10 @@
             } else return null;
         }
 
+        /**
+         * Gets the id of the connected user
+         * @return string|null the id of the connected user, null otherwise
+         */
         public static function getLoggedId(): ?string
         {
             $session = Session::getInstance();

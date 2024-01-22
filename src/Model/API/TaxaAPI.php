@@ -8,6 +8,9 @@
 
     class TaxaAPI
     {
+        /** Array of allowed characters to launch a search
+         * @var array|string[]
+         */
         private static array $allowed_chars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
             "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "-"];
 
@@ -68,6 +71,11 @@
             return $data;
         }
 
+        /**
+         * Check if the input is a Taxa instance or an ID, and return the ID.
+         * @param int|Taxa $taxa Taxa instance or ID
+         * @return int ID of the Taxa
+         */
         private static function CheckTaxaInput(int|Taxa $taxa) : int
         {
             if ($taxa instanceof Taxa) {
@@ -76,6 +84,11 @@
             return $taxa;
         }
 
+        /**
+         * Check if the input is a string that contains only allowed characters.
+         * @param string $string String to check
+         * @return bool true if the string contains only allowed characters, false otherwise
+         */
         public static function checkAllowedChars(string $string) : bool
         {
             try {
@@ -89,6 +102,11 @@
             }
         }
 
+        /**
+         * Execute an API request, returning the data as an array.
+         * @param $apiUrl string URL of the API request
+         * @return array|false Array of data if the request is successful, false otherwise
+         */
         private static function ExecuteAPIRequest($apiUrl) : array|false
         {
             try {
@@ -103,6 +121,11 @@
             }
         }
 
+        /**
+         * Select a Taxa instance from the API with its ID.
+         * @param int $id ID of the Taxa
+         * @return Taxa|false Taxa instance if the request is successful, false otherwise
+         */
         public static function SelectWithID(int $id): Taxa|false
         {
             try {
@@ -117,6 +140,12 @@
                 return false;
             }
         }
+
+        /**
+         * Select a Taxa instance from the API with its name.
+         * @param string $name Name of the Taxa
+         * @return Taxa|false Taxa instance if the request is successful, false otherwise
+         */
         public static function SelectFirstAutocomplete(string $name) : Taxa|false
         {
             try {
@@ -131,6 +160,12 @@
             }
         }
 
+        /**
+         * Launch a search on the API with a name which will be autocompleted, returning a list of Taxa instances.
+         * @param string $name Name to search
+         * @param int $size Size of the list
+         * @return array|false Array of Taxa instances if the request is successful, false otherwise
+         */
         public static function SearchAutocompleteList(string $name, int $size) : array|false
         {
             try {
@@ -151,6 +186,12 @@
             }
         }
 
+        /**
+         * Launch a search on the API with a name, returning a list of Taxa instances.
+         * @param string $name Name to search
+         * @param int $size Size of the list
+         * @return array|false Array of Taxa instances if the request is successful, false otherwise
+         */
         public static function SearchVernacularList(string $name, int $size) : array|false
         {
             try {
@@ -173,6 +214,12 @@
             }
         }
 
+        /**
+         * Launch a search on the API with a name, returning the JSON response as a string.
+         * @param string $name Name to search
+         * @param int $size Size of the list
+         * @return string|false JSON string if the request is successful, false otherwise
+         */
         public static function SearchVernacularListJSON(string $name, int $size) : string|false
         {
             try {
@@ -198,6 +245,11 @@
             }
         }
 
+        /**
+         * Get the factsheet of a Taxa instance from the API.
+         * @param int|Taxa $taxa Taxa instance or ID
+         * @return array|false Array of data if the request is successful, false otherwise
+         */
         public static function GetTaxaFactsheet(int|Taxa $taxa) : array|false
         {
             try {
@@ -209,6 +261,11 @@
             }
         }
 
+        /**
+         * Get the interactions of a Taxa instance from the API.
+         * @param int|Taxa $taxa Taxa instance or ID
+         * @return array|false Array of interactions if the request is successful, false otherwise
+         */
         public static function GetTaxaInteractions(int|Taxa $taxa) : array|false
         {
             try {
@@ -220,6 +277,11 @@
             }
         }
 
+        /**
+         * Get the media links of a Taxa instance from the API.
+         * @param int $idTaxa ID of the Taxa
+         * @return array|null Array of media links if the request is successful, null otherwise
+         */
         public static function GetTaxaMedia(int $idTaxa) : array|null
         {
             try {
@@ -230,6 +292,11 @@
             }
         }
 
+        /**
+         * Get the image link of a Taxa instance from the API.
+         * @param int $idTaxa ID of the Taxa
+         * @return mixed the image link if the request is successful, false otherwise
+         */
         public static function GetTaxaImage(int $idTaxa) : mixed
         {
             try {
@@ -240,6 +307,11 @@
             }
         }
 
+        /**
+         * Get the status of a Taxa instance from the API.
+         * @param int $idTaxa ID of the Taxa
+         * @return array|null Array of status data if the request is successful, null otherwise
+         */
         public static function GetTaxaStatus(int $idTaxa) : array|null
         {
             try {
@@ -251,6 +323,10 @@
             }
         }
 
+        /**
+         * Get a random Taxa instance from the API.
+         * @return int|false ID of the Taxa if the request is successful, false otherwise
+         */
         public static function GetRandomTaxa() : int|false
         {
             $alphabetSet = range('a', 'z');
@@ -262,6 +338,10 @@
             return $randomTaxa->getId();
         }
 
+        /**
+         * Get the list of biogeographic status from the API.
+         * @return array|null Array of biogeographic status if the request is successful, null otherwise
+         */
         public static function GetBiogeographicStatusList() : array|null
         {
             $apiUrl = APIConnection::GetApiURL() . "/biogeographicStatus";
