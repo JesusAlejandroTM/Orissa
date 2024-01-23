@@ -80,7 +80,7 @@
 
     <div id="recherche_barre">
         <input type="text" name="taxaName" placeholder="Nom de taxon" id="taxaName" required>
-        <input type="submit" value="Search" onclick="searchApi()">
+        <input type="submit" value="Rechercher" onclick="searchApi()">
     </div>
 
     <div id="resultats">

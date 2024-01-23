@@ -72,23 +72,23 @@
                 <div class="image-taxon"></div>
                 <img class="taxaImage" src="<?php echo $taxaImage ?>" alt="image-taxon">
             </div>
-
-            <a href="Taxa/<?php echo $taxaParentId ?>">Taxon parent</a>
+            <br>
+            <a class="links"    href="Taxa/<?php echo $taxaParentId ?>">Taxon parent</a>
 
             <?php
                 // Check if the taxa has a factsheet
                 $factsheet = TaxaAPI::GetTaxaFactsheet($taxaId);
                 if ($factsheet && is_array($factsheet)) {
-                    echo '<a href="Taxa/' . $taxaId . '/factsheet">Factsheet</a>';
+                    echo '<a class="links" href="Taxa/' . $taxaId . '/factsheet">Factsheet</a>';
                 }
 
                 // Display register button if the user is connected
                 if (UserSession::isConnected()) {
                     if (!TaxaRegisters::CheckRegisteredTaxa($taxaId)) {
-                        echo '<p><a href="Taxa/' . $taxaId . '/register">Register</a></p>';
+                        echo '<a class="links" href="Taxa/' . $taxaId . '/register">Register</a>';
                     }
                     else {
-                        echo '<p><a href="Taxa/' . $taxaId . '/unregister">Unregister</a></p>';
+                        echo '<a class="links" href="Taxa/' . $taxaId . '/unregister">Unregister</a>';
                     }
                 }
             ?>

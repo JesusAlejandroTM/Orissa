@@ -2,7 +2,7 @@
 <div class="creationContainer">
     <div class="page-creation">
         <div class="create-library-box">
-            <h1>Create Library</h1>
+            <h1>Créer une naturothèque</h1>
             <form id="formId" method="POST" class="Library-Form">
 
                 <div class="textbox">
@@ -39,10 +39,11 @@
                 <input type="submit" name="recherche" value="Rechercher" onclick="apiRequest()">
             </div>
 
+            <
             <div class="registered">
                 <input type="checkbox" name="registered" id="registered">
                 <label for="registered">Register</label>
-
+                <br>
             </div>
 
             <div class="list-taxon">
@@ -53,13 +54,13 @@
     </div>
 
     <div class="cartTab">
-        <h1>Library list</h1>
+        <h1>Liste librairie</h1>
         <div class="listcart">
             <ul id="listeLibrary">
             </ul>
         </div>
         <div class="btn">
-            <input form="formId" type="submit" value="SAVE" id="saveButton" onclick="sendData()">
+            <input form="formId" type="submit" value="SAUVEGARDER" id="saveButton" onclick="sendData()">
         </div>
     </div>
 </div>

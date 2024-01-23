@@ -11,10 +11,10 @@
             </div>
 
             <ul class="nav-menu">
-                <li><a href="Library/CreateLibrary" class="nav-links">LIBRARY</a></li>
-                <li><a href="Search" class="nav-links">TAXON</a></li>
-                <li><a href="Home/Discovery" class="nav-links">DISCOVER</a></li>
-                <li><a href="Home" class="nav-links">ABOUT</a></li>
+                <li><a href="Library/CreateLibrary" class="nav-links">NATUROTHEQUES</a></li>
+                <li><a href="Search" class="nav-links">TAXONS</a></li>
+                <li><a href="Home/Discovery" class="nav-links">DECOUVRIR</a></li>
+                <li><a href="Home" class="nav-links">A PROPOS</a></li>
             </ul>
             <div class="search">
                 <a href="Search" class="searchIcon">

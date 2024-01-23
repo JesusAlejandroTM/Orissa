@@ -48,7 +48,7 @@
     <div class="content-section">
         <div class="nav-barre">
             <a href="Profile" class="nav-link nav-Naturothèques">Mes naturotheques</a>
-            <a href="Profile/Registers" class="nav-link nav-Register">Register</a>
+            <a href="Profile/Registers" class="nav-link nav-Register">Enregistrés</a>
             <a href="Library/CreateLibrary" class="nav-link nav-Creation">Creation de naturotheques</a>
         </div>
         <div class="list-grid" id="list-grid">

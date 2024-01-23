@@ -31,7 +31,19 @@
     </div>
     </div>
 </main>
+<script>
+    document.querySelectorAll('.rows .item').forEach(container => {
+        container.addEventListener('mouseover', function () {
+            this.style.transform = 'scale(1.1)';
+            this.style.transition = 'transform 0.5s ease'; // Ajout d'une transition pour un effet plus fluide
+        });
 
+        container.addEventListener('mouseout', function () {
+            this.style.transform = 'scale(1.0)';
+            this.style.transition = 'transform 0.5s ease'; // Ajout d'une transition pour un effet plus fluide
+        });
+    });
+</script>
 <script>
     // Animation de défilement fluide pour les liens de navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

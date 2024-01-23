@@ -142,3 +142,55 @@ p {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+@media (max-width: 768px) {
+    #container {
+        flex-direction: column;
+    }
+
+    #recherche_barre, #resultats {
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    #resultats ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #recherche_barre input[type="submit"] {
+        padding: 12px 20px;
+    }
+
+    body {
+        font-size: 1.2em;
+    }
+}
+
+/* CSS écrans de mobiles */
+@media (max-width: 480px) {
+    #container {
+        flex-direction: column;
+    }
+
+    #filtre, #recherche_barre, #resultats {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    #resultats ul {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    #recherche_barre input[type="submit"] {
+        padding: 16px 24px;
+    }
+
+    body {
+        font-size: 1.4em;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}

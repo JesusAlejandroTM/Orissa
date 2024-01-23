@@ -88,3 +88,13 @@ td, th {
     color: #81AE64;
     text-decoration: none;
 }
+
+.links {
+    background-color: #81AE64;
+    border-radius: 30px;
+    color: #FFFFFF;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 5px 10px;
+    margin-left: 5px;
+}
