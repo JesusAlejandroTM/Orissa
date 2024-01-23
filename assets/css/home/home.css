@@ -1,19 +1,19 @@
-
+/* modifie le body*/
 * {
     margin: 0;
     padding: 0;
     font-family: inter, serif;
 }
-
+/*centre l'emplacement du logo*/
 #logo {
     display: flex;
     align-items: center;
 }
-
+/* ajuste l'image du logo*/
 #logo img {
     margin-right: 10px;
 }
-
+/* modifie le fond, l'image de du fond */
 #fond {
     background-image:linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6) ), url('../../img/fond-ecran-site.jpeg');
     background-size:cover;
@@ -27,12 +27,14 @@ main.content {
     margin: 20px;
     padding: 20px;
 }
+/*titre */
 h1{
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     color: whitesmoke;
     text-shadow: #24262b;
 }
+/* modifie les balise p*/
 p{
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
@@ -72,7 +74,7 @@ h3{
     background-position: center;
     border-radius: 10px;
 }
-
+/*2 partie de la page, modifie l'emplacement des 3 liens*/
 .rows{
     display: flex;
     flex-direction: row;
@@ -87,7 +89,7 @@ button{
     border-radius: 30px ;
 
 }
-
+/* encodre les images utilisé*/
 #bibliotheques1 {
     background-image: url('../../img/arachno.jpeg');
     width: 220px;
@@ -103,6 +105,7 @@ button{
     width: 220px;
     height: 320px;
 }
+/* ajuste les boutons lien en dessous des images */
 #button1, #button2, #button3 {
     display: block;
     margin: 20px auto;
@@ -122,6 +125,7 @@ button{
     text-decoration: none;
     color: white;
 }
+
 #button1:hover, #button2:hover, #button3:hover {
     background-color: #81AE64;
     text-decoration: none;
