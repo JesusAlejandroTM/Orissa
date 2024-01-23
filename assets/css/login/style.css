@@ -1,5 +1,5 @@
 
-
+/* creer un box une box dans laquelle se trouve les input */
 .login-box{
     display: block;
     position: relative;
@@ -10,7 +10,7 @@
     border-color: #adadad;
 
 }
-
+/*modifie le titre de la box */
 .login-box h1{
     text-align: center;
     padding: 0 0 20px 0;
@@ -18,18 +18,19 @@
 
 
 }
-
+/*modifie le formulaire */
 .login-box form{
     padding: 0 40px;
     box-sizing: border-box;
 }
-
+/*modfie les label et input */
 form .textbox{
     position: relative;
     border-bottom: 2px solid #adadad;
     margin: 30px 0;
 }
 
+/*modfie le texte input */
 .textbox input{
     width: 100%;
     padding: 0 5px;
@@ -51,7 +52,7 @@ form .textbox{
     pointer-events: none;
     transition: .5s;
 }
-
+/*animation */
 .text-box span::before{
     content: '';
     position: absolute;
