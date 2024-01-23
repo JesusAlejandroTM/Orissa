@@ -108,6 +108,12 @@
             return $uriParameters;
         }
 
+        /**
+         * Check if the passed URL is parameterized, which allows for checking
+         * if the URL must be processed for dynamic URL redirecting.
+         * @param $url string The URL to check if it's parameterized, example : "Orissa/Taxa/:param:"
+         * @return bool Returns true if the URL is parameterized, and false if not.
+         */
         public static function isRouteParameterized($url) : bool
         {
             $parameterName = "/:param:/";
