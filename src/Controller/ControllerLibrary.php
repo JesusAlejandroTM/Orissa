@@ -29,13 +29,23 @@
          * @return string
          */
         protected static string $bodyFolder = '/Library';
-        
+
+        /**
+         * Displays the library page if the user is connected or an error page if not
+         * @return void
+         */
         public function view(): void
         {
             if (UserSession::isConnected()) $this->displayView("Library", "/library.php",  []);
             else $this->displayView("Library", "/loginError.html",  []);
         }
 
+
+        /**
+         * Displays the selected library page if the user is connected and authorized or an error page if not
+         * @param int $idLibrary The id of the library to display
+         * @return void
+         */
         protected function viewLibrary(int $idLibrary): void
         {
             try {
@@ -62,6 +72,11 @@
             }
         }
 
+        /**
+         * Deletes the selected library if the user is connected and authorized or an error page if not
+         * @param int $idLibrary The id of the library to delete
+         * @return void
+         */
         public function deleteLibrary(int $idLibrary): void
         {
             try {
@@ -87,6 +102,10 @@
             }
         }
 
+        /**
+         * Displays the create library page if the user is connected or an error page if not
+         * @return void
+         */
         protected function displayCreateLibrary(): void
         {
             $this->CheckUserAccess();
@@ -95,6 +114,10 @@
                 ['cartScript.js', 'apiDataProcesses.js']);
         }
 
+        /**
+         * Creates a library if the user is connected or an error page if not
+         * @return void
+         */
         protected function createLibrary() : void
         {
             try {

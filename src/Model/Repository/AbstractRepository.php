@@ -186,6 +186,11 @@
             }
         }
 
+        /**
+         * Insert one abstract data object in the corresponding repository with its primary key
+         * @param AbstractDataObject $object the data to insert with its primary key
+         * @return bool|string true if the data has been inserted, false otherwise
+         */
         public function Insert(AbstractDataObject $object) : bool|string {
             try {
                 $sql = 'INSERT INTO ' . $this->GetTableName() . ' (' . $this->GetSQLColumnsWithoutPrimary() .
@@ -203,6 +208,11 @@
             }
         }
 
+        /**
+         * Remove all keys with empty values from an array
+         * @param array $values
+         * @return array
+         */
         private static function unsetEmptyValues(array $values) : array
         {
             foreach ($values as $key => $value)
@@ -215,6 +225,13 @@
             return $values;
         }
 
+        /**
+         * Get all the data from the corresponding repository with an id
+         * The SQL query will be executed with the id as a parameter
+         * @param int $id the id of the data to select
+         * @param string $sql the SQL query to execute
+         * @return array|bool an array of data or false if an error occurred
+         */
         protected static function SingleDataGetter(int $id, string $sql) : array|bool
         {
             try {

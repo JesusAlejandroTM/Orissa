@@ -4,6 +4,10 @@
 
     class Taxa
     {
+        /**
+         * The list of fields that are filtered to build a taxa instance
+         * @var array|string[]
+         */
         public static array $dataFilterArray = ["id", "parentId", "scientificName",
             "authority", "rankId", "rankName", "frenchVernacularName", "habitat", "genusName", "familyName",
             "orderName", "className", "phylumName", "kingdomName", "taxrefVersion", "_links",

@@ -26,8 +26,17 @@
             'Profile/DeleteAccount' => 'deleteUserAccount',
         ];
 
+        /**
+         * Profile Controller's definition of profile body's folder directory
+         * @var string
+         */
         protected static string $bodyFolder = '/Profile';
 
+        /**
+         * Loads the user data from the database
+         * If the user is not logged in, redirects to the home page
+         * @return void
+         */
         private function LoadUserData() : void
         {
             // Check user is logged in before loading data
@@ -39,25 +48,37 @@
             $userObject = (new UserRepository())->SelectWithLogin($username);
         }
 
+        /**
+         * Displays the profile page if the user is logged in or redirect if not
+         * @return void
+         */
         public function view(): void
         {
             $this->LoadUserData();
             $userId = UserSession::getLoggedId();
             $libraries = LibraryRepository::getUserLibraries($userId);
             $this->displayView('Profile', '/profile.php',
-                ['profile/profile.css'], ["libraries" => $libraries]);
+                ['profile/profile.css', 'profile/profileMobile.css'], ["libraries" => $libraries]);
         }
 
+        /**
+         * Displays the registered taxas page if the user is logged in or redirect if not
+         * @return void
+         */
         public function viewRegisteredTaxas() : void
         {
             $this->LoadUserData();
             $userId = UserSession::getLoggedId();
             $taxas = TaxaRegisters::SelectRegisteredTaxas($userId);
             $this->displayView('Profile', '/profile.php',
-                ['profile/profile.css'], ["taxas" => $taxas],
+                ['profile/profile.css', 'profile/profileMobile.css'], ["taxas" => $taxas],
                 ['registersDisplay.js', 'apiDataProcesses.js']);
         }
 
+        /**
+         * Disconnects the user from the session and redirects to the home page with a notification
+         * @return void
+         */
         public function disconnectUser() : void
         {
             $this->LoadUserData();
@@ -66,6 +87,10 @@
             header("Location: /Orissa/Home");
         }
 
+        /**
+         * Displays the profile settings page if the user is logged in or redirect if not
+         * @return void
+         */
         public function viewSettings() : void
         {
             $this->LoadUserData();
@@ -73,6 +98,10 @@
                 ["profile/profileEdit.css"]);
         }
 
+        /**
+         * Deletes the user account from the database and disconnects the user from the session
+         * @return void
+         */
         protected function deleteUserAccount(): void
         {
             try {
@@ -94,6 +123,11 @@
             }
         }
 
+        /**
+         * Updates the user data in the database and redirects to the profile page with a notification
+         * Available user information is displayed in the form and the user can choose which information to update
+         * @return void
+         */
         public function updateUser() : void
         {
             try {
@@ -138,6 +172,10 @@
             }
         }
 
+        /**
+         * Displays the password settings page if the user is logged in or redirect if not
+         * @return void
+         */
         public function viewPasswordSettings(): void
         {
             $this->LoadUserData();
@@ -145,6 +183,11 @@
                 ["profile/profileEdit.css"]);
         }
 
+        /**
+         * Updates the user password in the database and redirects to the profile page with a notification
+         * The inputs are checked to make sure they are valid
+         * @return void
+         */
         public function updatePassword() : void
         {
             try {

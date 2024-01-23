@@ -19,15 +19,20 @@
          */
         protected static string $bodyFolder = '/Home';
 
+        /**
+         * Displays the home page
+         * @return void
+         */
         public function view() : void
         {
-            $string = $this->getBodyFolder();
-            $title = explode('/', $string)[1];
-            $phpFile = '/' . strtolower($title) . '.php';
             //FIXME MAKE A CSS FILE BY DEFAULT FOR VIEWS?
-            $this->displayView($title, $phpFile,  ['home/homeMobile.css', 'home/home.css']);
+            $this->displayView('Orissa', '/home.php',  ['home/homeMobile.css', 'home/home.css']);
         }
 
+        /**
+         * Redirects to a random taxa page
+         * @return void
+         */
         public function discoverTaxa()
         {
             $taxaId = TaxaAPI::GetRandomTaxa();

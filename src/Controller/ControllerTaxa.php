@@ -22,11 +22,18 @@
             'Taxa/:param:/unregister' => 'unregisterSelectedTaxa',
         ];
 
-        /**Taxa Controller's definition of Home body's folder directory
+        /**
+         * Taxa Controller's definition of taxa body's folder directory
          * @return string
          */
         protected static string $bodyFolder = '/Taxa';
 
+        /**
+         * Displays the selected taxa page from its id
+         * If the taxa is not found, redirects to the search page with a warning message
+         * @param int $idTaxa the id of the selected taxa
+         * @return void
+         */
         protected function viewTaxa(int $idTaxa): void
         {
             try {
@@ -35,7 +42,8 @@
                 $taxaImage = TaxaAPI::GetTaxaImage($idTaxa);
                 $taxaStatus = TaxaAPI::GetTaxaStatus($idTaxa);
                 $interactions = TaxaAPI::GetTaxaInteractions($idTaxa);
-                $this->displayView("Taxas found", "/selectTaxa.php", ["taxa/taxa.css"],
+                $this->displayView("Taxas found", "/selectTaxa.php",
+                    ["taxa/taxa.css", "taxa/taxaMobile.css"],
                     ["taxa" => $taxa, "taxaImage" => $taxaImage,
                         "taxaStatus" => $taxaStatus, "interactions" => $interactions]);
             } catch (Exception $e) {
@@ -46,6 +54,12 @@
             }
         }
 
+        /**
+         * Displays the selected taxa factsheet from its id
+         * If the factsheet is not found, redirects to the search page with a warning message
+         * @param int $taxaIdParameter the id of the selected taxa
+         * @return void
+         */
         protected function viewTaxaFactsheet(int $taxaIdParameter) : void
         {
             try {
@@ -62,13 +76,20 @@
                         ["nan.css"], ["exceptionMessage" => $exceptionMessage, "taxaId" => $taxaIdParameter]);
                 }
                 else {
-                    FlashMessages::add("warning", "Ce taxon n'existe pas");
-                    header("Location: /Orissa/Taxa");
+                    FlashMessages::add("warning", "Cette fiche d'information n'est pas disponible");
+                    header("Location: /Orissa/Search");
                     exit();
                 }
             }
         }
 
+        /**
+         * CURRENTLY NOT USED
+         * Displays the selected taxa interactions from its id
+         * If the interactions are not found, redirects to the search page with a warning message
+         * @param int $taxaIdParameter the id of the selected taxa
+         * @return void
+         */
         protected function viewTaxaInteractions(int $taxaIdParameter) : void
         {
             try {
@@ -92,6 +113,11 @@
             }
         }
 
+        /**
+         * Registers the selected taxa in the database and redirects to the taxa page with a notification
+         * @param int $taxaIdParameter the id of the selected taxa
+         * @return void
+         */
         protected function registerSelectedTaxa(int $taxaIdParameter) : void
         {
             TaxaRegisters::RegisterTaxa($taxaIdParameter);
@@ -99,6 +125,11 @@
             header("Location: /Orissa/Taxa/$taxaIdParameter");
         }
 
+        /**
+         * Unregisters the selected taxa in the database and redirects to the taxa page with a notification
+         * @param int $taxaIdParameter the id of the selected taxa
+         * @return void
+         */
         protected function unregisterSelectedTaxa(int $taxaIdParameter) : void
         {
             TaxaRegisters::UnregisterTaxa($taxaIdParameter);

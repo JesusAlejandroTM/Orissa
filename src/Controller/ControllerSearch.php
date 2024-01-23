@@ -17,11 +17,15 @@
             'Search/SearchTaxas' => 'SearchTaxas'
         ];
 
-        /**Home Controller's definition of Home body's folder directory
+        /**Search Controller's definition of search body's folder directory
          * @return string
          */
         protected static string $bodyFolder = '/Search';
 
+        /**
+         * Displays the search page
+         * @return void
+         */
         public function view(): void
         {
             $string = $this->getBodyFolder();
@@ -31,6 +35,11 @@
                 [], ['taxaSearch.js', 'apiDataProcesses.js']);
         }
 
+        /**
+         * Searches for taxas with the given name
+         * If no taxas are found, redirects to the search page with a warning message
+         * @return void
+         */
         protected function SearchTaxas(): void
         {
             try {

@@ -29,6 +29,10 @@
          */
         protected static string $bodyFolder = '/Login';
 
+        /**
+         * Displays the login page if the user is not connected or redirect if not
+         * @return void
+         */
         public function view() : void
         {
             self::CheckNonUserAccess();
@@ -39,6 +43,12 @@
             $this->displayView($title, $phpFile,  ['login/style.css']);
         }
 
+
+        /**
+         * Logs the user in if the information are correct or redirect if not
+         * A notification is displayed to the user if the login failed
+         * @return void
+         */
         protected function logging() : void
         {
             try {
@@ -62,12 +72,21 @@
             }
         }
 
+        /**
+         * Displays the create account page if the user is not connected or redirect if not
+         * @return void
+         */
         protected function displayCreateAccount() : void
         {
             self::CheckNonUserAccess();
             $this->displayView("Create an account", "/CreateAccount.php", ['login/style.css']);
         }
 
+        /**
+         * Creates an account if the information are valid or redirect if not
+         * A notification is displayed to the user if the creation failed
+         * @return void
+         */
         protected function creatingAccount() : void
         {
             self::CheckNonUserAccess();

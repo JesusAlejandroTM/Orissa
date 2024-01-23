@@ -1,0 +1,64 @@
+/* CSS pour tablette */
+@media (max-width: 768px) {
+    .mainContainer {
+        grid-template-columns: 1fr;
+    }
+    #detail-profil, .content-section {
+        margin: auto;
+        width: 90%;
+    }
+    .list-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+}
+
+/* CSS pour mobile */
+@media (max-width: 480px) {
+    .mainContainer {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+    .banner-div {
+    }
+    .nav-barre {
+        flex-direction: column; /* Changer la direction de la barre de navigation pour un affichage vertical */
+        height: auto; /* Permettre à la hauteur de s'ajuster en fonction du contenu */
+        padding: 10px; /* Ajouter un rembourrage pour un meilleur espacement */
+    }
+    .nav-link {
+        font-size: 1.2em; /* Réduire la taille de la police pour un meilleur affichage sur mobile */
+        margin-bottom: 10px; /* Ajouter une marge en bas pour un meilleur espacement */
+    }
+    #detail-profil, .content-section {
+        margin: auto;
+        width: 100%;
+    }
+    .list-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 10px;
+    }
+    .username, .name, .role, .dates, .familyName, .userIdentifier, .mail {
+        font-size: 12px;
+        line-height: 15px;
+    }
+    .dates {
+        font-size: 8px;
+        line-height: 10px;
+    }
+    .description-du-profile {
+        font-size: 14px;
+        line-height: 17px;
+    }
+    #edit-profile-button,  #edit-password-button {
+        width: 50%;
+        height: 30px;
+        font-size: 12px;
+        line-height: 15px;
+    }
+    .logout-button, .delete-button {
+        width: 60%;
+        height: 40px;
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
