@@ -137,14 +137,14 @@
 
         /**
          * Generates an HTML unit for an entire red list status in the taxa view
-         * @param string $worldStatus the world status
-         * @param string $europeStatus the european status
-         * @param string $nationalStatus the national status
-         * @param string $localStatus the local status
+         * @param string|null $worldStatus the world status
+         * @param string|null $europeStatus the european status
+         * @param string|null $nationalStatus the national status
+         * @param string|null $localStatus the local status
          * @return string
          */
-        public static function GenerateRedListHTML(string $worldStatus, string $europeStatus,
-                                                   string $nationalStatus, string $localStatus): string
+        public static function GenerateRedListHTML(?string $worldStatus, ?string $europeStatus,
+                                                   ?string $nationalStatus, ?string $localStatus): string
         {
             $html = "<h3>Status listes rouges </h3>";
 
@@ -159,16 +159,16 @@
         /**
          * Generates an HTML block for a single red list status
          * @param string $title the title of the block
-         * @param string $status the status string
+         * @param string|null $status the status string
          * @return string
          */
-        private static function generateRedListHTMLBlock(string $title, string $status): string
+        private static function generateRedListHTMLBlock(string $title, ?string $status): string
         {
             $status = str_replace(',', '', $status);
             $htmlBlock = "<p>$title : ";
 
             foreach (str_split($status, 2) as $char) {
-                $statusName = RedListIdentifier::GetAcronymDescription($char);
+                $statusName = RedListIdentifier::GetAcronymDescription($char) ?? "Status inconnu";
                 if ($char == ',') continue;
                 $htmlBlock .= "$statusName, ";
             }
