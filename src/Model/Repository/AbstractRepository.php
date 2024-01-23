@@ -11,12 +11,29 @@
 
     abstract class AbstractRepository
     {
+        /**
+         * Get the primary key column of corresponding repository
+         * @return string
+         */
         protected abstract function GetPrimaryKeyColumn(): string;
 
+        /**
+         * Get the table name of corresponding repository
+         * @return string
+         */
         protected abstract function GetTableName(): string;
 
+        /**
+         * Build an AbstractDataObject from an array of data
+         * @param array $arrayData the array of data
+         * @return AbstractDataObject|bool the AbstractDataObject built or false if an error occurred
+         */
         protected abstract function Build(array $arrayData): AbstractDataObject|bool;
 
+        /**
+         * Get the columns names of corresponding repository
+         * @return array the columns names of corresponding repository
+         */
         protected abstract function GetColumnsNames(): array;
 
         /**
