@@ -51,6 +51,7 @@ async function processApiTaxaData(taxon, taxaCaption, taxaHref) {
     console.log(taxaName);
 }
 
+// Nettoyer les données obtenus par l'API à partir de la base de données pour les taxons enregistrés
 async function processApiRegisteredTaxaData(taxon, taxaCaption, taxaImageSpace) {
     const [taxaName, taxaImg] = await Promise.all([
         taxon['frenchVernacularName'],
