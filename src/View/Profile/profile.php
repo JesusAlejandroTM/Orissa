@@ -31,7 +31,7 @@
         <button onclick="window.location.href='Profile/Settings';" id="edit-profile-button">
             Modifier le profil
         </button>
-        <button onclick="window.location.href='Profile/Password';" id="edit-profile-button">
+        <button onclick="window.location.href='Profile/Password';" id="edit-password-button">
             Changer le mot de passe
         </button>
         <div class="logout-section">

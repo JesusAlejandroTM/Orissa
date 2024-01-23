@@ -39,6 +39,8 @@
 }
 
 #detail-profil {
+    display: flex;
+    flex-direction: column;
     position: relative;
     max-width: 310px;
     margin-left: 1vw;
@@ -130,6 +132,10 @@
     text-decoration: none;
 }
 
+.libraryLink:hover {
+    text-decoration: underline;
+}
+
 .name-library .innerName {
     text-align: center;
     align-items: center;
@@ -178,9 +184,9 @@
     height: 25px;
     border-radius: 7px;
 }
-#edit-profile-button {
+#edit-profile-button,  #edit-password-button {
     position: relative;
-    width: 95px;
+    width: 33%;
     height: 19px;
     margin-top: 6%;
     margin-left: 14.5%;
@@ -195,6 +201,19 @@
     border: none;
     cursor: pointer;
 }
+
+#edit-password-button {
+    height: 5%;
+}
+
+#edit-password-button:hover {
+    background: #C4C4C4;
+}
+
+#edit-profile-button:hover {
+    background: #C4C4C4;
+}
+
 .logout-section {
     margin-left: 10%;
     margin-top: 5%;
@@ -214,6 +233,11 @@
     border: none;
     cursor: pointer;
 }
+
+.logout-button:hover {
+    background: #9F7E00FF;
+}
+
 .logout {
     position: relative;
     font-family: 'Inter', serif;
@@ -242,6 +266,11 @@
     border: none;
     cursor: pointer;
 }
+
+.delete-button:hover {
+    background: #9F0000FF;
+}
+
 .delete {
     position: relative;
     font-family: 'Inter', serif;
