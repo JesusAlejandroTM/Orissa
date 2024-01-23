@@ -1,5 +1,12 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
 #container {
     display: flex;
+    justify-content: space-between;
     align-items: start;
 }
 
@@ -9,6 +16,7 @@
 
 #recherche_barre input[type="submit"] {
     border-radius: 15px;
+    cursor: pointer;
 }
 
 #filtre, #resultats li {
@@ -21,44 +29,42 @@
 
 .searchTitle {
     text-align: center;
+    margin-bottom: 20px;
 }
 
 #filtre {
-    font-family: Arial, sans-serif;
-    width: 15%;
-    padding: 10px;
-    height: 25%;
+    float: left;
+    margin-right: 3%;
+    width: 19%;
+    padding: 15px;
     margin-top: 0;
     margin-left: 2%;
-    margin-right: 20px;
-    position: absolute;
     border-radius: 10px;
+    box-sizing: border-box;
 }
 
-#filtre li, #filtre label {
-    cursor: pointer;
+#filtre ul {
+    padding: 0;
 }
 
 #filtre li {
     list-style: none;
     color: #000;
-    text-transform: uppercase;
     border-bottom: 2px solid transparent;
     font-size: 14px;
-    margin-left: -5px;
-    padding: 2px 0 15px;
-
+    padding: 10px 0;
 }
 
 #recherche_barre {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
-    width: 60%;
-    margin-left: 25%;
+    padding: 15px 20px;
+    width: 66%;
+    margin-left: 2%;
     border: 2px solid #a6a6a6;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
 #recherche_barre input[type="text"], #recherche_barre input[type="submit"] {
@@ -68,29 +74,34 @@
 }
 
 #recherche_barre input[type="text"] {
-    width: 100%;
-    padding: 6px 0;
+    width: 70%;
+    padding: 10px 0;
     border-bottom: 1px solid #000;
+    box-sizing: border-box;
 }
 
 #recherche_barre input[type="submit"] {
-    padding: 8px 15px;
-    cursor: pointer;
+    width: 25%;
+    padding: 12px;
+}
+
+#resultats {
+    width: 90%;
+    margin-right: 2%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #resultats ul {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 5px;
+    gap: 15px;
     padding: 0;
 }
 
 #resultats li {
     list-style: none;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    margin-bottom: 15px;
     border-radius: 10px;
     background-color: #02A973;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -99,8 +110,8 @@
 
 #resultats li img {
     width: 100%;
-    height: 225px;
-    border-radius: 0 0 10% 10%;
+    height: 200px;
+    border-radius: 10px 10px 0 0;
     object-fit: cover;
 }
 
@@ -108,18 +119,7 @@
     text-align: center;
     background-color: #02A973;
     border-radius: 0 0 10px 10px;
-    margin-top: -5%;
-}
-
-#resultats {
-    width: 60%;
-    margin-left: 25%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-#filtre ul {
-    padding: 0;
+    padding: 10px;
 }
 
 .imageLink {
@@ -128,9 +128,17 @@
 }
 
 p {
-    margin: 0 auto 0.5rem 0.5rem;
+    margin: 0;
     max-width: 220px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+#pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

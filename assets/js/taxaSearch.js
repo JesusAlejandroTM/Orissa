@@ -1,3 +1,5 @@
+let currentPage = 1;
+
 function searchApi() {
     var searchList = document.getElementById('liste');
 
@@ -7,8 +9,18 @@ function searchApi() {
         }
     }
 
-    var taxaName = document.getElementById('taxaName').value;
-    const apiUrl = `https://taxref.mnhn.fr/api/taxa/search?frenchVernacularNames=${taxaName}&size=100&page=1`;
+    let taxaName = document.getElementById('taxaName').value;
+    let territory = document.getElementById('territory').value;
+    let domain = document.getElementById('domain').value;
+    let habitat = document.getElementById('habitat').value;
+    let taxonomicRank = document.getElementById('taxonomicRank').value;
+
+    if (!taxaName) {
+        alert("Vous devez saisir un nom de taxon!");
+        return;
+    }
+
+    const apiUrl = `https://taxref.mnhn.fr/api/taxa/search?frenchVernacularNames=${taxaName}&taxonomicRanks=${taxonomicRank}&territories=${territory}&domain=${domain}&habitats=${habitat}&page=${currentPage}&size=100`;
     const loader = document.querySelector(".loader--hidden");
     loader.classList = "loader";
 
@@ -16,13 +28,13 @@ function searchApi() {
     const signal = controller.signal;
 
     const warningTimeout = setTimeout(() => {
-        console.warn("Votre requête semble prendre du temps");
+        alert("Votre requête semble prendre du temps");
     }, 15000);
 
     const cancelTimeOut = setTimeout(() => {
             controller.abort();
             loader.classList = "loader--hidden";
-            console.error("Votre requête a été annulée");
+            alert("Votre requête a été annulée");
         }, 30000
     )
 
@@ -37,9 +49,9 @@ function searchApi() {
             return response.json();
         })
         .then(data => {
-            const totalElements = data['page']['totalElements'];
-            if (totalElements < 1) {
-                throw new Error('No taxas found')
+            const totalTaxas = data['page']['size'];
+                if (totalTaxas < 1) {
+                throw new Error('Pas de taxon trouvé')
             } else {
                 // Process the non-empty 'data'
                 return processApiSearchData(data);
@@ -52,10 +64,11 @@ function searchApi() {
                 let taxaHTML = generateTaxaItem(result[i]);
                 searchList.innerHTML += taxaHTML;
             }
+            addPaginationControls();
         })
         .catch(error => {
             // Handle errors
-            console.error('Fetch error:', error);
+            alert(error);
         });
 }
 
@@ -70,4 +83,32 @@ function generateTaxaItem(taxa) {
                     <p>${taxa.taxaName}</p>
                 </div>
             </li>`;
+}
+function addPaginationControls() {
+    var paginationContainer = document.getElementById('pagination-container');
+    paginationContainer.innerHTML = '';
+
+    var prevButton = document.createElement('button');
+    prevButton.textContent = 'Previous Page';
+    prevButton.onclick = function () {
+        changePage('prev');
+    };
+    paginationContainer.appendChild(prevButton);
+
+    var nextButton = document.createElement('button');
+    nextButton.textContent = 'Next Page';
+    nextButton.onclick = function () {
+        changePage('next');
+    };
+    paginationContainer.appendChild(nextButton);
+}
+
+function changePage(direction) {
+    if (direction === 'prev' && currentPage > 1) {
+        currentPage--;
+    } else if (direction === 'next') {
+        currentPage++;
+    }
+
+    searchApi();
 }
