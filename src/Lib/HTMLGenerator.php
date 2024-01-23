@@ -3,6 +3,7 @@
     namespace App\Code\Lib;
 
     use App\Code\Model\API\BiogeographicStatusIdentifier;
+    use App\Code\Model\API\RedListIdentifier;
 
     /**
      * Class HTMLGenerator
@@ -135,22 +136,44 @@
         }
 
         /**
-         * Generates an HTML unit for a red list status in the taxa view
-         * @param string $world the world status
-         * @param string $europe the european status
-         * @param string $national the national status
-         * @param string $local the local status
+         * Generates an HTML unit for an entire red list status in the taxa view
+         * @param string $worldStatus the world status
+         * @param string $europeStatus the european status
+         * @param string $nationalStatus the national status
+         * @param string $localStatus the local status
          * @return string
          */
-        public static function GenerateRedListHTML(string $world, string $europe, string $national, string $local): string
+        public static function GenerateRedListHTML(string $worldStatus, string $europeStatus,
+                                                   string $nationalStatus, string $localStatus): string
         {
-            return "
-                <h3>Status listes rouges </h3>
-                <p>Liste rouge international : $world</p>
-                <p>Liste rouge européenne : $europe</p>
-                <p>Liste rouge nationale : $national</p>
-                <p>Liste rouge locale : $local</p>   
-            ";
+            $html = "<h3>Status listes rouges </h3>";
+
+            $html .= self::generateRedListHTMLBlock("Liste rouge international", $worldStatus);
+            $html .= self::generateRedListHTMLBlock("Liste rouge européen", $europeStatus);
+            $html .= self::generateRedListHTMLBlock("Liste rouge nationale", $nationalStatus);
+            $html .= self::generateRedListHTMLBlock("Liste rouge locale", $localStatus);
+
+            return $html;
+        }
+
+        /**
+         * Generates an HTML block for a single red list status
+         * @param string $title the title of the block
+         * @param string $status the status string
+         * @return string
+         */
+        private static function generateRedListHTMLBlock(string $title, string $status): string
+        {
+            $status = str_replace(',', '', $status);
+            $htmlBlock = "<p>$title : ";
+
+            foreach (str_split($status, 2) as $char) {
+                $statusName = RedListIdentifier::GetAcronymDescription($char);
+                if ($char == ',') continue;
+                $htmlBlock .= "$statusName, ";
+            }
+
+            return rtrim($htmlBlock, ', ') . "</p>";
         }
 
         /**

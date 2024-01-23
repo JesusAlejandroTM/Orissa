@@ -22,9 +22,8 @@
          * @param $acronym string the acronym of the red list status
          * @return string the description of the red list status
          */
-        public static function GetAcronymDescription($acronym): string
+        public static function GetAcronymDescription(string $acronym): string
         {
-            $cleanedAcronym = substr($acronym, 0, 2);
-            return self::RedListAcronyms[$cleanedAcronym] ?? "Status inconnu";
+            return self::RedListAcronyms[$acronym] ?? "Status inconnu";
         }
     }

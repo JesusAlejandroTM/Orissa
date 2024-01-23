@@ -31,10 +31,10 @@
         }
     }
     if (isset($taxaStatus)) {
-        $worldRedListStatus = RedListIdentifier::GetAcronymDescription($taxaStatus['worldRedList']);
-        $europeanRedListStatus = RedListIdentifier::GetAcronymDescription($taxaStatus['europeanRedList']);
-        $nationalRedList = RedListIdentifier::GetAcronymDescription($taxaStatus['nationalRedList']);
-        $localRedList = RedListIdentifier::GetAcronymDescription($taxaStatus['localRedList']);
+        $worldRedListStatus = $taxaStatus['worldRedList'] ?? null;
+        $europeanRedListStatus = $taxaStatus['europeanRedList'] ?? null;
+        $nationalRedList = $taxaStatus['nationalRedList'] ?? null;
+        $localRedList = $taxaStatus['localRedList']  ?? null;
 
         $BioGeoId = $taxaStatus['biogeoStatus'] ?? null;
     }
