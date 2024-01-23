@@ -21,7 +21,7 @@
             302 => "Erreur avec le décodage de votre requête",
             303 => "Taxa introuvable",
             304 => "Les caractères spéciaux ne sont pas autorisés",
-            404 => "Page non trouvée",
+            404 => "Cette page n'existe pas!",
             501 => "Vérifiez vos données",
             605 => "Erreur dans la création de naturothèque",
             606 => "Vous avez déjà une naturothèque avec ce titre",
