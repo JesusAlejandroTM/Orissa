@@ -103,7 +103,7 @@ body {
     list-style: none;
     margin-bottom: 15px;
     border-radius: 10px;
-    background-color: #02A973;
+    background-color: #81AE64;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     overflow: hidden;
 }
@@ -117,7 +117,7 @@ body {
 
 #resultats li .caption {
     text-align: center;
-    background-color: #02A973;
+    background-color: #81AE64;
     border-radius: 0 0 10px 10px;
     padding: 10px;
 }

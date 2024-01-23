@@ -131,12 +131,12 @@
                 // Notification and redirect
                 $title = $_POST['title'];
                 FlashMessages::add("success", "Votre naturothèque " . $title . " a été créé!");
-                header("Location: /Orissa/Library");
+                header("Location: /Orissa/Profile");
                 exit();
             } catch (Exception $e) {
                 $errorMessage = ExceptionHandler::getErrorMessage($e->getCode());
                 FlashMessages::add("danger", $errorMessage);
-                header("Location: /Orissa/Library");
+                header("Location: /Orissa/Profile");
                 exit();
             }
         }

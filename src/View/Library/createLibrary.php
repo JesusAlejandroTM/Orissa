@@ -38,8 +38,7 @@
                 <input type="text" name="recherche" placeholder="Rechercher" id="recherche">
                 <input type="submit" name="recherche" value="Rechercher" onclick="apiRequest()">
             </div>
-
-            <
+            <br>
             <div class="registered">
                 <input type="checkbox" name="registered" id="registered">
                 <label for="registered">Register</label>
